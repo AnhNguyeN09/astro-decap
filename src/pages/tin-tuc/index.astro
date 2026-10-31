@@ -1,33 +1,18 @@
 ﻿---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import FloatingContact from '../components/FloatingContact.astro';
-import PageBanner from '../components/PageBanner.astro';
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import FloatingContact from '../../components/FloatingContact.astro';
+import PageBanner from '../../components/PageBanner.astro';
 
-const news = [
-  {
-    title: "ABSoltech Kỷ Niệm 16 Năm Thành Lập Và Phát Triển Bền Vững",
-    date: "12/12/2023",
-    category: "Sự kiện",
-    image: "https://absoltech.vn/wp-content/uploads/2023/09/teamworks-absoltech-1024x683.jpg",
-    desc: "Chặng đường 16 năm khẳng định vị thế thương hiệu doanh nghiệp CNTT hàng đầu khu vực Duyên Hải và vươn tầm quốc tế."
-  },
-  {
-    title: "Xu Hướng Ứng Dụng Trí Tuệ Nhân Tạo (AI) Trong Chuyển Đổi Số Doanh Nghiệp 2026",
-    date: "24/03/2026",
-    category: "Công nghệ",
-    image: "https://absoltech.vn/wp-content/uploads/2025/07/absoltech-software-development-1024x683.jpg",
-    desc: "Cách các doanh nghiệp vừa và nhỏ tối ưu hóa 40% chi phí vận hành nhờ áp dụng hệ thống AI vào quy trình tự động hóa."
-  },
-  {
-    title: "ABSoltech Ký Kết Hợp Tác Chiến Lược Công Nghệ Với Đối Tác Nhật Bản",
-    date: "15/01/2026",
-    category: "Hợp tác",
-    image: "https://absoltech.vn/wp-content/uploads/2022/04/software-slideh500.png",
-    desc: "Mở rộng năng lực gia công phần mềm chất lượng cao và chuyển giao công nghệ cho các tập đoàn đối tác quốc tế."
-  }
-];
+// Lấy danh sách bài viết từ Decap CMS
+const rawNews = await getCollection('blog');
+const news = rawNews.sort((a, b) => {
+  const dateA = new Date(a.data.date || 0).getTime();
+  const dateB = new Date(b.data.date || 0).getTime();
+  return dateB - dateA;
+});
 ---
 
 <Layout title="Tin Tức & Sự Kiện | ABSoltech Vietnam">
@@ -46,26 +31,33 @@ const news = [
   <section class="news-section">
     <div class="container">
       <div class="news-grid">
-        {news.map((item) => (
-          <article class="news-card">
-            <div class="news-img-wrap">
-              <img src={item.image} alt={item.title} loading="lazy" />
-              <span class="news-cat">{item.category}</span>
-            </div>
-            <div class="news-info">
-              <div class="news-meta">
-                <i class="fa-regular fa-calendar-days"></i>
-                <span>{item.date}</span>
+        {news.map((item) => {
+          const post = item.data;
+          const slug = item.id.replace(/\.md$/, '');
+          const formattedDate = post.date ? new Date(post.date).toLocaleDateString('vi-VN') : '';
+          return (
+            <article class="news-card">
+              <div class="news-img-wrap">
+                {post.thumbnail && <img src={post.thumbnail} alt={post.title} loading="lazy" />}
+                <span class="news-cat">{post.category || "Tin tức"}</span>
               </div>
-              <h3 class="news-title">{item.title}</h3>
-              <p class="news-desc">{item.desc}</p>
-              <a href="#" class="news-readmore">
-                <span>Đọc tiếp</span>
-                <i class="fa-solid fa-arrow-right-long"></i>
-              </a>
-            </div>
-          </article>
-        ))}
+              <div class="news-info">
+                <div class="news-meta">
+                  <i class="fa-regular fa-calendar-days"></i>
+                  <span>{formattedDate}</span>
+                </div>
+                <h3 class="news-title">
+                  <a href={`/tin-tuc/${slug}`}>{post.title}</a>
+                </h3>
+                <p class="news-desc">{post.description || ""}</p>
+                <a href={`/tin-tuc/${slug}`} class="news-readmore">
+                  <span>Đọc tiếp</span>
+                  <i class="fa-solid fa-arrow-right-long"></i>
+                </a>
+              </div>
+            </article>
+          );
+        })}
       </div>
     </div>
   </section>
@@ -107,6 +99,7 @@ const news = [
     position: relative;
     height: 210px;
     overflow: hidden;
+    background: #0f172a;
   }
 
   .news-img-wrap img {
@@ -155,6 +148,16 @@ const news = [
     color: #0f172a;
     line-height: 1.45;
     margin-bottom: 10px;
+  }
+
+  .news-title a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .news-title a:hover {
+    color: #0095da;
   }
 
   .news-desc {

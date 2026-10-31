@@ -1,0 +1,235 @@
+﻿---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import FloatingContact from '../../components/FloatingContact.astro';
+import PageBanner from '../../components/PageBanner.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id.replace(/\.md$/, '') },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const data = post.data;
+const { Content } = await render(post);
+
+const formattedDate = data.date ? new Date(data.date).toLocaleDateString('vi-VN', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+}) : '';
+---
+
+<Layout title={`${data.title} | ABSoltech Vietnam`}>
+  <Header />
+
+  <PageBanner
+    badge={data.category || "Tin tức"}
+    badgeIcon="fa-regular fa-newspaper"
+    title={data.title}
+    breadcrumbs={[
+      { label: "Tin tức", href: "/tin-tuc" },
+      { label: data.title }
+    ]}
+  />
+
+  <article class="single-article-sec">
+    <div class="container article-container">
+      <div class="article-meta-bar">
+        <span class="article-badge">{data.category || "Tin tức"}</span>
+        <span class="article-date"><i class="fa-regular fa-calendar-days"></i> {formattedDate}</span>
+        <span class="article-author"><i class="fa-regular fa-user"></i> Ban Biên Tập ABSoltech</span>
+      </div>
+
+      {data.thumbnail && (
+        <div class="article-hero-thumb">
+          <img src={data.thumbnail} alt={data.title} />
+        </div>
+      )}
+
+      {data.description && (
+        <div class="article-lead-box">
+          <p>{data.description}</p>
+        </div>
+      )}
+
+      <div class="article-content-body">
+        <Content />
+      </div>
+
+      <div class="article-footer-nav">
+        <a href="/tin-tuc" class="btn-back-news">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span>Quay lại danh sách tin tức</span>
+        </a>
+      </div>
+    </div>
+  </article>
+
+  <Footer />
+  <FloatingContact />
+</Layout>
+
+<style>
+  .single-article-sec {
+    padding: 60px 0 90px 0;
+    background: #f8fafc;
+  }
+
+  .article-container {
+    max-width: 860px;
+    background: #ffffff;
+    padding: 50px 60px;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  .article-meta-bar {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 28px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 14px;
+    color: #64748b;
+  }
+
+  .article-badge {
+    background: #e0f2fe;
+    color: #0284c7;
+    font-weight: 700;
+    font-size: 12.5px;
+    padding: 4px 14px;
+    border-radius: 20px;
+    text-transform: uppercase;
+  }
+
+  .article-date, .article-author {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .article-hero-thumb {
+    width: 100%;
+    max-height: 440px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 34px;
+    background: #0f172a;
+  }
+
+  .article-hero-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .article-lead-box {
+    background: #f0f9ff;
+    border-left: 4px solid #0095da;
+    padding: 18px 24px;
+    border-radius: 0 10px 10px 0;
+    margin-bottom: 36px;
+  }
+
+  .article-lead-box p {
+    font-size: 16.5px;
+    font-weight: 600;
+    color: #0369a1;
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .article-content-body {
+    font-size: 16.5px;
+    line-height: 1.85;
+    color: #334155;
+  }
+
+  .article-content-body :global(h2) {
+    font-size: 26px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-top: 36px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #f1f5f9;
+  }
+
+  .article-content-body :global(h3) {
+    font-size: 20px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-top: 26px;
+    margin-bottom: 12px;
+  }
+
+  .article-content-body :global(p) {
+    margin-bottom: 22px;
+  }
+
+  .article-content-body :global(blockquote) {
+    border-left: 4px solid #0095da;
+    background: #f8fafc;
+    padding: 16px 24px;
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+    color: #0284c7;
+    margin: 28px 0;
+    font-size: 17px;
+  }
+
+  .article-content-body :global(ul),
+  .article-content-body :global(ol) {
+    padding-left: 28px;
+    margin-bottom: 24px;
+  }
+
+  .article-content-body :global(li) {
+    margin-bottom: 10px;
+  }
+
+  .article-content-body :global(img) {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin: 24px 0;
+  }
+
+  .article-footer-nav {
+    margin-top: 50px;
+    padding-top: 24px;
+    border-top: 1px solid #f1f5f9;
+  }
+
+  .btn-back-news {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #0095da;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+  }
+
+  .btn-back-news:hover {
+    gap: 12px;
+    color: #0077b6;
+  }
+
+  @media (max-width: 768px) {
+    .article-container {
+      padding: 30px 20px;
+    }
+  }
+</style>
