@@ -24,12 +24,121 @@
     }
   </script>
 
-  <!-- 4. ĐĂNG KÝ CSS & GIAO DIỆN PREVIEW DÀNH RIÊNG CHO BÀI VIẾT TIN TỨC (BLOG) -->
+  <!-- 4. ĐĂNG KÝ CSS & GIAO DIỆN PREVIEW CHO TRANG CHỦ & BÀI VIẾT -->
   <script>
-    // Nạp stylesheet chuẩn cho iframe preview của bài viết
+    // Nạp stylesheets cho iframe preview
     CMS.registerPreviewStyle("/admin/preview-article.css");
+    CMS.registerPreviewStyle("/admin/preview-home.css");
 
-    // Component render bài viết tin tức đẹp như trên website thật
+    // ==========================================
+    // A. PREVIEW COMPONENT CHO TRANG CHỦ (HOMEPAGE)
+    // ==========================================
+    const HomePreview = createClass({
+      render: function() {
+        const entry = this.props.entry;
+        const slides = entry.getIn(['data', 'slides']) ? entry.getIn(['data', 'slides']).toJS() : [];
+        const about = entry.getIn(['data', 'about']) ? entry.getIn(['data', 'about']).toJS() : {};
+        const services = entry.getIn(['data', 'servicesSection']) ? entry.getIn(['data', 'servicesSection']).toJS() : {};
+        const products = entry.getIn(['data', 'productsSection']) ? entry.getIn(['data', 'productsSection']).toJS() : {};
+        const callout = entry.getIn(['data', 'callout']) ? entry.getIn(['data', 'callout']).toJS() : {};
+
+        return h('div', { className: 'home-preview-wrapper' },
+          // 1. Khối Banner Sliders
+          slides.length > 0 ? h('section', { className: 'preview-hero-sec' },
+            slides.map((s, idx) => {
+              const sImg = this.props.getAsset(s.image);
+              return h('div', { key: idx, className: 'preview-slide-card' },
+                h('div', null,
+                  h('div', { className: 'preview-slide-pretitle' }, s.pretitle || 'Giải pháp'),
+                  h('div', { className: 'preview-slide-title' }, s.title || 'Phần mềm'),
+                  h('p', { className: 'preview-slide-desc' }, s.description || ''),
+                  h('div', { className: 'preview-btn-row' },
+                    h('span', { className: 'preview-btn-primary' }, s.btnPrimaryText || 'Kết nối'),
+                    h('span', { className: 'preview-btn-outline' }, s.btnSecondaryText || 'Xem thêm')
+                  )
+                ),
+                sImg ? h('div', { className: 'preview-slide-img' },
+                  h('img', { src: sImg.toString(), alt: s.title })
+                ) : null
+              );
+            })
+          ) : null,
+
+          // 2. Khối Giới thiệu (About)
+          about.heading ? h('section', { className: 'preview-about-sec' },
+            h('div', { className: 'preview-about-grid' },
+              h('div', null,
+                h('div', { className: 'preview-about-sublabel' }, about.subLabel || 'VỀ ABSOLTECH'),
+                h('h2', { className: 'preview-about-heading' }, about.heading),
+                h('p', { className: 'preview-about-content' }, about.content),
+                about.quote ? h('blockquote', { className: 'preview-about-quote' }, about.quote) : null
+              ),
+              about.teamImage ? h('div', { className: 'preview-about-img' },
+                h('img', { src: this.props.getAsset(about.teamImage).toString(), alt: 'Team' })
+              ) : null
+            )
+          ) : null,
+
+          // 3. Khối Dịch vụ (Services)
+          services.items ? h('section', { className: 'preview-services-sec' },
+            h('div', { className: 'preview-sec-header' },
+              h('span', { className: 'preview-sec-sub' }, services.subTitle || 'DỊCH VỤ'),
+              h('h2', { className: 'preview-sec-title' }, services.title || 'Các Dịch Vụ Cung Cấp'),
+              h('p', { className: 'preview-sec-desc' }, services.desc || '')
+            ),
+            h('div', { className: 'preview-services-grid' },
+              services.items.map((it, idx) => (
+                h('div', { key: idx, className: 'preview-service-card' },
+                  it.tag ? h('span', { className: 'preview-card-tag' }, it.tag) : null,
+                  h('h3', { className: 'preview-card-title' }, it.title),
+                  h('p', { className: 'preview-card-desc' }, it.desc)
+                )
+              ))
+            )
+          ) : null,
+
+          // 4. Khối Sản phẩm đóng gói (Products)
+          products.items ? h('section', { className: 'preview-products-sec' },
+            h('div', { className: 'preview-sec-header' },
+              h('span', { className: 'preview-sec-sub' }, products.subTitle || 'SẢN PHẨM'),
+              h('h2', { className: 'preview-sec-title' }, products.title || 'Phần Mềm Đóng Gói'),
+              h('p', { className: 'preview-sec-desc' }, products.desc || '')
+            ),
+            h('div', { className: 'preview-products-grid' },
+              products.items.map((p, idx) => {
+                const pImg = this.props.getAsset(p.image);
+                return h('div', { key: idx, className: 'preview-product-card' },
+                  pImg ? h('div', { className: 'preview-prod-img' },
+                    h('img', { src: pImg.toString(), alt: p.name })
+                  ) : null,
+                  h('h3', { className: 'preview-prod-name' }, p.name),
+                  h('div', { className: 'preview-prod-tagline' }, p.tagline),
+                  h('p', { className: 'preview-prod-desc' }, p.desc)
+                );
+              })
+            )
+          ) : null,
+
+          // 5. Khối Callout Chuyển đổi số
+          callout.title ? h('section', { className: 'preview-callout-sec' },
+            h('div', { className: 'preview-callout-grid' },
+              h('div', null,
+                h('h2', { className: 'preview-callout-title' }, callout.title),
+                h('p', { className: 'preview-callout-desc' }, callout.desc)
+              ),
+              h('a', { className: 'preview-callout-btn', href: '#' }, '📞 ' + (callout.phone || '0985 18 5665'))
+            )
+          ) : null
+        );
+      }
+    });
+
+    // Đăng ký Preview cho Trang Chủ (file collection 'homepage')
+    CMS.registerPreviewTemplate("homepage", HomePreview);
+
+    // ==========================================
+    // B. PREVIEW COMPONENT CHO BÀI VIẾT BLOG
+    // ==========================================
     const BlogPreview = createClass({
       render: function() {
         const entry = this.props.entry;
@@ -39,31 +148,20 @@
         const formattedDate = date ? new Date(date).toLocaleDateString('vi-VN') : 'Hôm nay';
         const description = entry.getIn(['data', 'description']);
         
-        // Xử lý ảnh thumbnail qua asset pipeline của Decap
         const image = entry.getIn(['data', 'thumbnail']);
         const bg = this.props.getAsset(image);
 
         return h('div', { className: 'preview-article-card' },
-          // 1. Ảnh bìa đại diện
           bg ? h('div', { className: 'preview-thumbnail-wrap' },
             h('img', { src: bg.toString(), alt: title })
           ) : null,
-
-          // 2. Thân bài viết
           h('div', { className: 'preview-article-body' },
-            // Meta (Chuyên mục + Ngày đăng)
             h('div', { className: 'preview-meta-row' },
               h('span', { className: 'preview-category-badge' }, category),
               h('span', { className: 'preview-date' }, '📅 ' + formattedDate)
             ),
-
-            // Tiêu đề
             h('h1', { className: 'preview-title' }, title),
-
-            // Đoạn tóm tắt mở đầu
             description ? h('div', { className: 'preview-desc-box' }, description) : null,
-
-            // Nội dung markdown chi tiết
             h('div', { className: 'preview-content' },
               this.props.widgetFor('body')
             )
@@ -72,7 +170,6 @@
       }
     });
 
-    // Chỉ áp dụng preview này riêng cho collection 'blog'
     CMS.registerPreviewTemplate("blog", BlogPreview);
   </script>
 </body>
