@@ -1,8 +1,10 @@
 ﻿backend:
-  name: git-gateway
+  name: github
+  repo: AnhNguyeN09/astro-decap
   branch: main
+  base_url: https://astro-decap-psi.vercel.app
+  auth_endpoint: api/auth
 
-# Chạy trực tiếp qua local server (npx decap-server)
 local_backend: true
 
 media_folder: "public/images/uploads"
