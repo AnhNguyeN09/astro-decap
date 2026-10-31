@@ -1,0 +1,350 @@
+﻿---
+interface SlideItem {
+  pretitle: string;
+  title: string;
+  description: string;
+  image: string;
+  bgImage?: string;
+  btnPrimaryText?: string;
+  btnPrimaryLink?: string;
+  btnSecondaryText?: string;
+  btnSecondaryLink?: string;
+}
+
+interface Props {
+  slides?: SlideItem[];
+}
+
+const { slides = [] } = Astro.props;
+---
+<section class="hero-section">
+  <!-- SLIDER CONTAINER CHỨA CÁC SLIDE TỪ DECAP CMS -->
+  <div class="slider-container">
+    {slides.map((data, index) => (
+      <div class={`slide-item ${index === 0 ? 'active' : ''}`} id={`slide-${index + 1}`}>
+        {data.bgImage && (
+          <div class="slide-bg" style={`background-image: url('${data.bgImage}');`}></div>
+        )}
+        <div class="container slide-content-wrap">
+          <div class="slide-text-col">
+            <h4 class="slide-pretitle">{data.pretitle}</h4>
+            <h3 class="slide-title-cyan">{data.title}</h3>
+            <p class="slide-desc">{data.description}</p>
+            <div class="slide-btns">
+              <a href={data.btnPrimaryLink || '/lien-he'} class="btn btn-primary btn-slider">
+                <i class="fa-solid fa-phone"></i>
+                <span>{data.btnPrimaryText || 'Kết nối'}</span>
+              </a>
+              <a href={data.btnSecondaryLink || '#services'} class="btn btn-outline btn-slider">
+                <span>{data.btnSecondaryText || 'Xem thêm'}</span>
+                <i class="fa-solid fa-chevron-right"></i>
+              </a>
+            </div>
+          </div>
+          <div class="slide-img-col">
+            <img src={data.image} alt={data.title} loading={index === 0 ? 'eager' : 'lazy'} />
+          </div>
+        </div>
+      </div>
+    ))}
+
+    <!-- Nút Next/Prev Slider -->
+    <button class="slider-arrow prev" id="sliderPrev" aria-label="Slide trước"><i class="fa-solid fa-chevron-left"></i></button>
+    <button class="slider-arrow next" id="sliderNext" aria-label="Slide tiếp theo"><i class="fa-solid fa-chevron-right"></i></button>
+
+    <!-- Slider Dots -->
+    <div class="slider-dots" id="sliderDots">
+      {slides.map((_, idx) => (
+        <span class={`dot ${idx === 0 ? 'active' : ''}`} data-index={idx}></span>
+      ))}
+    </div>
+  </div>
+
+  <!-- PHẦN CHỮ CHẠY VÀ SLOGAN CHUẨN GỐC CỦA ABSOLTECH: "Đối tác tận tâm của bạn" -->
+  <div class="scroll-tagline-section">
+    <div class="scroll-track-wrapper">
+      <div class="scroll-track-content">
+        <div class="scroll-links">
+          <a href="#services">Phát triển phần mềm</a> •
+          <a href="#services">Tư vấn giải pháp CNTT</a> •
+          <a href="#services">Giải pháp thương mại điện tử</a> •
+          <a href="#services">Xây dựng ứng dụng di động</a> •
+          <a href="#services">Giải pháp đám mây</a> •
+          <a href="#services">Xây dựng website</a> •
+          <a href="#services">Xử lý dữ liệu và chuyển đổi số</a> •
+          <a href="#services">Dịch vụ cho thuê IT</a> •
+          <a href="#services">Hệ quản trị nội dung CMS</a> •
+          <a href="#services">Hệ quản trị quan hệ khách hàng CRM</a> •
+          <!-- Lặp lại -->
+          <a href="#services">Phát triển phần mềm</a> •
+          <a href="#services">Tư vấn giải pháp CNTT</a> •
+          <a href="#services">Giải pháp thương mại điện tử</a> •
+          <a href="#services">Xây dựng ứng dụng di động</a> •
+          <a href="#services">Giải pháp đám mây</a> •
+          <a href="#services">Xây dựng website</a> •
+          <a href="#services">Xử lý dữ liệu và chuyển đổi số</a> •
+          <a href="#services">Dịch vụ cho thuê IT</a> •
+          <a href="#services">Hệ quản trị nội dung CMS</a> •
+          <a href="#services">Hệ quản trị quan hệ khách hàng CRM</a>
+        </div>
+      </div>
+    </div>
+    <h5 class="dedicated-partner-title">Đối tác tận tâm của bạn</h5>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    position: relative;
+    background-color: #ffffff;
+    overflow: hidden;
+  }
+
+  .slider-container {
+    position: relative;
+    width: 100%;
+    min-height: 520px;
+  }
+
+  .slide-item {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+    display: flex;
+    align-items: center;
+    padding: 60px 0;
+  }
+
+  .slide-item.active {
+    position: relative;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .slide-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.12;
+  }
+
+  .slide-content-wrap {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .slide-pretitle {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0;
+    line-height: 1.1;
+  }
+
+  .slide-title-cyan {
+    font-size: 42px;
+    font-weight: 800;
+    color: #0095da;
+    margin: 4px 0 16px 0;
+    line-height: 1.1;
+  }
+
+  .slide-desc {
+    font-size: 19px;
+    color: #334155;
+    line-height: 1.6;
+    margin-bottom: 28px;
+    max-width: 520px;
+  }
+
+  .slide-btns {
+    display: flex;
+    gap: 16px;
+  }
+
+  .btn-slider {
+    padding: 12px 28px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .slide-img-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .slide-img-col img {
+    max-height: 380px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.12));
+  }
+
+  /* Arrows */
+  .slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid var(--gray-300);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    color: #1e293b;
+    z-index: 10;
+    transition: all 0.25s ease;
+  }
+
+  .slider-arrow:hover {
+    background: var(--primary);
+    color: #ffffff;
+    border-color: var(--primary);
+  }
+
+  .slider-arrow.prev {
+    left: 20px;
+  }
+
+  .slider-arrow.next {
+    right: 20px;
+  }
+
+  .slider-dots {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+  }
+
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: var(--radius-full);
+    background: #cbd5e1;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+
+  .dot.active {
+    background: var(--primary);
+    width: 28px;
+    border-radius: 8px;
+  }
+
+  /* Tagline & Marquee */
+  .scroll-tagline-section {
+    background-color: #ffffff;
+    padding: 30px 0 20px 0;
+    text-align: center;
+    border-top: 1px solid var(--gray-100);
+  }
+
+  .scroll-track-wrapper {
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 10px 0;
+    background: #f8fafc;
+  }
+
+  .scroll-track-content {
+    display: inline-flex;
+    animation: scrollText 30s linear infinite;
+  }
+
+  .scroll-links {
+    font-size: 14.5px;
+    font-weight: 600;
+    color: #64748b;
+  }
+
+  .scroll-links a {
+    color: #334155;
+    margin: 0 8px;
+  }
+
+  .scroll-links a:hover {
+    color: var(--primary);
+  }
+
+  .dedicated-partner-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-top: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  @keyframes scrollText {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (max-width: 992px) {
+    .slide-content-wrap {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .slide-desc {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .slide-btns {
+      justify-content: center;
+    }
+
+    .slide-img-col img {
+      max-height: 260px;
+    }
+  }
+</style>
+
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide-item');
+  const dots = document.querySelectorAll('.slider-dots .dot');
+  const total = slides.length;
+
+  function goToSlide(index: number) {
+    if (total === 0) return;
+    slides.forEach((s) => s.classList.remove('active'));
+    dots.forEach((d) => d.classList.remove('active'));
+    
+    currentSlide = (index + total) % total;
+    slides[currentSlide]?.classList.add('active');
+    dots[currentSlide]?.classList.add('active');
+  }
+
+  document.getElementById('sliderNext')?.addEventListener('click', () => goToSlide(currentSlide + 1));
+  document.getElementById('sliderPrev')?.addEventListener('click', () => goToSlide(currentSlide - 1));
+
+  dots.forEach((dot, idx) => {
+    dot.addEventListener('click', () => goToSlide(idx));
+  });
+
+  // Tự động chuyển slide mỗi 5s
+  setInterval(() => {
+    goToSlide(currentSlide + 1);
+  }, 5000);
+</script>

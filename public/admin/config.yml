@@ -1,0 +1,102 @@
+﻿backend:
+  name: git-gateway
+  branch: main
+
+# Chạy trực tiếp qua local server (npx decap-server)
+local_backend: true
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  # 1. Quản lý Toàn bộ Trang Chủ (File Collections)
+  - name: "pages"
+    label: "Quản Lý Trang"
+    files:
+      - file: "src/content/homepage/index.md"
+        label: "Trang Chủ (Homepage)"
+        name: "homepage"
+        fields:
+          # --- A. BANNER SLIDER ---
+          - label: "1. Banner Sliders"
+            name: "slides"
+            widget: "list"
+            fields:
+              - { label: "Tiêu đề phụ (Pretitle)", name: "pretitle", widget: "string" }
+              - { label: "Tiêu đề chính (Xanh)", name: "title", widget: "string" }
+              - { label: "Mô tả", name: "description", widget: "text" }
+              - { label: "Ảnh Mockup", name: "image", widget: "image" }
+              - { label: "Ảnh nền", name: "bgImage", widget: "image", required: false }
+              - { label: "Chữ nút chính", name: "btnPrimaryText", widget: "string", default: "Kết nối" }
+              - { label: "Link nút chính", name: "btnPrimaryLink", widget: "string", default: "/lien-he" }
+              - { label: "Chữ nút phụ", name: "btnSecondaryText", widget: "string", default: "Xem thêm" }
+              - { label: "Link nút phụ", name: "btnSecondaryLink", widget: "string", default: "#services" }
+
+          # --- B. GIỚI THIỆU (ABOUT) ---
+          - label: "2. Phần Về Chúng Tôi (About)"
+            name: "about"
+            widget: "object"
+            fields:
+              - { label: "Tiêu đề lớn", name: "heading", widget: "string" }
+              - { label: "Nhãn phụ", name: "subLabel", widget: "string" }
+              - { label: "Nội dung giới thiệu", name: "content", widget: "text" }
+              - { label: "Trích dẫn sứ mệnh", name: "quote", widget: "string" }
+              - { label: "Ảnh tập thể đội ngũ", name: "teamImage", widget: "image" }
+
+          # --- C. DỊCH VỤ CỐT LÕI ---
+          - label: "3. Phần Dịch Vụ"
+            name: "servicesSection"
+            widget: "object"
+            fields:
+              - { label: "Tiêu đề nhỏ", name: "subTitle", widget: "string" }
+              - { label: "Tiêu đề chính", name: "title", widget: "string" }
+              - { label: "Mô tả ngắn", name: "desc", widget: "string" }
+              - label: "Danh sách dịch vụ"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Icon (FontAwesome class)", name: "icon", widget: "string" }
+                  - { label: "Nhãn tag", name: "tag", widget: "string" }
+                  - { label: "Tên dịch vụ", name: "title", widget: "string" }
+                  - { label: "Mô tả dịch vụ", name: "desc", widget: "text" }
+
+          # --- D. SẢN PHẨM ĐÓNG GÓI ---
+          - label: "4. Phần Sản Phẩm Đóng Gói"
+            name: "productsSection"
+            widget: "object"
+            fields:
+              - { label: "Tiêu đề nhỏ", name: "subTitle", widget: "string" }
+              - { label: "Tiêu đề chính", name: "title", widget: "string" }
+              - { label: "Mô tả ngắn", name: "desc", widget: "string" }
+              - label: "Danh sách sản phẩm"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Tên sản phẩm", name: "name", widget: "string" }
+                  - { label: "Badge nổi bật", name: "badge", widget: "string" }
+                  - { label: "Khẩu hiệu (Tagline)", name: "tagline", widget: "string" }
+                  - { label: "Mô tả tính năng", name: "desc", widget: "text" }
+                  - { label: "Ảnh sản phẩm", name: "image", widget: "image" }
+
+          # --- E. BANNER CHUYỂN ĐỔI SỐ (CALLOUT) ---
+          - label: "5. Khối Callout Chuyển Đổi Số"
+            name: "callout"
+            widget: "object"
+            fields:
+              - { label: "Tiêu đề banner", name: "title", widget: "string", default: "Bạn đang quan tâm tới chuyển đổi số?" }
+              - { label: "Đoạn văn mô tả", name: "desc", widget: "text" }
+              - { label: "Số điện thoại hotline", name: "phone", widget: "string", default: "0985 18 5665" }
+
+  # 2. Quản lý Tin tức / Blog
+  - name: "blog"
+    label: "Tin Tức & Sự Kiện"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Tiêu đề bài viết", name: "title", widget: "string" }
+      - { label: "Ngày đăng", name: "date", widget: "datetime" }
+      - { label: "Chuyên mục", name: "category", widget: "string", default: "Công nghệ" }
+      - { label: "Ảnh đại diện", name: "thumbnail", widget: "image" }
+      - { label: "Mô tả ngắn", name: "description", widget: "text", required: false }
+      - { label: "Nội dung chi tiết", name: "body", widget: "markdown" }

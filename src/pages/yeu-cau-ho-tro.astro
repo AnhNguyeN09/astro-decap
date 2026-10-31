@@ -1,0 +1,843 @@
+﻿---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FloatingContact from '../components/FloatingContact.astro';
+import PageBanner from '../components/PageBanner.astro';
+---
+
+<Layout title="Gửi yêu cầu hỗ trợ | ABSoltech Vietnam">
+  <Header />
+
+  <!-- REUSABLE PAGE BANNER -->
+  <PageBanner
+    badge="Trung tâm hỗ trợ kỹ thuật"
+    badgeIcon="fa-solid fa-headset"
+    title="Gửi Yêu Cầu Hỗ Trợ Kỹ Thuật"
+    description="Đội ngũ kỹ sư ABSoltech sẵn sàng tiếp nhận, xử lý sự cố và phản hồi trong thời gian sớm nhất với tiêu chuẩn SLA cao cấp."
+    breadcrumbs={[
+      { label: "Yêu cầu hỗ trợ" }
+    ]}
+  />
+
+  <!-- MAIN SUPPORT TICKET SECTION -->
+  <section class="support-ticket-page">
+    <div class="container">
+      <div class="support-layout-grid">
+        <!-- LEFT: TICKET FORM CARD -->
+        <div class="ticket-card-box">
+          <div class="card-header-bar">
+            <div class="header-icon-wrap">
+              <i class="fa-solid fa-ticket-simple"></i>
+            </div>
+            <div>
+              <h2 class="card-title">Tạo Ticket Hỗ Trợ Mới</h2>
+              <p class="ticket-intro-notice">
+                Vui lòng điền thông tin chi tiết để chúng tôi phân công đúng bộ phận chuyên môn.
+              </p>
+            </div>
+          </div>
+
+          <form class="crm-ticket-form" onsubmit="event.preventDefault(); alert('Cảm ơn bạn! Yêu cầu hỗ trợ đã được gửi thành công. Kỹ thuật viên sẽ liên hệ lại ngay.');">
+            <!-- 1. Tiêu đề trợ giúp -->
+            <div class="ticket-field-group">
+              <label class="ticket-label" for="subject">
+                Tiêu đề trợ giúp <span class="required">*</span>
+              </label>
+              <div class="input-with-icon">
+                <i class="fa-regular fa-comment-dots field-icon"></i>
+                <input type="text" id="subject" class="ticket-input" placeholder="Ví dụ: Cần hỗ trợ nâng cấp máy chủ / Lỗi tích hợp API..." required />
+              </div>
+            </div>
+
+            <!-- 2 Hàng 2 cột: Tên & Email -->
+            <div class="field-row-2col">
+              <div class="ticket-field-group">
+                <label class="ticket-label" for="fullname">
+                  Tên của bạn <span class="required">*</span>
+                </label>
+                <div class="input-with-icon">
+                  <i class="fa-regular fa-user field-icon"></i>
+                  <input type="text" id="fullname" class="ticket-input" placeholder="Họ và tên của bạn" required />
+                </div>
+              </div>
+
+              <div class="ticket-field-group">
+                <label class="ticket-label" for="email">
+                  Địa chỉ Email <span class="required">*</span>
+                </label>
+                <div class="input-with-icon">
+                  <i class="fa-regular fa-envelope field-icon"></i>
+                  <input type="email" id="email" class="ticket-input" placeholder="tenban@congty.com" required />
+                </div>
+              </div>
+            </div>
+
+            <!-- 2 Hàng 2 cột: Phòng ban & Độ ưu tiên -->
+            <div class="field-row-2col">
+              <!-- Phòng ban cần liên lạc -->
+              <div class="ticket-field-group">
+                <label class="ticket-label" for="department">
+                  Phòng ban cần liên lạc <span class="required">*</span>
+                </label>
+                <div class="select-wrapper">
+                  <i class="fa-regular fa-building field-icon"></i>
+                  <select id="department" class="ticket-select" required>
+                    <option value="">- Vui lòng chọn phòng ban -</option>
+                    <option value="ky-thuat">Phòng Kỹ Thuật & Phát Triển Phần Mềm</option>
+                    <option value="cham-soc-kh">Phòng Chăm Sóc Khách Hàng</option>
+                    <option value="kinh-doanh">Phòng Kinh Doanh & Báo Giá</option>
+                    <option value="ke-toan">Phòng Kế Toán & Hóa Đơn</option>
+                  </select>
+                  <i class="fa-solid fa-chevron-down select-arrow"></i>
+                </div>
+              </div>
+
+              <!-- Độ ưu tiên -->
+              <div class="ticket-field-group">
+                <label class="ticket-label" for="priority">
+                  Độ ưu tiên
+                </label>
+                <div class="select-wrapper">
+                  <i class="fa-solid fa-signal field-icon"></i>
+                  <select id="priority" class="ticket-select">
+                    <option value="low">Thấp (Tư vấn, câu hỏi chung)</option>
+                    <option value="normal" selected>Bình thường (Hỗ trợ tiêu chuẩn)</option>
+                    <option value="high">Cao (Lỗi chức năng quan trọng)</option>
+                    <option value="urgent">Khẩn cấp (Sự cố sập hệ thống / Dừng kinh doanh)</option>
+                  </select>
+                  <i class="fa-solid fa-chevron-down select-arrow"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dịch vụ -->
+            <div class="ticket-field-group">
+              <label class="ticket-label" for="service">
+                Dịch vụ liên quan
+              </label>
+              <div class="select-wrapper">
+                <i class="fa-solid fa-laptop-code field-icon"></i>
+                <select id="service" class="ticket-select">
+                  <option value="">- Chọn dịch vụ hoặc sản phẩm -</option>
+                  <option value="software">Phát triển phần mềm theo yêu cầu</option>
+                  <option value="website">Dịch vụ thiết kế website & Web App</option>
+                  <option value="mobile">Ứng dụng di động (iOS / Android)</option>
+                  <option value="server">Máy chủ, Hosting, Cloud VPS</option>
+                  <option value="absale">Giải pháp AB-SALE (Bán hàng đa kênh)</option>
+                  <option value="abrnb">Giải pháp AB-RNB (F&B / Nhà hàng)</option>
+                  <option value="abmed">Giải pháp AB-MED (Y tế & Phòng khám)</option>
+                  <option value="ablogs">Giải pháp AB-LOGS (Logistics)</option>
+                </select>
+                <i class="fa-solid fa-chevron-down select-arrow"></i>
+              </div>
+            </div>
+
+            <!-- Nội dung mô tả -->
+            <div class="ticket-field-group">
+              <label class="ticket-label" for="description">
+                Nội dung mô tả <span class="required">*</span>
+              </label>
+              <div class="textarea-wrapper">
+                <textarea id="description" rows="5" class="ticket-textarea" placeholder="Mô tả chi tiết vấn đề bạn đang gặp phải, các bước dẫn đến lỗi hoặc yêu cầu cụ thể..." required></textarea>
+              </div>
+            </div>
+
+            <!-- File đính kèm Modern Dropzone -->
+            <div class="ticket-field-group">
+              <label class="ticket-label">
+                File đính kèm <span class="hint">(Hình ảnh, log hoặc tài liệu liên quan - Max 10MB)</span>
+              </label>
+              <div class="file-upload-card" onclick="document.getElementById('ticketFileInput').click()">
+                <input type="file" id="ticketFileInput" class="real-file-input" onchange="handleFileChange(this)" />
+                <div class="upload-icon-circle">
+                  <i class="fa-solid fa-cloud-arrow-up"></i>
+                </div>
+                <div class="upload-text-box">
+                  <p class="main-upload-text"><strong>Nhấp để chọn tệp</strong> hoặc kéo thả tệp vào đây</p>
+                  <span class="file-name-text" id="fileNameDisplay">Hỗ trợ PNG, JPG, PDF, ZIP, DOCX</span>
+                </div>
+                <button type="button" class="btn-add-file-pill" title="Chọn file">
+                  <i class="fa-solid fa-plus"></i> Chọn tệp
+                </button>
+              </div>
+            </div>
+
+            <!-- SLA & Privacy assurance -->
+            <div class="ticket-assurance">
+              <i class="fa-solid fa-shield-halved"></i>
+              <span>Thông tin của bạn được bảo mật tuyệt đối theo chính sách bảo mật của ABSoltech. Thời gian phản hồi tiêu chuẩn: <strong>15 - 30 phút</strong>.</span>
+            </div>
+
+            <!-- Nút Gửi yêu cầu -->
+            <div class="ticket-submit-wrap">
+              <button type="submit" class="btn-ticket-submit">
+                <span>Gửi yêu cầu hỗ trợ</span>
+                <i class="fa-solid fa-paper-plane"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- RIGHT: SIDEBAR INFO CARDS -->
+        <aside class="support-sidebar">
+          <!-- Hotline Card -->
+          <div class="sidebar-info-card emergency-card">
+            <div class="badge-tag">Hỗ trợ trực tiếp</div>
+            <h3>Cần hỗ trợ gấp?</h3>
+            <p>Nếu hệ thống của bạn đang gặp sự cố nghiêm trọng, vui lòng liên hệ ngay với đường dây nóng kỹ thuật:</p>
+            <a href="tel:0985185665" class="hotline-btn">
+              <i class="fa-solid fa-phone-volume"></i>
+              <div>
+                <span class="hl-label">Hotline Kỹ Thuật</span>
+                <span class="hl-number">0985.185.665</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- Process / Timeline Card -->
+          <div class="sidebar-info-card">
+            <h4 class="sidebar-card-title"><i class="fa-solid fa-clock-rotate-left"></i> Quy trình xử lý</h4>
+            <ul class="process-steps">
+              <li>
+                <div class="step-num">1</div>
+                <div>
+                  <strong>Tiếp nhận Ticket</strong>
+                  <p>Hệ thống tự động phân loại và gửi mã tra cứu qua email.</p>
+                </div>
+              </li>
+              <li>
+                <div class="step-num">2</div>
+                <div>
+                  <strong>Xác nhận & Kiểm tra</strong>
+                  <p>Kỹ sư chuyên trách phản hồi và phân tích nguyên nhân.</p>
+                </div>
+              </li>
+              <li>
+                <div class="step-num">3</div>
+                <div>
+                  <strong>Giải quyết & Bàn giao</strong>
+                  <p>Khắc phục sự cố và thông báo khách hàng nghiệm thu.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Direct Channels -->
+          <div class="sidebar-info-card channels-card">
+            <h4 class="sidebar-card-title"><i class="fa-solid fa-comments"></i> Kênh liên hệ khác</h4>
+            <div class="channel-list">
+              <a href="https://zalo.me/absoltech" target="_blank" rel="noopener noreferrer" class="channel-item">
+                <div class="chan-icon zalo-bg"><i class="fa-solid fa-comment-dots"></i></div>
+                <div>
+                  <span class="chan-name">Zalo Official ABSoltech</span>
+                  <span class="chan-val">Chat kỹ thuật trực tiếp</span>
+                </div>
+              </a>
+              <a href="mailto:info@absoltech.vn" class="channel-item">
+                <div class="chan-icon mail-bg"><i class="fa-solid fa-envelope"></i></div>
+                <div>
+                  <span class="chan-name">Email Hỗ Trợ</span>
+                  <span class="chan-val">info@absoltech.vn</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+  <FloatingContact />
+</Layout>
+
+<script is:inline>
+  function handleFileChange(input) {
+    const display = document.getElementById('fileNameDisplay');
+    if (input.files && input.files.length > 0) {
+      display.textContent = 'Đã chọn: ' + input.files[0].name + ' (' + (input.files[0].size / 1024).toFixed(1) + ' KB)';
+      display.style.color = '#0095da';
+      display.style.fontWeight = '600';
+    } else {
+      display.textContent = 'Hỗ trợ PNG, JPG, PDF, ZIP, DOCX';
+      display.style.color = '#64748b';
+      display.style.fontWeight = 'normal';
+    }
+  }
+</script>
+
+<style>
+  /* MAIN LAYOUT */
+  .support-ticket-page {
+    background: #f8fafc;
+    padding: 40px 0 80px 0;
+  }
+
+  .support-layout-grid {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 36px;
+    align-items: flex-start;
+  }
+
+  /* CARD STYLING */
+  .ticket-card-box {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(226, 232, 240, 0.8);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .card-header-bar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #f1f5f9;
+    margin-bottom: 28px;
+  }
+
+  .header-icon-wrap {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #0095da 0%, #0077b6 100%);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    box-shadow: 0 4px 14px rgba(0, 149, 218, 0.3);
+    flex-shrink: 0;
+  }
+
+  .card-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 4px 0;
+  }
+
+  .ticket-intro-notice {
+    font-size: 14px;
+    color: #64748b;
+    margin: 0;
+  }
+
+  /* FORM ELEMENTS */
+  .crm-ticket-form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .field-row-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .ticket-field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .ticket-label {
+    font-size: 14px;
+    color: #1e293b;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .ticket-label .required {
+    color: #ef4444;
+  }
+
+  .ticket-label .hint {
+    font-size: 12px;
+    font-weight: normal;
+    color: #64748b;
+  }
+
+  /* ICON INPUT WRAPPERS */
+  .input-with-icon,
+  .select-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .field-icon {
+    position: absolute;
+    left: 16px;
+    color: #94a3b8;
+    font-size: 15px;
+    pointer-events: none;
+    transition: color 0.2s ease;
+  }
+
+  .ticket-input,
+  .ticket-select {
+    width: 100%;
+    height: 48px;
+    padding: 0 16px 0 44px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 14.5px;
+    color: #0f172a;
+    background-color: #f8fafc;
+    outline: none;
+    transition: all 0.25s ease;
+    font-family: inherit;
+  }
+
+  .ticket-input::placeholder {
+    color: #94a3b8;
+    font-size: 14px;
+  }
+
+  .ticket-input:hover,
+  .ticket-select:hover {
+    border-color: #cbd5e1;
+    background-color: #ffffff;
+  }
+
+  .ticket-input:focus,
+  .ticket-select:focus,
+  .ticket-textarea:focus {
+    border-color: #0095da;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(0, 149, 218, 0.12);
+  }
+
+  .input-with-icon:focus-within .field-icon,
+  .select-wrapper:focus-within .field-icon {
+    color: #0095da;
+  }
+
+  .ticket-select {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    padding-right: 40px;
+  }
+
+  .select-arrow {
+    position: absolute;
+    right: 16px;
+    color: #64748b;
+    font-size: 12px;
+    pointer-events: none;
+  }
+
+  .ticket-textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 14.5px;
+    color: #0f172a;
+    background-color: #f8fafc;
+    outline: none;
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.6;
+    transition: all 0.25s ease;
+    font-family: inherit;
+  }
+
+  .ticket-textarea::placeholder {
+    color: #94a3b8;
+    font-size: 14px;
+  }
+
+  .ticket-textarea:hover {
+    border-color: #cbd5e1;
+    background-color: #ffffff;
+  }
+
+  /* FILE UPLOAD DROPZONE */
+  .file-upload-card {
+    border: 2px dashed #cbd5e1;
+    border-radius: 12px;
+    padding: 20px;
+    background: #f8fafc;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .file-upload-card:hover {
+    border-color: #0095da;
+    background: #f0f9ff;
+  }
+
+  .real-file-input {
+    display: none;
+  }
+
+  .upload-icon-circle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #e0f2fe;
+    color: #0095da;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .upload-text-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .main-upload-text {
+    font-size: 14px;
+    color: #334155;
+    margin: 0;
+  }
+
+  .main-upload-text strong {
+    color: #0095da;
+  }
+
+  .file-name-text {
+    font-size: 12.5px;
+    color: #64748b;
+  }
+
+  .btn-add-file-pill {
+    padding: 8px 16px;
+    background: #0095da;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .btn-add-file-pill:hover {
+    background: #0077b6;
+  }
+
+  /* ASSURANCE BADGE */
+  .ticket-assurance {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 8px;
+    color: #166534;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .ticket-assurance i {
+    font-size: 18px;
+    color: #16a34a;
+    flex-shrink: 0;
+  }
+
+  /* SUBMIT BUTTON */
+  .ticket-submit-wrap {
+    margin-top: 6px;
+  }
+
+  .btn-ticket-submit {
+    width: 100%;
+    height: 52px;
+    background: linear-gradient(135deg, #0095da 0%, #0077b6 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(0, 149, 218, 0.35);
+    transition: all 0.25s ease;
+  }
+
+  .btn-ticket-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 149, 218, 0.45);
+    background: linear-gradient(135deg, #0084c2 0%, #00669e 100%);
+  }
+
+  /* SIDEBAR STYLES */
+  .support-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    position: sticky;
+    top: 100px;
+  }
+
+  .sidebar-info-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 24px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+  }
+
+  .sidebar-card-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 18px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .sidebar-card-title i {
+    color: #0095da;
+  }
+
+  /* Emergency Hotline Card */
+  .emergency-card {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #ffffff;
+    border: none;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .emergency-card .badge-tag {
+    display: inline-block;
+    background: #0095da;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+  }
+
+  .emergency-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    color: #ffffff;
+  }
+
+  .emergency-card p {
+    font-size: 13.5px;
+    color: #cbd5e1;
+    line-height: 1.5;
+    margin: 0 0 18px 0;
+  }
+
+  .hotline-btn {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 12px 18px;
+    border-radius: 10px;
+    color: #ffffff;
+    text-decoration: none;
+    transition: all 0.25s ease;
+  }
+
+  .hotline-btn i {
+    font-size: 26px;
+    color: #38bdf8;
+    animation: phoneShake 2s infinite ease;
+  }
+
+  .hotline-btn .hl-label {
+    display: block;
+    font-size: 12px;
+    color: #94a3b8;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .hotline-btn .hl-number {
+    display: block;
+    font-size: 20px;
+    font-weight: 800;
+    color: #38bdf8;
+    letter-spacing: 0.5px;
+  }
+
+  .hotline-btn:hover {
+    background: #0095da;
+    border-color: #0095da;
+    transform: translateY(-2px);
+  }
+
+  .hotline-btn:hover i,
+  .hotline-btn:hover .hl-number {
+    color: #ffffff;
+  }
+
+  .hotline-btn:hover .hl-label {
+    color: #e0f2fe;
+  }
+
+  /* Process Steps */
+  .process-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .process-steps li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .step-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #e0f2fe;
+    color: #0095da;
+    font-weight: 700;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .process-steps strong {
+    display: block;
+    font-size: 13.5px;
+    color: #1e293b;
+    margin-bottom: 2px;
+  }
+
+  .process-steps p {
+    font-size: 12.5px;
+    color: #64748b;
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  /* Channel List */
+  .channel-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .channel-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s ease;
+  }
+
+  .channel-item:hover {
+    background: #f1f5f9;
+  }
+
+  .chan-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .zalo-bg {
+    background: #0068ff;
+  }
+
+  .mail-bg {
+    background: #ea4335;
+  }
+
+  .chan-name {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1e293b;
+  }
+
+  .chan-val {
+    display: block;
+    font-size: 12px;
+    color: #64748b;
+  }
+
+  @keyframes phoneShake {
+    0%, 100% { transform: rotate(0); }
+    10%, 30%, 50% { transform: rotate(-10deg); }
+    20%, 40% { transform: rotate(10deg); }
+    60% { transform: rotate(0); }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 992px) {
+    .support-layout-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .support-sidebar {
+      position: static;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .ticket-card-box {
+      padding: 24px 18px;
+    }
+
+    .field-row-2col {
+      grid-template-columns: 1fr;
+    }
+
+    .file-upload-card {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .btn-add-file-pill {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>

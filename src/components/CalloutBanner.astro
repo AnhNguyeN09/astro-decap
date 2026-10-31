@@ -1,0 +1,110 @@
+﻿---
+interface Props {
+  title?: string;
+  desc?: string;
+  phone?: string;
+}
+
+const {
+  title = "Bạn đang quan tâm tới chuyển đổi số?",
+  desc = "Với kinh nghiệm hơn 20 năm triển khai ứng dụng CNTT trong nhiều lĩnh vực, các chuyên gia của chúng tôi sẽ đưa ra giải pháp tốt nhất cho doanh nghiệp của bạn",
+  phone = "0985 18 5665"
+} = Astro.props;
+---
+
+<div class="message-box-section">
+  <div class="message-box-bg"></div>
+  <div class="container relative">
+    <div class="message-box-grid">
+      <div class="message-box-text">
+        <h2>{title}</h2>
+        <p>{desc}</p>
+      </div>
+      <div class="message-box-btn-wrap">
+        <a href={`tel:${phone.replace(/\s+/g, '')}`} class="btn-phone-call">
+          <i class="fa-solid fa-phone"></i>
+          <span>{phone}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .message-box-section {
+    position: relative;
+    padding: 85px 0;
+    color: #ffffff;
+    background-color: #0b1325;
+    overflow: hidden;
+  }
+
+  .message-box-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://absoltech.vn/wp-content/uploads/2022/03/showeare-parallax-1024x447.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.25;
+  }
+
+  .relative {
+    position: relative;
+    z-index: 2;
+  }
+
+  .message-box-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .message-box-text h2 {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    line-height: 1.25;
+  }
+
+  .message-box-text p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #e2e8f0;
+    max-width: 650px;
+  }
+
+  .message-box-btn-wrap {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .btn-phone-call {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 34px;
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 700;
+    transition: all 0.25s ease;
+  }
+
+  .btn-phone-call:hover {
+    background: #ffffff;
+    color: #0095da;
+  }
+
+  @media (max-width: 992px) {
+    .message-box-grid {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .message-box-btn-wrap {
+      justify-content: center;
+    }
+  }
+</style>

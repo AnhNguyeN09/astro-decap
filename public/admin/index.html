@@ -1,0 +1,46 @@
+﻿<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Content Manager</title>
+  <!-- 1. Script Netlify Identity Widget -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <style>
+    /* Ẩn nút mũi tên thu gọn/mở rộng không cần thiết */
+    button[class*="ExpandButton"],
+    button[class*="CollapseButton"],
+    button[aria-label*="expand"],
+    button[aria-label*="collapse"],
+    button:has(svg polygon),
+    span:has(> svg [d*="M12"]) {
+      /* fallback */
+    }
+
+    /* CSS ẩn triệt để nút tròn mũi tên lên xuống trên toolbar danh sách của Decap CMS */
+    [class*="ListControl"] > div > button,
+    [class*="Toolbar"] button[class*="Button"]:has(svg),
+    button[title*="expand" i],
+    button[title*="collapse" i] {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+  <!-- 2. Script Decap CMS -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+  <!-- 3. Tự động redirect về admin sau khi login thành công -->
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

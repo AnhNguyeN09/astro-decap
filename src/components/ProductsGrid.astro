@@ -1,0 +1,246 @@
+﻿---
+interface ProductItem {
+  name: string;
+  badge: string;
+  tagline: string;
+  desc: string;
+  image: string;
+}
+
+interface Props {
+  data?: {
+    subTitle: string;
+    title: string;
+    desc: string;
+    items: ProductItem[];
+  };
+}
+
+const { data } = Astro.props;
+
+const defaultData = {
+  subTitle: "SẢN PHẨM",
+  title: "Phần Mềm Đóng Gói",
+  desc: "Hệ sinh thái phần mềm đóng gói giải quyết triệt để bài toán vận hành của từng ngành nghề.",
+  items: [
+    {
+      name: "AB-SALE",
+      tagline: "Phần Mềm Quản Lý Bán Hàng",
+      desc: "Phần mềm quản lý bán hàng tiện dụng, hiệu quả và an toàn, thao tác nhanh và chuyên nghiệp",
+      image: "https://absoltech.vn/wp-content/uploads/2022/05/absale.png",
+      badge: "Bán chạy"
+    },
+    {
+      name: "AB-RNB",
+      tagline: "Quản Lý Nhà Hàng & Bar",
+      desc: "Quản lý nhà hàng, quán bar và salon tóc – thích hợp màn hình cảm ứng và các thiết bị ngoại vi",
+      image: "https://absoltech.vn/wp-content/uploads/2022/05/abrnb.png",
+      badge: "F&B"
+    },
+    {
+      name: "AB-MED",
+      tagline: "Quản Lý Nhà Thuốc Chuẩn GPP",
+      desc: "Quản lý nhà thuốc theo mô hình chuỗi, phân quyền chi tiết, theo dõi doanh số nhân viên, kiểm kho chính xác",
+      image: "https://absoltech.vn/wp-content/uploads/2022/05/abmed.png",
+      badge: "Y tế"
+    },
+    {
+      name: "AB-LOGS",
+      tagline: "Quản Lý Kho & Logistics",
+      desc: "Quản lý kho logistics, vận tải, giao nhận, bãi container, phù hợp cho lĩnh vực vận tải biển…",
+      image: "https://absoltech.vn/wp-content/uploads/2022/05/ablogs.png",
+      badge: "Logistics"
+    },
+    {
+      name: "PHẦN MỀM BẢN QUYỀN",
+      tagline: "Microsoft, Adobe & Autodesk",
+      desc: "Cung cấp các loại phần mềm bản quyền chính hãng của Microsoft, Adobe, Teamviewer…",
+      image: "https://absoltech.vn/wp-content/uploads/2022/05/licenseapp.png",
+      badge: "Chính hãng"
+    },
+    {
+      name: "PHẦN MỀM BẢO MẬT",
+      tagline: "An Toàn Thông Tin Doanh Nghiệp",
+      desc: "Phần mềm diệt virus, phần mềm kiểm soát bảo mật cho máy chủ và máy trạm an toàn tuyệt đối",
+      image: "https://absoltech.vn/wp-content/uploads/2022/05/antivirusapp.png",
+      badge: "Bảo mật"
+    }
+  ]
+};
+
+const sec = data || defaultData;
+---
+<section class="products-section" id="products">
+  <div class="container">
+    <div class="section-title-wrap">
+      <h4 class="section-subtitle">{sec.subTitle}</h4>
+      <h2 class="section-title">{sec.title}</h2>
+      <p class="section-desc">{sec.desc}</p>
+    </div>
+
+    <div class="products-grid">
+      {sec.items.map((p) => (
+        <div class="product-card">
+          <div class="product-badge-wrap">
+            <span class="product-badge">{p.badge}</span>
+          </div>
+
+          <div class="product-img-box">
+            <img src={p.image} alt={p.name} />
+          </div>
+
+          <div class="product-body">
+            <h3 class="product-name">{p.name}</h3>
+            <span class="product-tagline">{p.tagline}</span>
+            <p class="product-desc">{p.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .products-section {
+    padding: 90px 0;
+    background-color: #ffffff;
+  }
+
+  .section-title-wrap {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  .section-subtitle {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--primary);
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+  }
+
+  .section-title {
+    font-size: 36px;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.25;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+  }
+
+  .section-desc {
+    max-width: 620px;
+    margin: 0 auto;
+    color: var(--gray-600);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+
+  .product-card {
+    position: relative;
+    background: #ffffff;
+    border-radius: var(--radius-lg);
+    border: 1px solid #e2e8f0;
+    padding: 36px 28px;
+    text-align: center;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  }
+
+  .product-card:hover {
+    transform: translateY(-8px);
+    border-color: #0095da;
+    box-shadow: 0 20px 35px -5px rgba(0, 149, 218, 0.16), 0 8px 10px -5px rgba(0, 149, 218, 0.04);
+  }
+
+  .product-badge-wrap {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+  }
+
+  .product-badge {
+    background: #e0f2fe;
+    color: #0284c7;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+    border: 1px solid #bae6fd;
+  }
+
+  .product-img-box {
+    height: 140px;
+    margin: 10px auto 22px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.4s ease;
+  }
+
+  .product-card:hover .product-img-box {
+    transform: scale(1.1) translateY(-4px);
+  }
+
+  .product-img-box img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.08));
+  }
+
+  .product-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .product-name {
+    font-size: 22px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+  }
+
+  .product-tagline {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #0095da;
+    margin-bottom: 14px;
+  }
+
+  .product-desc {
+    font-size: 14px;
+    color: #475569;
+    line-height: 1.7;
+    margin-bottom: 0;
+    flex-grow: 1;
+  }
+
+  @media (max-width: 992px) {
+    .products-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .products-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .section-title {
+      font-size: 28px;
+    }
+  }
+</style>

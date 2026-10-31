@@ -1,0 +1,241 @@
+﻿---
+interface ServiceItem {
+  icon: string;
+  tag: string;
+  title: string;
+  desc: string;
+}
+
+interface Props {
+  data?: {
+    subTitle: string;
+    title: string;
+    desc: string;
+    items: ServiceItem[];
+  };
+}
+
+const { data } = Astro.props;
+
+const defaultData = {
+  subTitle: "CÁC DỊCH VỤ MÀ ABSOLTECH CUNG CẤP",
+  title: "Dịch Vụ",
+  desc: "Giải pháp công nghệ toàn diện nâng tầm doanh nghiệp trong kỷ nguyên số.",
+  items: [
+    {
+      icon: "fa-solid fa-code",
+      title: "Xây Dựng Phần Mềm",
+      desc: "Xây dựng các hệ thống phần mềm doanh nghiệp, ERP, CRM, quản trị sản xuất và vận hành đặc thù theo yêu cầu.",
+      tag: "Chủ lực"
+    },
+    {
+      icon: "fa-solid fa-laptop-code",
+      title: "Thiết Kế Website",
+      desc: "Thiết kế website doanh nghiệp, trang giới thiệu sản phẩm, cổng thông tin điện tử và sàn thương mại điện tử chuẩn SEO.",
+      tag: "Chuẩn SEO"
+    },
+    {
+      icon: "fa-solid fa-server",
+      title: "Dịch Vụ Máy Chủ & Tên Miền",
+      desc: "Cho thuê máy chủ vật lý, VPS Cloud tốc độ cao, đăng ký tên miền quốc tế/Việt Nam và giải pháp Email doanh nghiệp bảo mật.",
+      tag: "Hạ tầng"
+    },
+    {
+      icon: "fa-solid fa-headset",
+      title: "Cung Cấp Giải Pháp CNTT",
+      desc: "Tư vấn chuyển đổi công nghệ, quy hoạch hạ tầng hệ thống thông tin và dịch vụ cho thuê nhân sự IT chuyên trách trọn gói.",
+      tag: "Tư vấn"
+    },
+    {
+      icon: "fa-solid fa-brain",
+      title: "Xử Lý Dữ Liệu & AI",
+      desc: "Xử lý dữ liệu lớn (Big Data), số hóa hồ sơ tài liệu, chuyển đổi số quy trình và tích hợp các mô hình AI thông minh.",
+      tag: "Xu hướng"
+    },
+    {
+      icon: "fa-solid fa-bullhorn",
+      title: "Dịch Vụ Quảng Cáo Số",
+      desc: "Triển khai chiến dịch quảng cáo Google Ads, Facebook, Zalo Ads hiệu quả và tối ưu hóa chuyển đổi khách hàng tiềm năng.",
+      tag: "Marketing"
+    }
+  ]
+};
+
+const sec = data || defaultData;
+---
+<section class="services-section" id="services">
+  <div class="glow-orb"></div>
+  <div class="container relative">
+    <div class="section-title-wrap">
+      <span class="section-subtitle">{sec.subTitle}</span>
+      <h2 class="section-title">{sec.title}</h2>
+      <p class="section-desc">{sec.desc}</p>
+    </div>
+
+    <div class="services-grid">
+      {sec.items.map((item) => (
+        <div class="service-card">
+          <div class="card-glow-border"></div>
+          <div class="card-header-row">
+            <div class="card-icon-wrap">
+              <i class={item.icon}></i>
+            </div>
+            <span class="card-tag">{item.tag}</span>
+          </div>
+          <h3 class="service-title">{item.title}</h3>
+          <p class="service-desc">{item.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .services-section {
+    position: relative;
+    padding: 100px 0;
+    background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+    overflow: hidden;
+  }
+
+  .glow-orb {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(0, 149, 218, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
+    pointer-events: none;
+  }
+
+  .relative {
+    position: relative;
+    z-index: 2;
+  }
+
+  .section-desc {
+    max-width: 600px;
+    margin: 0 auto;
+    color: var(--gray-600);
+    font-size: 16px;
+  }
+
+  .section-title-wrap {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .section-subtitle {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--primary);
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-size: 36px;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.25;
+    margin-bottom: 14px;
+    letter-spacing: -0.5px;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .service-card {
+    position: relative;
+    background: #ffffff;
+    border-radius: var(--radius-lg);
+    padding: 38px 32px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.04);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .service-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(0, 149, 218, 0.4);
+    box-shadow: 0 20px 35px -5px rgba(0, 149, 218, 0.15), 0 10px 10px -5px rgba(0, 149, 218, 0.04);
+  }
+
+  .card-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+
+  .card-icon-wrap {
+    width: 58px;
+    height: 58px;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    transition: all 0.3s ease;
+  }
+
+  .service-card:hover .card-icon-wrap {
+    background: linear-gradient(135deg, #0095da 0%, #0284c7 100%);
+    color: #ffffff;
+    transform: scale(1.08) rotate(4deg);
+    box-shadow: 0 8px 16px rgba(0, 149, 218, 0.3);
+  }
+
+  .card-tag {
+    font-size: 12px;
+    font-weight: 700;
+    color: #0284c7;
+    background: #f0f9ff;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    border: 1px solid #e0f2fe;
+  }
+
+  .service-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
+
+  .service-desc {
+    font-size: 14.5px;
+    color: var(--gray-600);
+    line-height: 1.7;
+    margin-bottom: 0;
+    flex-grow: 1;
+  }
+
+  @media (max-width: 992px) {
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .section-title {
+      font-size: 28px;
+    }
+  }
+</style>

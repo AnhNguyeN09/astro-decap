@@ -1,0 +1,363 @@
+﻿---
+const reviews = [
+  {
+    author: "Mr. David Henry",
+    company: "DHM Digital",
+    quote: "Đội ngũ chuyên nghiệp dẫn đầu bởi Mr Công. Nhân ngày kỉ niệm 10 năm thành lập, các bạn đã luôn làm rất tốt. Hãy tiếp tục giữ vững tinh thần và hoàn thành tốt công việc nhé.",
+    avatarText: "DH",
+    rating: 5
+  },
+  {
+    author: "Ms. Renae Christine",
+    company: "OWHO",
+    quote: "Những lập trình viên bậc A++, giao tiếp rất tốt. Họ vô cùng hữu ích và luôn túc trực sẵn sàng xử lý vấn đề, sự cố khẩn cấp cho bạn",
+    avatarText: "RC",
+    rating: 5
+  },
+  {
+    author: "Mr. Blake Bridge",
+    company: "Room Connection",
+    quote: "Tôi đã làm việc với ABSoft trong gần 2 năm để phát triển ứng dụng, trang web và nền tảng của mình. Họ là những người giỏi nhất trong công việc này. Giao tiếp hiệu quả, phản hồi nhanh chóng, hoàn thành tốt công việc. Tôi đánh giá rất cao",
+    avatarText: "BB",
+    rating: 5
+  },
+  {
+    author: "Mr. Scott Price",
+    company: "Marketing Solution",
+    quote: "Chắc chắn là 1 công ty tuyệt vời rồi. Tôi đã hợp tác với Công và đội ngũ của anh ấy cho rất nhiều dự án và sẽ thêm nhiều dự án hơn nữa trong tương lai",
+    avatarText: "SP",
+    rating: 5
+  }
+];
+
+const stats = [
+  { number: "5", suffix: "", label: "Quốc Gia", iconImg: "https://absoltech.vn/wp-content/uploads/2022/03/planet-earth.png" },
+  { number: "20", suffix: "", label: "Đối tác", iconImg: "https://absoltech.vn/wp-content/uploads/2022/03/handshake.png" },
+  { number: "+500", suffix: "", label: "Dự án", iconImg: "https://absoltech.vn/wp-content/uploads/2022/03/flowchart.png" },
+  { number: "+1000", suffix: "", label: "Khách Hàng", iconImg: "https://absoltech.vn/wp-content/uploads/2022/03/manager.png" }
+];
+---
+<!-- HEADER BANNER: NỀN ĐEN #000000 TIÊU ĐỀ TRẮNG "Khách hàng nói về chúng tôi" -->
+<section class="testimonial-header-section" id="testimonials">
+  <div class="container text-center">
+    <h2 class="testi-header-title">Khách hàng nói về chúng tôi</h2>
+  </div>
+</section>
+
+<!-- SECTION CHÍNH: NỀN PARALLAX WHERE-WE-WORK VÀ CÁC THẺ SỐ LIỆU ĐEN TRONG SUỐT -->
+<section class="testimonials-main-section">
+  <div class="testi-bg-parallax"></div>
+  <div class="container relative">
+    <!-- 4 THẺ THỐNG KÊ NỀN TRONG SUỐT rgba(0,0,0,0.25) CÓ ICON THỰC TẾ -->
+    <div class="stats-row">
+      {stats.map((s) => (
+        <div class="stat-box-card">
+          <div class="stat-num">{s.number}</div>
+          <p class="stat-lbl">{s.label}</p>
+          <div class="stat-art-icon">
+            <img src={s.iconImg} alt={s.label} />
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- CAROUSEL / SLIDER ĐÁNH GIÁ CỦA KHÁCH HÀNG -->
+    <div class="testi-slider-wrapper">
+      <div class="testi-slides-container">
+        {reviews.map((r, idx) => (
+          <div class={`testi-slide-item ${idx === 0 ? 'active' : ''}`} data-index={idx}>
+            <div class="testi-card-content">
+              <div class="star-rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <blockquote class="testi-quote-text">
+                <p><em>“{r.quote}”</em></p>
+              </blockquote>
+              <div class="testi-author-meta">
+                <strong class="author-name">{r.author}</strong>
+                <span class="meta-sep"> / </span>
+                <span class="company-name">{r.company}</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Điều hướng Slide -->
+      <div class="testi-nav-arrows">
+        <button class="testi-arrow prev" id="testiPrev"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="testi-arrow next" id="testiNext"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+
+      <div class="testi-dots" id="testiDots">
+        {reviews.map((_, idx) => (
+          <span class={`t-dot ${idx === 0 ? 'active' : ''}`} data-index={idx}></span>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* 1. Header đen thuần túy */
+  .testimonial-header-section {
+    background-color: #000000;
+    padding: 60px 0;
+    text-align: center;
+  }
+
+  .testi-header-title {
+    color: #ffffff;
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+  }
+
+  /* 2. Section nền Parallax Where-we-work */
+  .testimonials-main-section {
+    position: relative;
+    padding: 70px 0 90px 0;
+    background-color: #0b1325;
+    color: #ffffff;
+    overflow: hidden;
+  }
+
+  .testi-bg-parallax {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://absoltech.vn/wp-content/uploads/2022/03/where-we-work-parallax.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    opacity: 0.45;
+  }
+
+  .relative {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* 3. Bốn thẻ số liệu */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 50px;
+  }
+
+  .stat-box-card {
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-sm);
+    padding: 24px 20px;
+    text-align: center;
+    position: relative;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+  }
+
+  .stat-box-card:hover {
+    background: rgba(0, 0, 0, 0.55);
+    border-color: rgba(0, 149, 218, 0.6);
+    transform: translateY(-4px);
+  }
+
+  .stat-num {
+    font-size: 42px;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+
+  .stat-lbl {
+    font-size: 16px;
+    font-weight: 600;
+    color: #cbd5e1;
+    margin-bottom: 12px;
+  }
+
+  .stat-art-icon {
+    position: absolute;
+    bottom: 12px;
+    right: 14px;
+    width: 32px;
+    height: 32px;
+    opacity: 0.75;
+  }
+
+  .stat-art-icon img {
+    width: 100%;
+    height: auto;
+  }
+
+  /* 4. Testimonial Carousel */
+  .testi-slider-wrapper {
+    position: relative;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 20px 40px 40px 40px;
+  }
+
+  .testi-slides-container {
+    position: relative;
+    min-height: 160px;
+  }
+
+  .testi-slide-item {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .testi-slide-item.active {
+    position: relative;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .star-rating {
+    color: #f59e0b;
+    font-size: 15px;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+  }
+
+  .testi-quote-text p {
+    font-size: 18px;
+    line-height: 1.7;
+    color: #f8fafc;
+    font-style: italic;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  }
+
+  .testi-author-meta {
+    font-size: 15px;
+    color: #cbd5e1;
+  }
+
+  .author-name {
+    color: #ffffff;
+    font-weight: 700;
+  }
+
+  .company-name {
+    color: #38bdf8;
+    font-weight: 600;
+  }
+
+  /* Arrows & Dots */
+  .testi-nav-arrows {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 40%;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+  }
+
+  .testi-arrow {
+    pointer-events: auto;
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-full);
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .testi-arrow:hover {
+    background: var(--primary);
+  }
+
+  .testi-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 24px;
+  }
+
+  .t-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.35);
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+
+  .t-dot.active {
+    background: var(--primary);
+    width: 24px;
+    border-radius: 6px;
+  }
+
+  @media (max-width: 992px) {
+    .stats-row {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .stats-row {
+      grid-template-columns: 1fr;
+    }
+    .testi-slider-wrapper {
+      padding: 10px;
+    }
+    .testi-quote-text p {
+      font-size: 16px;
+    }
+  }
+</style>
+
+<script>
+  let currentTesti = 0;
+  const tSlides = document.querySelectorAll('.testi-slide-item');
+  const tDots = document.querySelectorAll('.testi-dots .t-dot');
+  const tTotal = tSlides.length;
+
+  function showTesti(index: number) {
+    tSlides.forEach((s) => s.classList.remove('active'));
+    tDots.forEach((d) => d.classList.remove('active'));
+
+    currentTesti = (index + tTotal) % tTotal;
+    tSlides[currentTesti].classList.add('active');
+    tDots[currentTesti].classList.add('active');
+  }
+
+  document.getElementById('testiNext')?.addEventListener('click', () => showTesti(currentTesti + 1));
+  document.getElementById('testiPrev')?.addEventListener('click', () => showTesti(currentTesti - 1));
+
+  tDots.forEach((d, idx) => {
+    d.addEventListener('click', () => showTesti(idx));
+  });
+
+  setInterval(() => {
+    showTesti(currentTesti + 1);
+  }, 6000);
+</script>

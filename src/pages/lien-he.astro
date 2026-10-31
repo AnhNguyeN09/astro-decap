@@ -1,0 +1,673 @@
+﻿---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FloatingContact from '../components/FloatingContact.astro';
+import PageBanner from '../components/PageBanner.astro';
+---
+
+<Layout title="Liên Hệ | ABSoltech Vietnam">
+  <Header />
+
+  <!-- REUSABLE PAGE BANNER -->
+  <PageBanner
+    badge="Kết nối với ABSoltech"
+    badgeIcon="fa-solid fa-address-book"
+    title="Thông Tin Liên Hệ"
+    description="Chúng tôi luôn sẵn sàng lắng nghe, tư vấn miễn phí giải pháp phần mềm, website và chuyển đổi số cho doanh nghiệp của bạn."
+    breadcrumbs={[
+      { label: "Liên hệ" }
+    ]}
+  />
+
+  <!-- 4 QUICK CONTACT INFO CARDS -->
+  <section class="contact-quick-cards-sec">
+    <div class="container">
+      <div class="quick-cards-grid">
+        <!-- 1. Địa chỉ -->
+        <div class="quick-card">
+          <div class="q-icon-box">
+            <i class="fa-solid fa-location-dot"></i>
+          </div>
+          <h3 class="q-title">Địa chỉ trụ sở</h3>
+          <p class="q-desc">Tầng 4, Tòa nhà Hatradimex, 22 Lý Tự Trọng, Minh Khai, Hồng Bàng, Hải Phòng</p>
+        </div>
+
+        <!-- 2. Điện thoại -->
+        <div class="quick-card">
+          <div class="q-icon-box">
+            <i class="fa-solid fa-phone-volume"></i>
+          </div>
+          <h3 class="q-title">Điện thoại liên hệ</h3>
+          <div class="q-contact-lines">
+            <p>Hotline: <a href="tel:0985185665">(+84) 985 185 665</a></p>
+            <p>Văn phòng: <a href="tel:02257106222">(+84) 225 710 6 222</a></p>
+            <p>Kinh doanh: <a href="tel:0983188396">(+84) 983 188 396</a></p>
+          </div>
+        </div>
+
+        <!-- 3. Email -->
+        <div class="quick-card">
+          <div class="q-icon-box">
+            <i class="fa-solid fa-envelope-open-text"></i>
+          </div>
+          <h3 class="q-title">Hộp thư điện tử</h3>
+          <div class="q-contact-lines">
+            <p>Liên hệ: <a href="mailto:contact@absoltech.vn">contact@absoltech.vn</a></p>
+            <p>Hỗ trợ: <a href="mailto:info@absoltech.vn">info@absoltech.vn</a></p>
+            <p>Kinh doanh: <a href="mailto:sale@absoltech.vn">sale@absoltech.vn</a></p>
+          </div>
+        </div>
+
+        <!-- 4. Zalo & Tư vấn -->
+        <div class="quick-card highlight-card">
+          <div class="q-icon-box zalo-icon">
+            <i class="fa-solid fa-comments"></i>
+          </div>
+          <h3 class="q-title">Tư vấn trực tuyến</h3>
+          <p class="q-desc">Kết nối Zalo Official để nhận tư vấn kỹ thuật & báo giá nhanh nhất.</p>
+          <a href="https://zalo.me/absoltech" target="_blank" rel="noopener noreferrer" class="q-btn-zalo">
+            <i class="fa-solid fa-comment-dots"></i>
+            <span>Chat Zalo ngay</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTACT FORM & COMPANY DETAILS -->
+  <section class="contact-main-sec">
+    <div class="container">
+      <div class="contact-grid">
+        <!-- LEFT: FORM LIÊN HỆ -->
+        <div class="contact-form-box">
+          <div class="form-header">
+            <span class="sub-lead">Chúng tôi rất vui được hỗ trợ bạn!</span>
+            <h2 class="form-title">Gửi Tin Nhắn Cho ABSoltech</h2>
+            <p class="form-desc">Để lại thông tin và yêu cầu của bạn, đội ngũ chuyên gia của chúng tôi sẽ liên hệ phản hồi trong vòng 24 giờ.</p>
+          </div>
+
+          <form class="contact-form" onsubmit="event.preventDefault(); alert('Cảm ơn bạn! Tin nhắn liên hệ đã được gửi thành công. Chúng tôi sẽ phản hồi lại bạn sớm nhất.');">
+            <div class="form-group">
+              <label for="contactName" class="form-label">Tên của bạn <span class="required">*</span></label>
+              <div class="input-wrap">
+                <i class="fa-regular fa-user input-icon"></i>
+                <input type="text" id="contactName" class="form-input" placeholder="Họ và tên của bạn" required />
+              </div>
+            </div>
+
+            <div class="form-row-2col">
+              <div class="form-group">
+                <label for="contactEmail" class="form-label">Email <span class="required">*</span></label>
+                <div class="input-wrap">
+                  <i class="fa-regular fa-envelope input-icon"></i>
+                  <input type="email" id="contactEmail" class="form-input" placeholder="email@congty.com" required />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="contactPhone" class="form-label">Số điện thoại</label>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-phone input-icon"></i>
+                  <input type="tel" id="contactPhone" class="form-input" placeholder="0985 xxx xxx" />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="contactSubject" class="form-label">Tiêu đề liên hệ</label>
+              <div class="input-wrap">
+                <i class="fa-regular fa-bookmark input-icon"></i>
+                <input type="text" id="contactSubject" class="form-input" placeholder="Ví dụ: Tư vấn thiết kế website thương mại / Báo giá ERP..." />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="contactMessage" class="form-label">Nội dung tin nhắn <span class="required">*</span></label>
+              <div class="textarea-wrap">
+                <textarea id="contactMessage" rows="5" class="form-textarea" placeholder="Nhập chi tiết nội dung cần trao đổi hoặc tư vấn giải pháp..." required></textarea>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-submit-contact">
+              <span>Gửi thông tin liên hệ</span>
+              <i class="fa-solid fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+
+        <!-- RIGHT: COMPANY INFO & QR TICKET -->
+        <div class="contact-info-panel">
+          <div class="info-card-panel">
+            <h2 class="panel-brand">ABSOLTECH</h2>
+            <p class="company-sub-title">CÔNG TY CỔ PHẦN PHẦN MỀM AN BIÊN</p>
+
+            <ul class="panel-meta-list">
+              <li>
+                <div class="pm-icon"><i class="fa-solid fa-location-dot"></i></div>
+                <div>
+                  <strong>VPGD Trụ sở:</strong>
+                  <p>Tầng 4, Tòa nhà Hatradimex, 22 Lý Tự Trọng, Minh Khai, Hồng Bàng, Hải Phòng.</p>
+                </div>
+              </li>
+              <li>
+                <div class="pm-icon"><i class="fa-solid fa-phone"></i></div>
+                <div>
+                  <strong>Điện thoại:</strong>
+                  <p>
+                    <a href="tel:02257106222">(+84) 225 710 6 222</a> — 
+                    <a href="tel:0985185665">(+84) 985 185 665</a>
+                  </p>
+                </div>
+              </li>
+              <li>
+                <div class="pm-icon"><i class="fa-solid fa-envelope"></i></div>
+                <div>
+                  <strong>Email:</strong>
+                  <p><a href="mailto:contact@absoltech.vn">contact@absoltech.vn</a></p>
+                </div>
+              </li>
+              <li>
+                <div class="pm-icon"><i class="fa-solid fa-file-invoice"></i></div>
+                <div>
+                  <strong>Đăng ký kinh doanh:</strong>
+                  <p>MSDN: 0200838952 do Sở KH&ĐT TP. Hải Phòng cấp ngày 07/11/2009.</p>
+                </div>
+              </li>
+            </ul>
+
+            <!-- QR & TICKET CALLOUT -->
+            <div class="ticket-callout-box">
+              <div class="tc-header">
+                <i class="fa-solid fa-ticket"></i>
+                <span>Cần gửi Ticket Kỹ Thuật?</span>
+              </div>
+              <p class="tc-desc">Nếu bạn là khách hàng đang sử dụng dịch vụ và cần xử lý lỗi/sự cố, vui lòng gửi ticket để được xử lý nhanh nhất:</p>
+              
+    
+
+              <div class="qr-box">
+                <span class="qr-label">Quét mã QR để mở form ticket:</span>
+                <img src="https://absoltech.vn/wp-content/uploads/2026/07/cd211eb9e523daf8897bc6606a9c4977.png" alt="QR Code Ticket ABSoltech" class="qr-image" width="140" height="140" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GOOGLE MAPS EMBED -->
+  <section class="contact-map-sec">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3728.384666491295!2d106.6834550759664!3d20.862324993665207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314a7af27670cf8b%3A0x6b1981fb3313d540!2zMjIgTMO9IFThu7EgVHLhu41uZywgTWluaCBLaGFpLCBI4buTbmcgQsOgbmcsIEjhuqNpIFBow7JuZw!5e0!3m2!1svi!2svn!4v1700000000000!5m2!1svi!2svn"
+      width="100%"
+      height="450"
+      style="border:0;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Bản đồ chỉ đường ABSoltech Hải Phòng"
+    ></iframe>
+  </section>
+
+  <Footer />
+  <FloatingContact />
+</Layout>
+
+<style>
+  /* 4 QUICK CARDS */
+  .contact-quick-cards-sec {
+    background: #ffffff;
+    padding: 50px 0 30px 0;
+    margin-top: -30px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .quick-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  .quick-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 26px 20px;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .quick-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 28px rgba(0, 149, 218, 0.12);
+    border-color: #0095da;
+  }
+
+  .q-icon-box {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: #e0f2fe;
+    color: #0095da;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 16px;
+    transition: all 0.3s ease;
+  }
+
+  .quick-card:hover .q-icon-box {
+    background: #0095da;
+    color: #ffffff;
+    transform: scale(1.08);
+  }
+
+  .highlight-card {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    border-color: #bae6fd;
+  }
+
+  .q-icon-box.zalo-icon {
+    background: #0068ff;
+    color: #ffffff;
+  }
+
+  .q-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 10px;
+  }
+
+  .q-desc {
+    font-size: 13.5px;
+    color: #64748b;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .q-contact-lines {
+    font-size: 13.5px;
+    color: #475569;
+    line-height: 1.6;
+  }
+
+  .q-contact-lines p {
+    margin: 2px 0;
+  }
+
+  .q-contact-lines a {
+    color: #0095da;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .q-contact-lines a:hover {
+    color: #0077b6;
+    text-decoration: underline;
+  }
+
+  .q-btn-zalo {
+    margin-top: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #0068ff;
+    color: #ffffff;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .q-btn-zalo:hover {
+    background: #0053cc;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 104, 255, 0.3);
+  }
+
+  /* MAIN SECTION */
+  .contact-main-sec {
+    background: #f8fafc;
+    padding: 50px 0 80px 0;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 40px;
+    align-items: flex-start;
+  }
+
+  /* FORM STYLING */
+  .contact-form-box {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 40px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+  }
+
+  .form-header {
+    margin-bottom: 26px;
+  }
+
+  .sub-lead {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #0095da;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .form-title {
+    font-size: 26px;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 6px 0 10px 0;
+  }
+
+  .form-desc {
+    font-size: 14px;
+    color: #64748b;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .form-row-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .form-label {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #1e293b;
+  }
+
+  .form-label .required {
+    color: #ef4444;
+  }
+
+  .input-wrap,
+  .textarea-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .input-icon {
+    position: absolute;
+    left: 16px;
+    color: #94a3b8;
+    font-size: 15.5px;
+    pointer-events: none;
+    transition: color 0.2s ease;
+  }
+
+  .form-input {
+    width: 100%;
+    height: 46px;
+    padding: 0 16px 0 44px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #0f172a;
+    background: #f8fafc;
+    outline: none;
+    transition: all 0.25s ease;
+  }
+
+  .form-textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #0f172a;
+    background: #f8fafc;
+    outline: none;
+    resize: vertical;
+    transition: all 0.25s ease;
+    line-height: 1.6;
+  }
+
+  .form-input:focus,
+  .form-textarea:focus {
+    border-color: #0095da;
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(0, 149, 218, 0.12);
+  }
+
+  .input-wrap:focus-within .input-icon {
+    color: #0095da;
+  }
+
+  .btn-submit-contact {
+    height: 50px;
+    background: linear-gradient(135deg, #0095da 0%, #0077b6 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 15.5px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(0, 149, 218, 0.3);
+    transition: all 0.25s ease;
+  }
+
+  .btn-submit-contact:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 149, 218, 0.4);
+    background: linear-gradient(135deg, #0084c2 0%, #00669e 100%);
+  }
+
+  /* INFO PANEL */
+  .info-card-panel {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 36px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+  }
+
+  .panel-brand {
+    font-size: 26px;
+    font-weight: 800;
+    color: #0095da;
+    margin: 0 0 4px 0;
+    letter-spacing: 0.5px;
+  }
+
+  .company-sub-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #475569;
+    letter-spacing: 0.5px;
+    margin: 0 0 24px 0;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #f1f5f9;
+  }
+
+  .panel-meta-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 28px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .panel-meta-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .pm-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: #e0f2fe;
+    color: #0095da;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15.5px;
+    flex-shrink: 0;
+  }
+
+  .panel-meta-list strong {
+    display: block;
+    font-size: 13.5px;
+    color: #1e293b;
+    margin-bottom: 2px;
+  }
+
+  .panel-meta-list p {
+    font-size: 13.5px;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .panel-meta-list a {
+    color: #0095da;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .panel-meta-list a:hover {
+    text-decoration: underline;
+  }
+
+  /* TICKET CALLOUT */
+  .ticket-callout-box {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    border-radius: 12px;
+    padding: 22px;
+    color: #ffffff;
+  }
+
+  .tc-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #38bdf8;
+    margin-bottom: 8px;
+  }
+
+  .tc-desc {
+    font-size: 13px;
+    color: #cbd5e1;
+    line-height: 1.5;
+    margin: 0 0 16px 0;
+  }
+
+  .btn-goto-ticket {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #0095da;
+    color: #ffffff;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.25s ease;
+  }
+
+  .btn-goto-ticket:hover {
+    background: #0284c7;
+    transform: translateY(-2px);
+  }
+
+  .qr-box {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .qr-label {
+    font-size: 12px;
+    color: #94a3b8;
+  }
+
+  .qr-image {
+    background: #ffffff;
+    padding: 8px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  /* MAP SECTION */
+  .contact-map-sec {
+    line-height: 0;
+  }
+
+  .contact-map-sec iframe {
+    display: block;
+    width: 100%;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 992px) {
+    .quick-cards-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .quick-cards-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .contact-form-box,
+    .info-card-panel {
+      padding: 24px 18px;
+    }
+
+    .form-row-2col {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

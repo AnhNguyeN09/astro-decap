@@ -1,0 +1,178 @@
+﻿---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FloatingContact from '../components/FloatingContact.astro';
+import PageBanner from '../components/PageBanner.astro';
+
+const projects = [
+  {
+    title: "Hệ Thống Quản Lý Cảng Biển & Logistics Cảng Hải Phòng",
+    category: "Phần mềm theo yêu cầu",
+    image: "https://absoltech.vn/wp-content/uploads/2025/07/absoltech-software-development-1024x683.jpg",
+    desc: "Xây dựng hệ thống điều hành bãi container, số hóa quy trình giao nhận hàng hải và liên thông dữ liệu thời gian thực."
+  },
+  {
+    title: "Ứng Dụng Đặt Hàng & Quản Lý Chuỗi Nhà Hàng F&B",
+    category: "Mobile App & Web",
+    image: "https://absoltech.vn/wp-content/uploads/2022/04/mobile-app-slideh500.png",
+    desc: "Nền tảng gọi món tại bàn, tích hợp ví điện tử, quản lý bếp và báo cáo doanh thu chuỗi đa chi nhánh."
+  },
+  {
+    title: "Cổng Thông Tin Điện Tử & Thương Mại Dược Phẩm GPP",
+    category: "Website & ERP",
+    image: "https://absoltech.vn/wp-content/uploads/2022/04/website-slideh500.png",
+    desc: "Hệ thống quản lý chuỗi nhà thuốc đạt chuẩn GPP Bộ Y tế, liên thông cổng dữ liệu dược phẩm quốc gia."
+  }
+];
+---
+
+<Layout title="Dự Án Tiêu Biểu | ABSoltech Vietnam">
+  <Header />
+  
+  <PageBanner
+    badge="Hồ sơ năng lực"
+    badgeIcon="fa-solid fa-briefcase"
+    title="Dự Án Tiêu Biểu"
+    description="Hơn 500+ dự án công nghệ đã được ABSoltech triển khai thành công cho các đối tác trong nước và quốc tế."
+    breadcrumbs={[
+      { label: "Dự án tiêu biểu" }
+    ]}
+  />
+
+  <section class="projects-section">
+    <div class="container">
+      <div class="projects-grid">
+        {projects.map((proj) => (
+          <article class="project-card">
+            <div class="proj-img-wrap">
+              <img src={proj.image} alt={proj.title} loading="lazy" />
+              <span class="proj-category">{proj.category}</span>
+            </div>
+            <div class="proj-info">
+              <h3 class="proj-title">{proj.title}</h3>
+              <p class="proj-desc">{proj.desc}</p>
+              <a href="#" class="proj-link">
+                <span>Xem chi tiết dự án</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+  <FloatingContact />
+</Layout>
+
+<style>
+  .projects-section {
+    padding: 70px 0 90px 0;
+    background: #f8fafc;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+
+  .project-card {
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    border-color: #0095da;
+  }
+
+  .proj-img-wrap {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+  }
+
+  .proj-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .project-card:hover .proj-img-wrap img {
+    transform: scale(1.06);
+  }
+
+  .proj-category {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: #0095da;
+    color: #ffffff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .proj-info {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .proj-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.4;
+    margin-bottom: 10px;
+  }
+
+  .proj-desc {
+    font-size: 14px;
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex: 1;
+  }
+
+  .proj-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #0095da;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: gap 0.2s ease;
+  }
+
+  .proj-link:hover {
+    gap: 12px;
+    color: #0077b6;
+  }
+
+  @media (max-width: 992px) {
+    .projects-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

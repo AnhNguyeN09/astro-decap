@@ -1,11 +1,32 @@
----
-import Welcome from '../components/Welcome.astro';
+﻿---
+import { getEntry } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import HeroBanner from '../components/HeroBanner.astro';
+import AboutSection from '../components/AboutSection.astro';
+import ServicesGrid from '../components/ServicesGrid.astro';
+import ProductsGrid from '../components/ProductsGrid.astro';
+import Testimonials from '../components/Testimonials.astro';
+import CalloutBanner from '../components/CalloutBanner.astro';
+import Footer from '../components/Footer.astro';
+import FloatingContact from '../components/FloatingContact.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// Nạp toàn bộ dữ liệu cấu hình Trang Chủ từ Decap CMS
+const homeEntry = await getEntry('homepage', 'index');
+const homeData = homeEntry?.data;
 ---
 
 <Layout>
-	<Welcome />
+  <Header />
+  <main>
+    <HeroBanner slides={homeData?.slides} />
+    <AboutSection data={homeData?.about} />
+    <ServicesGrid data={homeData?.servicesSection} />
+    <Testimonials />
+    <ProductsGrid data={homeData?.productsSection} />
+    <!-- Khối Callout "Bạn đang quan tâm tới chuyển đổi số" thuộc trang chủ, nằm ngay trước Footer -->
+    <CalloutBanner title={homeData?.callout?.title} desc={homeData?.callout?.desc} phone={homeData?.callout?.phone} />
+  </main>
+  <Footer />
+  <FloatingContact />
 </Layout>

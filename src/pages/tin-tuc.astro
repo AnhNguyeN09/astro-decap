@@ -1,0 +1,195 @@
+﻿---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FloatingContact from '../components/FloatingContact.astro';
+import PageBanner from '../components/PageBanner.astro';
+
+const news = [
+  {
+    title: "ABSoltech Kỷ Niệm 16 Năm Thành Lập Và Phát Triển Bền Vững",
+    date: "12/12/2023",
+    category: "Sự kiện",
+    image: "https://absoltech.vn/wp-content/uploads/2023/09/teamworks-absoltech-1024x683.jpg",
+    desc: "Chặng đường 16 năm khẳng định vị thế thương hiệu doanh nghiệp CNTT hàng đầu khu vực Duyên Hải và vươn tầm quốc tế."
+  },
+  {
+    title: "Xu Hướng Ứng Dụng Trí Tuệ Nhân Tạo (AI) Trong Chuyển Đổi Số Doanh Nghiệp 2026",
+    date: "24/03/2026",
+    category: "Công nghệ",
+    image: "https://absoltech.vn/wp-content/uploads/2025/07/absoltech-software-development-1024x683.jpg",
+    desc: "Cách các doanh nghiệp vừa và nhỏ tối ưu hóa 40% chi phí vận hành nhờ áp dụng hệ thống AI vào quy trình tự động hóa."
+  },
+  {
+    title: "ABSoltech Ký Kết Hợp Tác Chiến Lược Công Nghệ Với Đối Tác Nhật Bản",
+    date: "15/01/2026",
+    category: "Hợp tác",
+    image: "https://absoltech.vn/wp-content/uploads/2022/04/software-slideh500.png",
+    desc: "Mở rộng năng lực gia công phần mềm chất lượng cao và chuyển giao công nghệ cho các tập đoàn đối tác quốc tế."
+  }
+];
+---
+
+<Layout title="Tin Tức & Sự Kiện | ABSoltech Vietnam">
+  <Header />
+
+  <PageBanner
+    badge="Bản tin công nghệ"
+    badgeIcon="fa-regular fa-newspaper"
+    title="Tin Tức & Sự Kiện"
+    description="Cập nhật những chuyển động công nghệ mới nhất, xu hướng chuyển đổi số và hoạt động nổi bật tại ABSoltech."
+    breadcrumbs={[
+      { label: "Tin tức" }
+    ]}
+  />
+
+  <section class="news-section">
+    <div class="container">
+      <div class="news-grid">
+        {news.map((item) => (
+          <article class="news-card">
+            <div class="news-img-wrap">
+              <img src={item.image} alt={item.title} loading="lazy" />
+              <span class="news-cat">{item.category}</span>
+            </div>
+            <div class="news-info">
+              <div class="news-meta">
+                <i class="fa-regular fa-calendar-days"></i>
+                <span>{item.date}</span>
+              </div>
+              <h3 class="news-title">{item.title}</h3>
+              <p class="news-desc">{item.desc}</p>
+              <a href="#" class="news-readmore">
+                <span>Đọc tiếp</span>
+                <i class="fa-solid fa-arrow-right-long"></i>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+  <FloatingContact />
+</Layout>
+
+<style>
+  .news-section {
+    padding: 70px 0 90px 0;
+    background: #f8fafc;
+  }
+
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+
+  .news-card {
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .news-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    border-color: #0095da;
+  }
+
+  .news-img-wrap {
+    position: relative;
+    height: 210px;
+    overflow: hidden;
+  }
+
+  .news-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .news-card:hover .news-img-wrap img {
+    transform: scale(1.06);
+  }
+
+  .news-cat {
+    position: absolute;
+    bottom: 12px;
+    left: 14px;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(4px);
+    color: #38bdf8;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .news-info {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .news-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #94a3b8;
+    font-size: 13px;
+    margin-bottom: 10px;
+  }
+
+  .news-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.45;
+    margin-bottom: 10px;
+  }
+
+  .news-desc {
+    font-size: 14px;
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex: 1;
+  }
+
+  .news-readmore {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #0095da;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: gap 0.2s ease;
+  }
+
+  .news-readmore:hover {
+    gap: 12px;
+    color: #0077b6;
+  }
+
+  @media (max-width: 992px) {
+    .news-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .news-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
