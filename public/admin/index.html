@@ -6,25 +6,6 @@
   <title>Content Manager</title>
   <!-- 1. Script Netlify Identity Widget -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <style>
-    /* Ẩn nút mũi tên thu gọn/mở rộng không cần thiết */
-    button[class*="ExpandButton"],
-    button[class*="CollapseButton"],
-    button[aria-label*="expand"],
-    button[aria-label*="collapse"],
-    button:has(svg polygon),
-    span:has(> svg [d*="M12"]) {
-      /* fallback */
-    }
-
-    /* CSS ẩn triệt để nút tròn mũi tên lên xuống trên toolbar danh sách của Decap CMS */
-    [class*="ListControl"] > div > button,
-    [class*="Toolbar"] button[class*="Button"]:has(svg),
-    button[title*="expand" i],
-    button[title*="collapse" i] {
-      display: none !important;
-    }
-  </style>
 </head>
 <body>
   <!-- 2. Script Decap CMS -->
@@ -41,6 +22,58 @@
         }
       });
     }
+  </script>
+
+  <!-- 4. ĐĂNG KÝ CSS & GIAO DIỆN PREVIEW DÀNH RIÊNG CHO BÀI VIẾT TIN TỨC (BLOG) -->
+  <script>
+    // Nạp stylesheet chuẩn cho iframe preview của bài viết
+    CMS.registerPreviewStyle("/admin/preview-article.css");
+
+    // Component render bài viết tin tức đẹp như trên website thật
+    const BlogPreview = createClass({
+      render: function() {
+        const entry = this.props.entry;
+        const title = entry.getIn(['data', 'title']) || 'Tiêu đề bài viết...';
+        const category = entry.getIn(['data', 'category']) || 'Tin tức';
+        const date = entry.getIn(['data', 'date']);
+        const formattedDate = date ? new Date(date).toLocaleDateString('vi-VN') : 'Hôm nay';
+        const description = entry.getIn(['data', 'description']);
+        
+        // Xử lý ảnh thumbnail qua asset pipeline của Decap
+        const image = entry.getIn(['data', 'thumbnail']);
+        const bg = this.props.getAsset(image);
+
+        return h('div', { className: 'preview-article-card' },
+          // 1. Ảnh bìa đại diện
+          bg ? h('div', { className: 'preview-thumbnail-wrap' },
+            h('img', { src: bg.toString(), alt: title })
+          ) : null,
+
+          // 2. Thân bài viết
+          h('div', { className: 'preview-article-body' },
+            // Meta (Chuyên mục + Ngày đăng)
+            h('div', { className: 'preview-meta-row' },
+              h('span', { className: 'preview-category-badge' }, category),
+              h('span', { className: 'preview-date' }, '📅 ' + formattedDate)
+            ),
+
+            // Tiêu đề
+            h('h1', { className: 'preview-title' }, title),
+
+            // Đoạn tóm tắt mở đầu
+            description ? h('div', { className: 'preview-desc-box' }, description) : null,
+
+            // Nội dung markdown chi tiết
+            h('div', { className: 'preview-content' },
+              this.props.widgetFor('body')
+            )
+          )
+        );
+      }
+    });
+
+    // Chỉ áp dụng preview này riêng cho collection 'blog'
+    CMS.registerPreviewTemplate("blog", BlogPreview);
   </script>
 </body>
 </html>
