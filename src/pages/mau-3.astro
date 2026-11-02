@@ -36,8 +36,6 @@ const callout = homeData?.callout || {
 
 const reviews = [
   {
-    country: "Đối tác Quốc tế",
-    projectType: "Phát triển Website & Nền tảng số",
     author: "Mr. David Henry",
     company: "DHM Digital",
     role: "CEO & Founder",
@@ -45,8 +43,6 @@ const reviews = [
     avatar: "DH"
   },
   {
-    country: "Khách hàng Quốc tế",
-    projectType: "Vận hành & Phát triển hệ thống 24/7",
     author: "Ms. Renae Christine",
     company: "OWHO",
     role: "Product Director",
@@ -54,8 +50,6 @@ const reviews = [
     avatar: "RC"
   },
   {
-    country: "Hợp tác Dài hạn",
-    projectType: "Ứng dụng Di động & Nền tảng Cloud",
     author: "Mr. Blake Bridge",
     company: "Room Connection",
     role: "Managing Partner",
@@ -63,8 +57,6 @@ const reviews = [
     avatar: "BB"
   },
   {
-    country: "Đối tác Chiến lược",
-    projectType: "Giải pháp Phần mềm Doanh nghiệp",
     author: "Mr. Scott Price",
     company: "Marketing Solution",
     role: "Technical Lead",
@@ -74,301 +66,305 @@ const reviews = [
 ];
 
 const partners = [
-  { name: "SoftBank", region: "Nhật Bản", desc: "Tập đoàn Viễn thông & Công nghệ hàng đầu Nhật Bản", logo: "https://absoltech.vn/wp-content/uploads/2022/03/absoltech-softbank.png" },
-  { name: "Bijin-Tokei", region: "Nhật Bản", desc: "Nền tảng Truyền thông & Giải trí số sáng tạo", logo: "https://absoltech.vn/wp-content/uploads/2022/03/absoltech-bijint.png" },
-  { name: "World Air Plan", region: "Nhật Bản", desc: "Hệ thống Đặt vé, Du lịch & Hàng không quốc tế", logo: "https://absoltech.vn/wp-content/uploads/2022/03/absoltech-wap.png" },
-  { name: "CyberAgent", region: "Nhật Bản", desc: "Tập đoàn Internet, Game & Quảng cáo kỹ thuật số", logo: "https://absoltech.vn/wp-content/uploads/2022/03/absoltech-cyberagent.png" }
+  { name: "SoftBank", logo: "https://absoltech.vn/wp-content/uploads/2022/03/absoltech-softbank.png" },
+  { name: "Bijin-Tokei", logo: "https://absoltech.vn/wp-content/uploads/2022/03/absoltech-bijint.png" },
+  { name: "World Air Plan", logo: "https://absoltech.vn/wp-content/uploads/2022/03/absoltech-wap.png" },
+  { name: "CyberAgent", logo: "https://absoltech.vn/wp-content/uploads/2022/03/absoltech-cyberagent.png" }
 ];
 
 const stats = [
-  { number: "05", suffix: "", label: "Quốc gia triển khai", sub: "Nhật Bản, Hàn Quốc, Australia..." },
-  { number: "20", suffix: "+", label: "Đối tác chiến lược", sub: "Tập đoàn công nghệ quốc tế" },
-  { number: "500", suffix: "+", label: "Dự án hoàn thành", sub: "Phần mềm, ERP, Web & Mobile" },
-  { number: "1000", suffix: "+", label: "Khách hàng tin dùng", sub: "Doanh nghiệp trong & ngoài nước" }
-];
-
-const milestones = [
-  { year: "2007", title: "Thành lập thương hiệu", desc: "Khởi đầu hành trình xây dựng phần mềm chuyên nghiệp tại Hải Phòng." },
-  { year: "2014", title: "Vươn tầm quốc tế", desc: "Trở thành đối tác phát triển phần mềm cho các doanh nghiệp Nhật Bản, Úc." },
-  { year: "2019", title: "Mở rộng toàn quốc", desc: "Hiện diện văn phòng tại Hải Phòng, Hà Nội, TP.HCM và Thanh Hóa." },
-  { year: "2026", title: "Hệ sinh thái chuyển đổi số", desc: "Làm chủ AI, Cloud, ERP/CRM phục vụ hơn 1000+ doanh nghiệp." }
+  { number: "05", suffix: "", label: "Quốc gia triển khai", icon: "fa-solid fa-earth-asia" },
+  { number: "20", suffix: "+", label: "Đối tác chiến lược", icon: "fa-solid fa-handshake" },
+  { number: "500", suffix: "+", label: "Dự án hoàn thành", icon: "fa-solid fa-laptop-code" },
+  { number: "1000", suffix: "+", label: "Khách hàng tin dùng", icon: "fa-solid fa-users-gear" }
 ];
 ---
 
 <Layout>
-  <div class="jp-enterprise-wrapper">
+  <div class="aurora-creative-page">
     <!-- 1. CHUẨN HEADER 3 CẤP TỪ HEADER.ASTRO -->
     <Header />
 
     <main>
-      <!-- 2. JAPANESE CORPORATE ARCHITECTURAL HERO -->
-      <section class="jp-hero-sec">
-        <div class="jp-architectural-lines">
-          <span></span><span></span><span></span><span></span>
-        </div>
+      <!-- 2. AURORA MESH & FLOATING ISLAND HERO + 3 INTERACTIVE PREVIEW CARDS -->
+      <section class="ac-hero-sec">
+        <div class="ac-blob blob-1"></div>
+        <div class="ac-blob blob-2"></div>
 
         <div class="container relative">
-          <div class="jp-hero-slider">
-            {slides.map((slide, idx) => (
-              <div class={`jp-slide ${idx === 0 ? 'active' : ''}`} data-jp-slide={idx}>
-                <div class="jp-hero-grid">
-                  <!-- Left Editorial Column -->
-                  <div class="jp-hero-left">
-                    <div class="jp-serial-bar">
-                      <span class="jp-serial-line"></span>
-                      <span class="jp-serial-tag">GIẢI PHÁP CÔNG NGHỆ TOÀN DIỆN</span>
-                    </div>
-
-                    <h1 class="jp-hero-title">
-                      <span class="jp-pre">{slide.pretitle}</span>
-                      <span class="jp-main">{slide.title}</span>
-                    </h1>
-
-                    <p class="jp-hero-desc">{slide.description}</p>
-
-                    <div class="jp-hero-actions">
-                      <a href={slide.btnPrimaryLink || '/lien-he'} class="btn-jp-primary">
-                        <span>{slide.btnPrimaryText || 'Liên hệ tư vấn giải pháp'}</span>
-                        <i class="fa-solid fa-arrow-right"></i>
-                      </a>
-                      <a href={slide.btnSecondaryLink || '/du-an'} class="btn-jp-outline">
-                        <span>{slide.btnSecondaryText || 'Hồ sơ năng lực & Dự án'}</span>
-                      </a>
-                    </div>
-
-                    <div class="jp-slider-nav">
-                      <button type="button" class="jp-arrow" data-jp-dir="prev" aria-label="Slide trước">
-                        <i class="fa-solid fa-arrow-left"></i>
-                      </button>
-                      <div class="jp-dots">
-                        {slides.map((_, dotIdx) => (
-                          <button
-                            type="button"
-                            class={`jp-dot ${dotIdx === idx ? 'active' : ''}`}
-                            data-jp-go={dotIdx}
-                            aria-label={`Slide ${dotIdx + 1}`}
-                          ></button>
-                        ))}
-                      </div>
-                      <button type="button" class="jp-arrow" data-jp-dir="next" aria-label="Slide tiếp">
-                        <i class="fa-solid fa-arrow-right"></i>
-                      </button>
-                    </div>
+          <!-- Main Hero Showcase Stage -->
+          <div class="ac-hero-stage">
+            {slides.map((s, idx) => (
+              <div class={`ac-hero-main ${idx === 0 ? 'active' : ''}`} data-ac-panel={idx}>
+                <div class="ach-left">
+                  <div class="ach-badge">
+                    <span class="pulse-ring"></span>
+                    <span>ĐỐI TÁC CÔNG NGHỆ & CHUYỂN ĐỔI SỐ HÀNG ĐẦU</span>
                   </div>
 
-                  <!-- Right Architectural Frame -->
-                  <div class="jp-hero-right">
-                    <div class="jp-frame-outer">
-                      <div class="jp-frame-corner tl"></div>
-                      <div class="jp-frame-corner br"></div>
-                      <div class="jp-img-box">
-                        <img src={slide.image} alt={slide.title} />
+                  <h1 class="ach-title">
+                    <span class="ach-pre">{s.pretitle}</span>
+                    <span class="ach-gradient-txt">{s.title}</span>
+                  </h1>
+
+                  <p class="ach-desc">{s.description}</p>
+
+                  <div class="ach-cta-row">
+                    <a href={s.btnPrimaryLink || '/lien-he'} class="btn-ac-primary">
+                      <span>{s.btnPrimaryText || 'Bắt đầu dự án ngay'}</span>
+                      <div class="bap-icon"><i class="fa-solid fa-arrow-right"></i></div>
+                    </a>
+                    <a href="tel:0985185665" class="btn-ac-call">
+                      <div class="bac-icon"><i class="fa-solid fa-phone-volume"></i></div>
+                      <div>
+                        <small>Tư vấn trực tiếp 24/7</small>
+                        <strong>0985 18 5665</strong>
                       </div>
-                      <div class="jp-frame-caption">
-                        <div class="jfc-left">
-                          <strong>Giải pháp tối ưu theo chuẩn mực quốc tế</strong>
-                        </div>
-                        <span class="jfc-badge"><i class="fa-solid fa-shield-halved"></i> Uy tín & Bảo mật</span>
-                      </div>
-                    </div>
+                    </a>
+                  </div>
+                </div>
+
+                <div class="ach-right">
+                  <div class="ach-orbit-ring"></div>
+                  <div class="ach-glass-card">
+                    <img src={s.image} alt={s.title} class="ach-img" />
+                  </div>
+                  <!-- Floating Pills around Image -->
+                  <div class="ach-float-pill pill-top">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>16+ Năm Kinh Nghiệm</span>
+                  </div>
+                  <div class="ach-float-pill pill-bottom">
+                    <i class="fa-solid fa-globe"></i>
+                    <span>Đối tác Nhật Bản • Hàn • Úc</span>
                   </div>
                 </div>
               </div>
             ))}
           </div>
 
-          <!-- Architectural Ledger KPI Bar -->
-          <div class="jp-kpi-ledger">
-            {stats.map((st) => (
-              <div class="jp-kpi-cell">
-                <div class="jkc-number">
-                  {st.number}<span class="jkc-suffix">{st.suffix}</span>
+          <!-- 3 Interactive Thumbnail Dock Cards right below Hero (Bấm vào thẻ nào đổi luôn Hero) -->
+          <div class="ac-hero-dock">
+            {slides.map((s, idx) => (
+              <button
+                type="button"
+                class={`ac-dock-card ${idx === 0 ? 'active' : ''}`}
+                data-ac-trigger={idx}
+              >
+                <div class="adc-thumb">
+                  <img src={s.image} alt={s.title} />
                 </div>
-                <strong class="jkc-label">{st.label}</strong>
-                <span class="jkc-sub">{st.sub}</span>
-              </div>
+                <div class="adc-info">
+                  <span class="adc-step">GIẢI PHÁP 0{idx + 1}</span>
+                  <strong>{s.title}</strong>
+                  <p>{s.pretitle}</p>
+                </div>
+                <div class="adc-arrow">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </div>
+              </button>
             ))}
           </div>
+        </div>
 
-          <!-- Architectural Marquee Bar -->
-          <div class="jp-marquee-bar">
-            <div class="jpm-label">
-              <i class="fa-solid fa-layer-group"></i>
-              <span>NĂNG LỰC CỐT LÕI</span>
-            </div>
-            <div class="jpm-track-clip">
-              <div class="jpm-track">
-                <span>Phát triển phần mềm</span> <i class="fa-solid fa-diamond"></i>
-                <span>Tư vấn giải pháp CNTT</span> <i class="fa-solid fa-diamond"></i>
-                <span>Giải pháp thương mại điện tử</span> <i class="fa-solid fa-diamond"></i>
-                <span>Xây dựng ứng dụng di động</span> <i class="fa-solid fa-diamond"></i>
-                <span>Giải pháp đám mây</span> <i class="fa-solid fa-diamond"></i>
-                <span>Xây dựng website chuẩn SEO</span> <i class="fa-solid fa-diamond"></i>
-                <span>Xử lý dữ liệu & Chuyển đổi số</span> <i class="fa-solid fa-diamond"></i>
-                <span>Hệ quản trị CMS & CRM</span> <i class="fa-solid fa-diamond"></i>
-                <!-- Duplicate for seamless loop -->
-                <span>Phát triển phần mềm</span> <i class="fa-solid fa-diamond"></i>
-                <span>Tư vấn giải pháp CNTT</span> <i class="fa-solid fa-diamond"></i>
-                <span>Giải pháp thương mại điện tử</span> <i class="fa-solid fa-diamond"></i>
-                <span>Xây dựng ứng dụng di động</span> <i class="fa-solid fa-diamond"></i>
-                <span>Giải pháp đám mây</span> <i class="fa-solid fa-diamond"></i>
-                <span>Xây dựng website chuẩn SEO</span> <i class="fa-solid fa-diamond"></i>
-              </div>
-            </div>
+        <!-- Soft Gradient Pill Marquee -->
+        <div class="ac-pill-marquee">
+          <div class="apm-track">
+            <span class="apm-chip"><i class="fa-solid fa-code"></i> Phát triển phần mềm</span>
+            <span class="apm-chip"><i class="fa-solid fa-lightbulb"></i> Tư vấn giải pháp CNTT</span>
+            <span class="apm-chip"><i class="fa-solid fa-cart-shopping"></i> Giải pháp thương mại điện tử</span>
+            <span class="apm-chip"><i class="fa-solid fa-mobile-screen"></i> Xây dựng ứng dụng di động</span>
+            <span class="apm-chip"><i class="fa-solid fa-cloud"></i> Giải pháp đám mây</span>
+            <span class="apm-chip"><i class="fa-solid fa-globe"></i> Xây dựng website chuẩn SEO</span>
+            <span class="apm-chip"><i class="fa-solid fa-database"></i> Xử lý dữ liệu & Chuyển đổi số</span>
+            <span class="apm-chip"><i class="fa-solid fa-users-rectangle"></i> Hệ quản trị CMS & CRM</span>
+            <!-- Duplicate -->
+            <span class="apm-chip"><i class="fa-solid fa-code"></i> Phát triển phần mềm</span>
+            <span class="apm-chip"><i class="fa-solid fa-lightbulb"></i> Tư vấn giải pháp CNTT</span>
+            <span class="apm-chip"><i class="fa-solid fa-cart-shopping"></i> Giải pháp thương mại điện tử</span>
+            <span class="apm-chip"><i class="fa-solid fa-mobile-screen"></i> Xây dựng ứng dụng di động</span>
+            <span class="apm-chip"><i class="fa-solid fa-cloud"></i> Giải pháp đám mây</span>
+            <span class="apm-chip"><i class="fa-solid fa-globe"></i> Xây dựng website chuẩn SEO</span>
           </div>
         </div>
       </section>
 
-      <!-- 3. SERVICES SECTION (ARCHITECTURAL MATRIX) -->
-      <section class="jp-services-sec" id="services">
+      <!-- 3. DỊCH VỤ: INTERACTIVE ACCORDION SHOWCASE (CỘT TRÁI MỞ RỘNG + CỘT PHẢI SÂN KHẤU LỚN) -->
+      <section class="ac-services-sec" id="services">
         <div class="container">
-          <div class="jp-sec-header">
-            <span class="jp-eyebrow">{servicesSec.subTitle}</span>
-            <h2 class="jp-sec-title">{servicesSec.title}</h2>
-            <p class="jp-sec-desc">{servicesSec.desc}</p>
+          <div class="ac-sec-head">
+            <span class="ac-pill-tag"><i class="fa-solid fa-wand-magic-sparkles"></i> {servicesSec.subTitle}</span>
+            <h2>Hệ Sinh Thái {servicesSec.title} Chuyên Nghiệp</h2>
+            <p>{servicesSec.desc}</p>
           </div>
 
-          <div class="jp-services-ledger">
-            {servicesSec.items.map((item) => (
-              <div class="jp-service-cell">
-                <div class="jsc-top">
-                  <div class="jsc-icon">
-                    <i class={item.icon}></i>
+          <div class="ac-service-studio">
+            <!-- Left Interactive Accordion List -->
+            <div class="ass-accordion">
+              {servicesSec.items.map((item, idx) => (
+                <div
+                  class={`ass-acc-item ${idx === 0 ? 'active' : ''}`}
+                  data-srv-trigger={idx}
+                >
+                  <div class="aai-header">
+                    <div class="aai-icon">
+                      <i class={item.icon}></i>
+                    </div>
+                    <div class="aai-title-wrap">
+                      <span class="aai-tag">{item.tag}</span>
+                      <h3>{item.title}</h3>
+                    </div>
+                    <div class="aai-toggle">
+                      <i class="fa-solid fa-chevron-right"></i>
+                    </div>
                   </div>
-                </div>
-                <h3 class="jsc-title">{item.title}</h3>
-                <p class="jsc-desc">{item.desc}</p>
-                <a href="/lien-he" class="jsc-more">
-                  <span>Chi tiết dịch vụ</span>
-                  <i class="fa-solid fa-arrow-right"></i>
-                </a>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <!-- 4. ABOUT ABSOLTECH (CORPORATE MONOGRAPH & MILESTONE TIMELINE) -->
-      <section class="jp-about-sec" id="about">
-        <div class="container">
-          <div class="jp-sec-header">
-            <span class="jp-eyebrow">{about.subLabel}</span>
-            <h2 class="jp-sec-title">{about.heading}</h2>
-            <p class="jp-sec-desc">Giá trị bền vững được khẳng định qua sự chuẩn mực trong quy trình kỹ thuật và niềm tin từ các tập đoàn quốc tế.</p>
-          </div>
-
-          <!-- Editorial Monograph Layout (Distinct from Mẫu 1 & Mẫu 2) -->
-          <div class="jp-monograph-box">
-            <!-- Top Row: Editorial Story + Framed Team Portrait -->
-            <div class="jmb-top-grid">
-              <div class="jmb-editorial">
-                <div class="jmb-chapter">
-                  <span class="chapter-divider"></span>
-                  <span class="chapter-name">HỒ SƠ NĂNG LỰC DOANH NGHIỆP</span>
-                </div>
-
-                <p class="jmb-lead">{about.content}</p>
-
-                <blockquote class="jmb-philosophy">
-                  <div class="jmb-phi-label">TRIẾT LÝ VẬN HÀNH & SỨ MỆNH</div>
-                  <p>“{about.quote}”</p>
-                </blockquote>
-
-                <div class="jmb-standards-row">
-                  <div class="jmb-std-item">
-                    <i class="fa-solid fa-check"></i>
-                    <span>Quy trình kiểm thử chất lượng chuẩn Nhật Bản</span>
+                  <div class="aai-body">
+                    <p>{item.desc}</p>
                   </div>
-                  <div class="jmb-std-item">
-                    <i class="fa-solid fa-check"></i>
-                    <span>Bảo mật thông tin & An toàn dữ liệu tuyệt đối</span>
-                  </div>
-                  <div class="jmb-std-item">
-                    <i class="fa-solid fa-check"></i>
-                    <span>Đồng hành bảo trì, nâng cấp hệ thống dài hạn</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="jmb-portrait">
-                <div class="jmb-photo-wrap">
-                  <img src={about.teamImage} alt="Đội ngũ ABSoltech" loading="lazy" />
-                  <div class="jmb-photo-stamp">
-                    <strong>16+ NĂM</strong>
-                    <span>PHÁT TRIỂN BỀN VỮNG</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Middle Row: 4-Step Corporate Milestone Timeline -->
-            <div class="jmb-timeline-bar">
-              {milestones.map((m) => (
-                <div class="jmb-milestone">
-                  <div class="jm-head">
-                    <span class="jm-year">{m.year}</span>
-                  </div>
-                  <strong class="jm-title">{m.title}</strong>
-                  <p class="jm-desc">{m.desc}</p>
                 </div>
               ))}
             </div>
 
-            <!-- Bottom Row: Japanese & International Partner Ledger Table -->
-            <div class="jmb-partner-directory">
-              <div class="jpd-header">
-                <div class="jpd-title-group">
-                  <h4>Đối Tác Chiến Lược Quốc Tế Tiêu Biểu</h4>
-                </div>
-                <span class="jpd-region-tag"><i class="fa-solid fa-earth-asia"></i> Nhật Bản • Hàn Quốc • Australia</span>
-              </div>
+            <!-- Right Dynamic Spotlight Card -->
+            <div class="ass-spotlight">
+              {servicesSec.items.map((item, idx) => (
+                <div class={`ass-spot-card ${idx === 0 ? 'active' : ''}`} data-srv-panel={idx}>
+                  <div class="asc-top-visual">
+                    <div class="asc-big-icon">
+                      <i class={item.icon}></i>
+                    </div>
+                    <span class="asc-num">0{idx + 1}</span>
+                  </div>
 
-              <div class="jpd-table">
-                {partners.map((p) => (
-                  <div class="jpd-cell">
-                    <div class="jpd-cell-top">
-                      <span class="jpd-region"><i class="fa-solid fa-location-dot"></i> {p.region}</span>
+                  <div class="asc-content">
+                    <span class="asc-badge">{item.tag}</span>
+                    <h3>{item.title}</h3>
+                    <p>{item.desc}</p>
+
+                    <div class="asc-benefits">
+                      <div class="ascb-item">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Thiết kế may đo riêng theo quy trình vận hành</span>
+                      </div>
+                      <div class="ascb-item">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Tối ưu tốc độ, bảo mật cao & dễ dàng mở rộng</span>
+                      </div>
+                      <div class="ascb-item">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Bàn giao mã nguồn chuẩn & hỗ trợ kỹ thuật 24/7</span>
+                      </div>
                     </div>
-                    <div class="jpd-logo-frame">
-                      <img src={p.logo} alt={p.name} loading="lazy" />
-                    </div>
-                    <div class="jpd-info">
-                      <strong>{p.name}</strong>
-                      <p>{p.desc}</p>
+
+                    <div class="asc-actions">
+                      <a href="/lien-he" class="btn-ac-white">
+                        <span>Nhận tư vấn & Báo giá</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                      </a>
+                      <a href="/du-an" class="btn-ac-ghost-light">
+                        <span>Xem dự án thực tế</span>
+                      </a>
                     </div>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      <!-- 5. PACKAGED SOFTWARE SUITE (STRUCTURED SPECIFICATION CATALOG) -->
-      <section class="jp-products-sec" id="products">
+      <!-- 4. VỀ ABSOLTECH: BỐ CỤC TÂM ĐIỂM ĐỐI XỨNG 3 CỘT + DẢI ĐỐI TÁC QUỐC TẾ TO RÕ -->
+      <section class="ac-about-sec" id="about">
         <div class="container">
-          <div class="jp-sec-header">
-            <span class="jp-eyebrow">{productsSec.subTitle}</span>
-            <h2 class="jp-sec-title">{productsSec.title}</h2>
-            <p class="jp-sec-desc">{productsSec.desc}</p>
+          <div class="ac-sec-head">
+            <span class="ac-pill-tag"><i class="fa-solid fa-award"></i> {about.subLabel}</span>
+            <h2>{about.heading}</h2>
+            <p>Đồng hành cùng sự thịnh vượng của hơn 1000+ doanh nghiệp trong nước và quốc tế từ năm 2007.</p>
           </div>
 
-          <div class="jp-products-catalog">
-            {productsSec.items.map((p) => (
-              <div class="jp-catalog-card">
-                <div class="jcc-header">
-                  <span class="jcc-tagline">{p.tagline}</span>
-                  <span class="jcc-badge">{p.badge}</span>
+          <!-- 3-Column Centerpiece Hub (Trái: Câu chuyện | Giữa: Ảnh Đội Ngũ | Phải: 4 Thẻ Chỉ Số) -->
+          <div class="ac-about-centerpiece">
+            <!-- Left Story Card -->
+            <div class="aac-story-card">
+              <div class="aac-badge-top">
+                <i class="fa-solid fa-rocket"></i> HÀNH TRÌNH 16+ NĂM PHÁT TRIỂN
+              </div>
+              <p class="aac-text">{about.content}</p>
+              <div class="aac-quote-box">
+                <i class="fa-solid fa-quote-left"></i>
+                <p>“{about.quote}”</p>
+              </div>
+              <a href="/lien-he" class="aac-more-btn">
+                <span>Kết nối cùng đội ngũ chuyên gia</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+
+            <!-- Center Framed Team Photo -->
+            <div class="aac-photo-center">
+              <img src={about.teamImage} alt="Đội ngũ ABSoltech" loading="lazy" />
+              <div class="aac-photo-float">
+                <div class="apf-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <div>
+                  <strong>Thương hiệu CNTT Hàng Đầu</strong>
+                  <span>Khu vực Duyên Hải Bắc Bộ & Toàn Quốc</span>
                 </div>
-                <div class="jcc-preview">
+              </div>
+            </div>
+
+            <!-- Right 2x2 Stats Cards -->
+            <div class="aac-stats-grid">
+              {stats.map((st) => (
+                <div class="aac-stat-box">
+                  <div class="asb-icon"><i class={st.icon}></i></div>
+                  <div class="asb-num">{st.number}<span>{st.suffix}</span></div>
+                  <strong>{st.label}</strong>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Clean Prominent Partner Showcase Bar (Logo to rõ, không rối chữ) -->
+          <div class="ac-partner-showcase">
+            <div class="aps-title">
+              <span><i class="fa-solid fa-earth-asia"></i> ĐỐI TÁC QUỐC TẾ TIÊU BIỂU</span>
+              <small>Nhật Bản • Hàn Quốc • Australia</small>
+            </div>
+            <div class="aps-logos">
+              {partners.map((p) => (
+                <div class="aps-logo-box" title={p.name}>
+                  <img src={p.logo} alt={p.name} loading="lazy" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. SẢN PHẨM ĐÓNG GÓI: HORIZONTAL SPLIT CARDS (2 CỘT × 3 HÀNG — ẢNH TRÁI, NỘI DUNG PHẢI) -->
+      <section class="ac-products-sec" id="products">
+        <div class="container">
+          <div class="ac-sec-head">
+            <span class="ac-pill-tag"><i class="fa-solid fa-cubes"></i> {productsSec.subTitle}</span>
+            <h2>{productsSec.title} Chuyên Biệt</h2>
+            <p>{productsSec.desc}</p>
+          </div>
+
+          <!-- 2-Column Horizontal Split Cards (Khác hẳn lưới 3 cột của Mẫu 1 và Tab của Mẫu 2) -->
+          <div class="ac-products-duo-grid">
+            {productsSec.items.map((p) => (
+              <div class="ac-product-duo-card">
+                <div class="apdc-media">
+                  <span class="apdc-badge">{p.badge}</span>
                   <img src={p.image} alt={p.name} loading="lazy" />
                 </div>
-                <div class="jcc-body">
-                  <h3 class="jcc-name">{p.name}</h3>
-                  <p class="jcc-desc">{p.desc}</p>
-                  <div class="jcc-footer">
-                    <a href="/lien-he" class="jcc-btn">
-                      <span>Đăng ký trải nghiệm</span>
+                <div class="apdc-info">
+                  <span class="apdc-tagline">{p.tagline}</span>
+                  <h3>{p.name}</h3>
+                  <p>{p.desc}</p>
+                  <div class="apdc-footer">
+                    <a href="/lien-he" class="apdc-btn">
+                      <span>Đăng ký dùng thử</span>
                       <i class="fa-solid fa-arrow-right"></i>
                     </a>
                   </div>
@@ -379,169 +375,296 @@ const milestones = [
         </div>
       </section>
 
-      <!-- 6. CLIENT TESTIMONIALS (EXECUTIVE CASE STUDY DOSSIER) -->
-      <section class="jp-testimonials-sec" id="testimonials">
+      <!-- 6. KHÁCH HÀNG NÓI VỀ CHÚNG TÔI: INTERACTIVE STORY SLIDER + METRICS BAR -->
+      <section class="ac-testimonials-sec" id="testimonials">
         <div class="container">
-          <div class="jp-sec-header">
-            <span class="jp-eyebrow">ĐỐI TÁC ĐÁNH GIÁ</span>
-            <h2 class="jp-sec-title">Khách Hàng Nói Về Chúng Tôi</h2>
-            <p class="jp-sec-desc">Hồ sơ ghi nhận phản hồi trực tiếp từ ban lãnh đạo các doanh nghiệp quốc tế đã hợp tác cùng ABSoltech.</p>
+          <div class="ac-sec-head">
+            <span class="ac-pill-tag"><i class="fa-solid fa-heart"></i> NIỀM TIN KHÁCH HÀNG TOÀN CẦU</span>
+            <h2>Đối Tác Nói Gì Về ABSoltech?</h2>
+            <p>Hơn 98% khách hàng quốc tế và doanh nghiệp trong nước tiếp tục đồng hành dài hạn sau dự án đầu tiên.</p>
           </div>
 
-          <!-- Executive Case Study Dossier Rows (Completely distinct from Mẫu 1 Grid & Mẫu 2 Tab Stage) -->
-          <div class="jp-dossier-list">
-            {reviews.map((r) => (
-              <article class="jp-dossier-row">
-                <!-- Left Column: Case Study Metadata -->
-                <div class="jdr-meta-col">
-                  <div class="jdr-code-row">
-                    <span class="jdr-country"><i class="fa-solid fa-globe"></i> {r.country}</span>
-                  </div>
-                  <div class="jdr-client-box">
-                    <div class="jdr-avatar">{r.avatar}</div>
-                    <div>
-                      <h4 class="jdr-author">{r.author}</h4>
-                      <span class="jdr-role">{r.role}</span>
-                      <strong class="jdr-company">{r.company}</strong>
-                    </div>
-                  </div>
+          <!-- Top Client Avatar Pills Switcher (Khác hẳn lưới 4 thẻ của Mẫu 1 và cột trái của Mẫu 2) -->
+          <div class="act-avatar-dock">
+            {reviews.map((r, idx) => (
+              <button
+                type="button"
+                class={`act-person-pill ${idx === 0 ? 'active' : ''}`}
+                data-testi-trigger={idx}
+              >
+                <span class="app-ava">{r.avatar}</span>
+                <div class="app-meta">
+                  <strong>{r.author}</strong>
+                  <small>{r.company}</small>
                 </div>
+              </button>
+            ))}
+          </div>
 
-                <!-- Middle Column: Verbatim Executive Quote -->
-                <div class="jdr-quote-col">
-                  <div class="jdr-project-pill">
-                    <i class="fa-solid fa-folder-tree"></i> Hạng mục: {r.projectType}
-                  </div>
-                  <p class="jdr-quote-text">“{r.quote}”</p>
-                </div>
-
-                <!-- Right Column: Quality Audit Stamp -->
-                <div class="jdr-audit-col">
-                  <div class="jdr-rating-box">
-                    <span class="jdr-score">5.0</span>
-                    <div class="jdr-stars">
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-solid fa-star"></i>
-                    </div>
-                    <span class="jdr-verified"><i class="fa-solid fa-shield-check"></i> ĐỐI TÁC XÁC THỰC</span>
+          <!-- Center Stage Quote Card -->
+          <div class="act-stage-wrap">
+            {reviews.map((r, idx) => (
+              <div class={`act-featured-stage ${idx === 0 ? 'active' : ''}`} data-testi-panel={idx}>
+                <div class="afs-left-profile">
+                  <div class="afs-big-ava">{r.avatar}</div>
+                  <h3>{r.author}</h3>
+                  <span class="afs-role">{r.role}</span>
+                  <span class="afs-comp"><i class="fa-solid fa-building"></i> {r.company}</span>
+                  <div class="afs-stars">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <span>5.0</span>
                   </div>
                 </div>
-              </article>
+                <div class="afs-right-quote">
+                  <i class="fa-solid fa-quote-left afs-qmark"></i>
+                  <blockquote>“{r.quote}”</blockquote>
+                  <div class="afs-verified-bar">
+                    <span><i class="fa-solid fa-circle-check"></i> Đánh giá xác thực từ đối tác quốc tế</span>
+                    <span>Dự án triển khai dài hạn</span>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <!-- 7. CALLOUT BANNER -->
-      <section class="jp-callout-sec">
-        <div class="container">
-          <div class="jp-callout-banner">
-            <div class="jcb-content">
-              <span class="jcb-label">TƯ VẤN CHUYỂN ĐỔI SỐ DOANH NGHIỆP</span>
+      <!-- 7. CHUYỂN ĐỔI SỐ & GỬI YÊU CẦU TƯ VẤN: STUDIO WORKSPACE (TRÁI: LỘ TRÌNH 3 BƯỚC + HOTLINE | PHẢI: FORM TƯ VẤN NỔI) -->
+      <section class="ac-dx-studio-sec" id="contact-studio">
+        <div class="ac-dx-bg-orb orb-a"></div>
+        <div class="ac-dx-bg-orb orb-b"></div>
+
+        <div class="container relative">
+          <div class="ac-dx-grid">
+            <!-- Left: Digital Transformation Roadmap & Direct Expert Connect -->
+            <div class="ac-dx-left">
+              <span class="ac-dx-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> ĐỒNG HÀNH CHUYỂN ĐỔI SỐ TOÀN DIỆN</span>
               <h2>{callout.title}</h2>
-              <p>{callout.desc}</p>
-            </div>
-            <div class="jcb-actions">
-              <a href={`tel:${callout.phone.replace(/\s+/g, '')}`} class="btn-jcb-phone">
-                <div class="jcb-phone-icon"><i class="fa-solid fa-phone-volume"></i></div>
-                <div class="jcb-phone-txt">
-                  <span>Hotline tư vấn 24/7</span>
-                  <strong>{callout.phone}</strong>
+              <p class="ac-dx-lead">{callout.desc}</p>
+
+              <!-- 3-Step Digital Transformation Roadmap -->
+              <div class="ac-dx-steps">
+                <div class="adxs-item">
+                  <div class="adxs-num">01</div>
+                  <div class="adxs-txt">
+                    <strong>Khảo sát & Tư vấn Kiến trúc Số 1:1</strong>
+                    <span>Đánh giá quy trình vận hành thực tế và đề xuất giải pháp công nghệ tối ưu chi phí.</span>
+                  </div>
                 </div>
-              </a>
-              <a href="/lien-he" class="btn-jcb-contact">
-                <span>Đặt lịch tư vấn ngay</span>
-                <i class="fa-solid fa-arrow-right"></i>
-              </a>
+                <div class="adxs-item">
+                  <div class="adxs-num">02</div>
+                  <div class="adxs-txt">
+                    <strong>Thiết kế May đo & Triển khai Chuẩn Agile</strong>
+                    <span>Phát triển hệ thống phần mềm, ERP/CRM, Web/App theo đúng đặc thù doanh nghiệp.</span>
+                  </div>
+                </div>
+                <div class="adxs-item">
+                  <div class="adxs-num">03</div>
+                  <div class="adxs-txt">
+                    <strong>Chuyển giao Làm chủ & Đồng hành 24/7</strong>
+                    <span>Đào tạo đội ngũ vận hành, bảo hành trọn đời và nâng cấp mở rộng linh hoạt.</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Direct Expert Hotline Bar -->
+              <div class="ac-dx-hotline-card">
+                <div class="adxh-left">
+                  <div class="adxh-ic"><i class="fa-solid fa-headset"></i></div>
+                  <div>
+                    <small>Tư vấn trực tiếp cùng Chuyên gia Trưởng</small>
+                    <strong>Hotline 24/7: {callout.phone}</strong>
+                  </div>
+                </div>
+                <a href={`tel:${callout.phone.replace(/\s+/g, '')}`} class="adxh-call-btn">
+                  <i class="fa-solid fa-phone-volume"></i> Gọi ngay
+                </a>
+              </div>
+            </div>
+
+            <!-- Right: Floating Glass Consultation Form Card -->
+            <div class="ac-dx-form-card">
+              <div class="adxf-header">
+                <div class="adxf-status">
+                  <span class="online-dot"></span>
+                  <span>Chuyên gia ABSoltech đang trực tuyến</span>
+                </div>
+                <h3>Đăng Ký Tư Vấn & Nhận Báo Giá</h3>
+                <p>Điền thông tin bên dưới, chúng tôi sẽ liên hệ tư vấn giải pháp trong vòng 30 phút.</p>
+              </div>
+
+              <form class="adxf-form" onsubmit="event.preventDefault(); alert('Cảm ơn bạn đã liên hệ ABSoltech! Chúng tôi sẽ phản hồi sớm nhất.');">
+                <div class="adxf-row">
+                  <div class="adxf-field">
+                    <label>Họ và tên của bạn *</label>
+                    <div class="adxf-input-wrap">
+                      <i class="fa-regular fa-user"></i>
+                      <input type="text" placeholder="Nguyễn Văn A" required />
+                    </div>
+                  </div>
+                  <div class="adxf-field">
+                    <label>Số điện thoại *</label>
+                    <div class="adxf-input-wrap">
+                      <i class="fa-solid fa-phone"></i>
+                      <input type="tel" placeholder="0985 xxx xxx" required />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="adxf-row">
+                  <div class="adxf-field">
+                    <label>Email doanh nghiệp *</label>
+                    <div class="adxf-input-wrap">
+                      <i class="fa-regular fa-envelope"></i>
+                      <input type="email" placeholder="contact@company.com" required />
+                    </div>
+                  </div>
+                  <div class="adxf-field">
+                    <label>Lĩnh vực quan tâm</label>
+                    <div class="adxf-input-wrap">
+                      <i class="fa-solid fa-layer-group"></i>
+                      <select>
+                        <option value="software">Phát triển Phần mềm theo yêu cầu</option>
+                        <option value="erp-crm">Giải pháp ERP / CRM / HRM</option>
+                        <option value="web-ecommerce">Thiết kế Website & Thương mại điện tử</option>
+                        <option value="mobile-app">Phát triển Ứng dụng Di động (iOS/Android)</option>
+                        <option value="dx-consult">Tư vấn Chuyển đổi số toàn diện</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="adxf-field">
+                  <label>Mô tả yêu cầu dự án *</label>
+                  <textarea rows="3" placeholder="Chia sẻ ngắn gọn bài toán hoặc mục tiêu chuyển đổi số của doanh nghiệp bạn..." required></textarea>
+                </div>
+
+                <button type="submit" class="adxf-submit-btn">
+                  <span>Gửi Yêu Cầu Tư Vấn Ngay</span>
+                  <i class="fa-solid fa-paper-plane"></i>
+                </button>
+              </form>
             </div>
           </div>
         </div>
       </section>
     </main>
 
-    <!-- 8. FOOTER -->
-    <footer class="jp-footer">
+    <!-- 8. FOOTER CORPORATE SITEMAP 4 CỘT TRÊN NỀN XANH ĐẬM (CHUẨN DOANH NGHIỆP, KHÁC HẲN MẪU 1 & MẪU 2) -->
+    <footer class="ac-corp-footer">
       <div class="container">
-        <div class="jp-footer-grid">
-          <!-- Left Brand Blue Card (keeps dark SOLTECH logo text visible) -->
-          <div class="jpf-brand-card">
-            <img src="https://absoltech.vn/wp-content/uploads/2025/08/logo_dark_h400-768x132.png" alt="ABSoltech Logo" class="jpf-logo" />
-            <h3 class="jpf-company">CÔNG TY CỔ PHẦN PHẦN MỀM AN BIÊN</h3>
-            <p class="jpf-tax">MSDN: 0200838952 cấp ngày 07/11/2009 tại Sở KH&ĐT TP. Hải Phòng</p>
+        <div class="acf-main-cols">
+          <!-- Cột 1: Thương hiệu & Liên hệ trực tiếp -->
+          <div class="acf-col acf-brand-col">
+            <img
+              src="https://absoltech.vn/wp-content/uploads/2025/08/logo_dark_h400-768x132.png"
+              alt="ABSoltech Logo"
+              class="acf-logo-img"
+            />
+            <h3 class="acf-comp-title">CÔNG TY CỔ PHẦN PHẦN MỀM AN BIÊN</h3>
+            <p class="acf-tax-note">
+              MSDN: 0200838952 cấp ngày 07/11/2009 tại Sở KH&ĐT TP. Hải Phòng. Hơn 16 năm đồng hành chuyển đổi số cùng doanh nghiệp Việt Nam & Quốc tế.
+            </p>
 
-            <div class="jpf-offices">
-              <div class="jpf-office-item">
-                <i class="fa-solid fa-building"></i>
-                <div><strong>Trụ sở Hải Phòng:</strong> Tầng 4, 22 Lý Tự Trọng, Hồng Bàng, Hải Phòng</div>
-              </div>
-              <div class="jpf-office-item">
-                <i class="fa-solid fa-location-dot"></i>
-                <div><strong>Văn phòng Hà Nội:</strong> Số 4, LK4 - TT1, 96-96B Nguyễn Huy Tưởng, Thanh Xuân, Hà Nội</div>
-              </div>
-              <div class="jpf-office-item">
-                <i class="fa-solid fa-location-dot"></i>
-                <div><strong>Văn phòng TP.HCM:</strong> 383 Nguyễn Duy Trinh, Bình Trưng Tây, TP. Thủ Đức, TP.HCM</div>
-              </div>
-              <div class="jpf-office-item">
-                <i class="fa-solid fa-location-dot"></i>
-                <div><strong>Văn phòng Thanh Hóa:</strong> 11 Cửa Hữu, Phường Tân Sơn, TP. Thanh Hóa</div>
-              </div>
-            </div>
-
-            <div class="jpf-direct-links">
-              <a href="tel:+84985185665"><i class="fa-solid fa-phone"></i> (+84) 985 185 665</a>
-              <a href="tel:+842257106222"><i class="fa-solid fa-phone"></i> (+84) 225 710 6222</a>
-              <a href="mailto:contact@absoltech.vn"><i class="fa-regular fa-envelope"></i> contact@absoltech.vn</a>
+            <div class="acf-direct-list">
+              <a href="tel:+84985185665" class="acfd-row">
+                <span class="acfd-ic"><i class="fa-solid fa-phone-volume"></i></span>
+                <div>
+                  <small>Hotline Tư Vấn 24/7</small>
+                  <strong>(+84) 985 185 665</strong>
+                </div>
+              </a>
+              <a href="tel:+842257106222" class="acfd-row">
+                <span class="acfd-ic"><i class="fa-solid fa-phone"></i></span>
+                <div>
+                  <small>Tổng Đài Văn Phòng</small>
+                  <strong>(+84) 225 710 6222</strong>
+                </div>
+              </a>
+              <a href="mailto:contact@absoltech.vn" class="acfd-row">
+                <span class="acfd-ic"><i class="fa-regular fa-envelope"></i></span>
+                <div>
+                  <small>Email Liên Hệ</small>
+                  <strong>contact@absoltech.vn</strong>
+                </div>
+              </a>
             </div>
           </div>
 
-          <!-- Right Consultation Form -->
-          <div class="jpf-form-card">
-            <div class="jpff-head">
-              <span class="jpff-tag">LIÊN HỆ TRỰC TIẾP</span>
-              <h3>Gửi Yêu Cầu Tư Vấn Dự Án</h3>
-              <p>Quý khách hàng vui lòng để lại thông tin, chuyên gia của ABSoltech sẽ liên hệ tư vấn giải pháp phù hợp nhất.</p>
-            </div>
+          <!-- Cột 2: Dịch vụ Công nghệ -->
+          <div class="acf-col">
+            <h4 class="acf-col-title">Dịch Vụ Công Nghệ</h4>
+            <ul class="acf-links-list">
+              <li><a href="#services"><i class="fa-solid fa-angle-right"></i> Phát triển phần mềm theo yêu cầu</a></li>
+              <li><a href="#services"><i class="fa-solid fa-angle-right"></i> Tư vấn giải pháp & Chuyển đổi số</a></li>
+              <li><a href="#services"><i class="fa-solid fa-angle-right"></i> Giải pháp thương mại điện tử</a></li>
+              <li><a href="#services"><i class="fa-solid fa-angle-right"></i> Xây dựng ứng dụng di động (iOS/Android)</a></li>
+              <li><a href="#services"><i class="fa-solid fa-angle-right"></i> Giải pháp điện toán đám mây</a></li>
+              <li><a href="#services"><i class="fa-solid fa-angle-right"></i> Thiết kế website chuẩn SEO</a></li>
+            </ul>
+          </div>
 
-            <form class="jpff-form" onsubmit="event.preventDefault(); alert('Cảm ơn quý khách đã gửi thông tin! ABSoltech sẽ liên hệ trong thời gian sớm nhất.');">
-              <div class="jpff-row">
-                <div class="jpff-field">
-                  <label>Họ và tên *</label>
-                  <input type="text" placeholder="Nhập họ và tên" required />
+          <!-- Cột 3: Sản phẩm Phần mềm -->
+          <div class="acf-col">
+            <h4 class="acf-col-title">Sản Phẩm Chủ Lực</h4>
+            <ul class="acf-links-list">
+              <li><a href="#products"><i class="fa-solid fa-angle-right"></i> ABSoft ERP — Quản trị doanh nghiệp</a></li>
+              <li><a href="#products"><i class="fa-solid fa-angle-right"></i> ABSoft CRM — Quản lý khách hàng</a></li>
+              <li><a href="#products"><i class="fa-solid fa-angle-right"></i> Phần mềm Quản lý Vận tải & Logistics</a></li>
+              <li><a href="#products"><i class="fa-solid fa-angle-right"></i> Phần mềm Quản lý Cầm đồ & Tài chính</a></li>
+              <li><a href="#products"><i class="fa-solid fa-angle-right"></i> Hệ thống Quản lý Giáo dục & Đào tạo</a></li>
+              <li><a href="#about"><i class="fa-solid fa-angle-right"></i> Hồ sơ năng lực ABSoltech</a></li>
+            </ul>
+          </div>
+
+          <!-- Cột 4: Hệ thống Văn phòng -->
+          <div class="acf-col acf-office-col">
+            <h4 class="acf-col-title">Hệ Thống Văn Phòng</h4>
+            <ul class="acf-branch-list">
+              <li>
+                <i class="fa-solid fa-building"></i>
+                <div>
+                  <strong>Trụ sở Hải Phòng:</strong>
+                  <span>Tầng 4, Số 22 Lý Tự Trọng, Q. Hồng Bàng, TP. Hải Phòng</span>
                 </div>
-                <div class="jpff-field">
-                  <label>Số điện thoại *</label>
-                  <input type="tel" placeholder="Nhập số điện thoại" required />
+              </li>
+              <li>
+                <i class="fa-solid fa-location-dot"></i>
+                <div>
+                  <strong>Văn phòng Hà Nội:</strong>
+                  <span>Số 4, LK4 - TT1, 96-96B Nguyễn Huy Tưởng, Thanh Xuân, Hà Nội</span>
                 </div>
-              </div>
-              <div class="jpff-row">
-                <div class="jpff-field">
-                  <label>Email doanh nghiệp *</label>
-                  <input type="email" placeholder="example@company.com" required />
+              </li>
+              <li>
+                <i class="fa-solid fa-location-dot"></i>
+                <div>
+                  <strong>Văn phòng TP.HCM:</strong>
+                  <span>383 Nguyễn Duy Trinh, P. Bình Trưng Tây, TP. Thủ Đức, TP.HCM</span>
                 </div>
-                <div class="jpff-field">
-                  <label>Tên đơn vị / Công ty</label>
-                  <input type="text" placeholder="Tên doanh nghiệp của bạn" />
+              </li>
+              <li>
+                <i class="fa-solid fa-location-dot"></i>
+                <div>
+                  <strong>Văn phòng Thanh Hóa:</strong>
+                  <span>Số 11 Cửa Hữu, Phường Tân Sơn, TP. Thanh Hóa</span>
                 </div>
-              </div>
-              <div class="jpff-field">
-                <label>Nội dung yêu cầu tư vấn *</label>
-                <textarea rows="3" placeholder="Mô tả nhu cầu phát triển phần mềm, thiết kế website hoặc chuyển đổi số..." required></textarea>
-              </div>
-              <button type="submit" class="jpff-submit">
-                <span>Gửi yêu cầu tư vấn</span>
-                <i class="fa-solid fa-arrow-right"></i>
-              </button>
-            </form>
+              </li>
+            </ul>
           </div>
         </div>
 
-        <div class="jpf-bottom">
-          <p>Copyright © 2026 ABSoltech JSC. All rights reserved.</p>
-          <div class="jpf-socials">
+        <!-- Bottom Bar -->
+        <div class="acf-bottom-strip">
+          <div class="acf-copy-txt">
+            Copyright © 2026 <strong>ABSoltech JSC</strong>. All rights reserved.
+          </div>
+
+          <div class="acf-social-links">
+            <span>Kết nối với chúng tôi:</span>
             <a href="https://facebook.com/ABSoltechJSC" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
             <a href="https://facebook.com/ABSoltechJSC" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
             <a href="https://youtube.com/@absoltech4847" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
@@ -555,7 +678,8 @@ const milestones = [
 </Layout>
 
 <style>
-  .jp-enterprise-wrapper {
+  /* AURORA GRADIENT & INTERACTIVE STUDIO THEME */
+  .aurora-creative-page {
     background-color: #ffffff;
     color: var(--gray-700);
     min-height: 100vh;
@@ -566,41 +690,30 @@ const milestones = [
     z-index: 2;
   }
 
-  /* UNIFIED SECTION PADDING (56px 0) & HEADERS */
-  .jp-hero-sec,
-  .jp-services-sec,
-  .jp-about-sec,
-  .jp-products-sec,
-  .jp-testimonials-sec,
-  .jp-callout-sec {
-    padding: 56px 0;
-  }
-
-  .jp-sec-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    margin-bottom: 36px;
-  }
-
-  .jp-eyebrow {
+  .ac-pill-tag {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    font-size: 11.5px;
+    font-size: 12px;
     font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 1.8px;
+    letter-spacing: 1.2px;
     color: var(--primary);
-    background: var(--primary-light);
-    padding: 5px 16px;
-    border-left: 3px solid var(--primary);
+    background: linear-gradient(90deg, #e0f2fe 0%, #f0f9ff 100%);
+    border: 1px solid rgba(0, 149, 218, 0.25);
+    padding: 6px 16px;
+    border-radius: 999px;
     margin-bottom: 10px;
   }
 
-  .jp-sec-title {
-    font-size: 34px;
+  .ac-sec-head {
+    text-align: center;
+    max-width: 660px;
+    margin: 0 auto 36px;
+  }
+
+  .ac-sec-head h2 {
+    font-size: 36px;
     font-weight: 800;
     color: var(--dark);
     line-height: 1.2;
@@ -608,113 +721,109 @@ const milestones = [
     letter-spacing: -0.5px;
   }
 
-  .jp-sec-desc {
-    max-width: 620px;
+  .ac-sec-head p {
     font-size: 15.5px;
     color: var(--gray-600);
-    margin: 0 auto;
     line-height: 1.6;
   }
 
-  /* 2. JAPANESE ARCHITECTURAL HERO */
-  .jp-hero-sec {
+  /* 2. AURORA HERO + 3 INTERACTIVE DOCK CARDS */
+  .ac-hero-sec {
     position: relative;
-    background: linear-gradient(180deg, var(--gray-50) 0%, #ffffff 100%);
-    border-bottom: 1px solid var(--gray-200);
+    padding: 40px 0 0;
+    background: linear-gradient(180deg, #f0f9ff 0%, #ffffff 100%);
     overflow: hidden;
   }
 
-  .jp-architectural-lines {
+  .ac-blob {
     position: absolute;
-    inset: 0;
-    max-width: var(--container-width);
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    border-radius: 50%;
+    filter: blur(80px);
     pointer-events: none;
-    z-index: 1;
+    opacity: 0.55;
   }
 
-  .jp-architectural-lines span {
-    border-left: 1px dashed rgba(203, 213, 225, 0.55);
-    height: 100%;
+  .blob-1 {
+    top: -100px;
+    right: -80px;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle, rgba(0, 149, 218, 0.35) 0%, transparent 70%);
   }
 
-  .jp-architectural-lines span:last-child {
-    border-right: 1px dashed rgba(203, 213, 225, 0.55);
+  .blob-2 {
+    bottom: 60px;
+    left: -100px;
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.28) 0%, transparent 70%);
   }
 
-  .jp-slide {
+  .ac-hero-main {
     display: none;
-    animation: jpFade 0.4s ease;
+    grid-template-columns: 1.08fr 0.92fr;
+    gap: 44px;
+    align-items: center;
+    margin-bottom: 32px;
+    animation: acFade 0.4s ease;
   }
 
-  .jp-slide.active {
-    display: block;
+  .ac-hero-main.active {
+    display: grid;
   }
 
-  @keyframes jpFade {
-    from { opacity: 0; transform: translateY(6px); }
+  @keyframes acFade {
+    from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
-  .jp-hero-grid {
-    display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
-    gap: 48px;
+  .ach-badge {
+    display: inline-flex;
     align-items: center;
-    margin-bottom: 44px;
-  }
-
-  .jp-serial-bar {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 18px;
-  }
-
-  .jp-serial-num {
-    font-size: 13px;
+    gap: 10px;
+    background: #ffffff;
+    border: 1px solid rgba(0, 149, 218, 0.25);
+    padding: 7px 16px;
+    border-radius: 999px;
+    font-size: 12px;
     font-weight: 800;
     color: var(--primary);
-    letter-spacing: 1px;
+    box-shadow: 0 8px 20px -6px rgba(0, 149, 218, 0.15);
+    margin-bottom: 20px;
   }
 
-  .jp-serial-line {
-    width: 36px;
-    height: 2px;
+  .pulse-ring {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
     background: var(--primary);
+    box-shadow: 0 0 0 4px rgba(0, 149, 218, 0.2);
   }
 
-  .jp-serial-tag {
-    font-size: 11.5px;
-    font-weight: 800;
-    letter-spacing: 1.5px;
-    color: var(--gray-600);
-  }
-
-  .jp-hero-title {
+  .ach-title {
     margin-bottom: 18px;
     line-height: 1.15;
   }
 
-  .jp-hero-title .jp-pre {
+  .ach-pre {
     display: block;
     font-size: 26px;
     font-weight: 700;
     color: var(--dark-accent);
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
 
-  .jp-hero-title .jp-main {
+  .ach-gradient-txt {
     display: block;
-    font-size: 46px;
+    font-size: 50px;
     font-weight: 800;
-    color: var(--dark);
     letter-spacing: -1px;
+    background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
-  .jp-hero-desc {
+  .ach-desc {
     font-size: 16px;
     color: var(--gray-600);
     line-height: 1.75;
@@ -722,1207 +831,1336 @@ const milestones = [
     max-width: 560px;
   }
 
-  .jp-hero-actions {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 32px;
-  }
-
-  .btn-jp-primary {
-    height: 50px;
-    padding: 0 26px;
-    background: var(--primary);
-    color: #ffffff;
-    font-size: 14.5px;
-    font-weight: 700;
-    border-radius: 6px;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    transition: all 0.25s ease;
-  }
-
-  .btn-jp-primary:hover {
-    background: var(--primary-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px -5px rgba(0, 149, 218, 0.35);
-  }
-
-  .btn-jp-outline {
-    height: 50px;
-    padding: 0 24px;
-    background: #ffffff;
-    color: var(--dark);
-    font-size: 14.5px;
-    font-weight: 700;
-    border: 1.5px solid var(--gray-300);
-    border-radius: 6px;
-    display: inline-flex;
-    align-items: center;
-    transition: all 0.25s ease;
-  }
-
-  .btn-jp-outline:hover {
-    border-color: var(--primary);
-    color: var(--primary);
-  }
-
-  .jp-slider-nav {
-    display: inline-flex;
-    align-items: center;
-    gap: 14px;
-    padding-top: 16px;
-    border-top: 1px solid var(--gray-200);
-  }
-
-  .jp-arrow {
-    width: 36px;
-    height: 36px;
-    border: 1px solid var(--gray-300);
-    background: #ffffff;
-    color: var(--dark);
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-
-  .jp-arrow:hover {
-    background: var(--primary);
-    border-color: var(--primary);
-    color: #ffffff;
-  }
-
-  .jp-dots {
-    display: flex;
-    gap: 6px;
-  }
-
-  .jp-dot {
-    width: 22px;
-    height: 4px;
-    background: var(--gray-300);
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    transition: all 0.25s ease;
-  }
-
-  .jp-dot.active {
-    width: 36px;
-    background: var(--primary);
-  }
-
-  /* Right Architectural Frame */
-  .jp-frame-outer {
-    position: relative;
-    background: #ffffff;
-    border: 1px solid var(--gray-200);
-    padding: 18px;
-    box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.08);
-  }
-
-  .jp-frame-corner {
-    position: absolute;
-    width: 24px;
-    height: 24px;
-    border-color: var(--primary);
-    border-style: solid;
-    pointer-events: none;
-  }
-
-  .jp-frame-corner.tl {
-    top: -1px;
-    left: -1px;
-    border-width: 3px 0 0 3px;
-  }
-
-  .jp-frame-corner.br {
-    bottom: -1px;
-    right: -1px;
-    border-width: 0 3px 3px 0;
-  }
-
-  .jp-img-box {
-    height: 330px;
-    background: var(--gray-50);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    overflow: hidden;
-  }
-
-  .jp-img-box img {
-    max-height: 290px;
-    width: auto;
-    object-fit: contain;
-  }
-
-  .jp-frame-caption {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 14px;
-    margin-top: 14px;
-    border-top: 1px solid var(--gray-200);
-  }
-
-  .jfc-code {
-    display: block;
-    font-size: 10.5px;
-    font-weight: 800;
-    color: var(--primary);
-    letter-spacing: 1px;
-  }
-
-  .jfc-left strong {
-    font-size: 13.5px;
-    color: var(--dark);
-  }
-
-  .jfc-badge {
-    background: var(--dark);
-    color: #ffffff;
-    font-size: 11px;
-    font-weight: 800;
-    padding: 4px 10px;
-    letter-spacing: 1px;
-  }
-
-  /* Architectural KPI Ledger */
-  .jp-kpi-ledger {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    background: #ffffff;
-    border: 1px solid var(--gray-200);
-    box-shadow: var(--shadow-card);
-  }
-
-  .jp-kpi-cell {
-    padding: 24px 28px;
-    border-right: 1px solid var(--gray-200);
-    position: relative;
-    transition: background 0.25s ease;
-  }
-
-  .jp-kpi-cell:last-child {
-    border-right: none;
-  }
-
-  .jp-kpi-cell:hover {
-    background: var(--gray-50);
-  }
-
-  .jkc-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-    font-size: 11px;
-    font-weight: 800;
-    color: var(--gray-600);
-    letter-spacing: 1px;
-  }
-
-  .jkc-top i {
-    color: var(--primary);
-    font-size: 14px;
-  }
-
-  .jkc-number {
-    font-size: 38px;
-    font-weight: 800;
-    color: var(--dark);
-    line-height: 1.05;
-    margin-bottom: 6px;
-  }
-
-  .jkc-suffix {
-    color: var(--primary);
-  }
-
-  .jkc-label {
-    display: block;
-    font-size: 15px;
-    font-weight: 800;
-    color: var(--dark);
-    margin-bottom: 2px;
-  }
-
-  .jkc-sub {
-    display: block;
-    font-size: 12.5px;
-    color: var(--gray-600);
-  }
-
-  /* Architectural Marquee Bar */
-  .jp-marquee-bar {
-    background: #ffffff;
-    border: 1px solid var(--gray-200);
-    border-top: none;
-    padding: 12px 20px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    box-shadow: var(--shadow-card);
-  }
-
-  .jpm-label {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--dark);
-    color: #ffffff;
-    padding: 6px 14px;
-    font-size: 11.5px;
-    font-weight: 800;
-    letter-spacing: 1px;
-    white-space: nowrap;
-  }
-
-  .jpm-label i {
-    color: var(--primary);
-  }
-
-  .jpm-track-clip {
-    overflow: hidden;
-    flex: 1;
-    white-space: nowrap;
-  }
-
-  .jpm-track {
-    display: inline-flex;
-    align-items: center;
-    gap: 18px;
-    font-size: 13.5px;
-    font-weight: 700;
-    color: var(--dark-accent);
-    animation: jpMarqueeScroll 28s linear infinite;
-  }
-
-  .jpm-track i {
-    font-size: 7px;
-    color: var(--primary);
-  }
-
-  @keyframes jpMarqueeScroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-
-  /* 3. SERVICES SECTION (ARCHITECTURAL LEDGER MATRIX) */
-  .jp-services-sec {
-    background: #ffffff;
-    border-bottom: 1px solid var(--gray-200);
-  }
-
-  .jp-services-ledger {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    border-top: 1px solid var(--gray-200);
-    border-left: 1px solid var(--gray-200);
-  }
-
-  .jp-service-cell {
-    background: #ffffff;
-    border-right: 1px solid var(--gray-200);
-    border-bottom: 1px solid var(--gray-200);
-    padding: 34px 30px;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    transition: all 0.25s ease;
-  }
-
-  .jp-service-cell::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 3px;
-    background: var(--primary);
-    transition: width 0.3s ease;
-  }
-
-  .jp-service-cell:hover {
-    background: var(--gray-50);
-  }
-
-  .jp-service-cell:hover::before {
-    width: 100%;
-  }
-
-  .jsc-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 22px;
-  }
-
-  .jsc-num {
-    font-size: 28px;
-    font-weight: 800;
-    color: var(--gray-200);
-    line-height: 1;
-    transition: color 0.25s ease;
-  }
-
-  .jp-service-cell:hover .jsc-num {
-    color: var(--primary);
-  }
-
-  .jsc-icon {
-    width: 46px;
-    height: 46px;
-    background: var(--primary-light);
-    color: var(--primary);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 19px;
-    transition: all 0.25s ease;
-  }
-
-  .jp-service-cell:hover .jsc-icon {
-    background: var(--primary);
-    color: #ffffff;
-  }
-
-  .jsc-title {
-    font-size: 19px;
-    font-weight: 800;
-    color: var(--dark);
-    margin-bottom: 10px;
-  }
-
-  .jsc-desc {
-    font-size: 14.5px;
-    color: var(--gray-600);
-    line-height: 1.65;
-    margin-bottom: 22px;
-    flex: 1;
-  }
-
-  .jsc-more {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 13.5px;
-    font-weight: 700;
-    color: var(--dark);
-    padding-top: 14px;
-    border-top: 1px dashed var(--gray-200);
-  }
-
-  .jp-service-cell:hover .jsc-more {
-    color: var(--primary);
-  }
-
-  /* 4. ABOUT SECTION (CORPORATE MONOGRAPH & MILESTONE TIMELINE) */
-  .jp-about-sec {
-    background: var(--gray-50);
-    border-bottom: 1px solid var(--gray-200);
-  }
-
-  .jp-monograph-box {
-    background: #ffffff;
-    border: 1px solid var(--gray-200);
-    box-shadow: var(--shadow-card);
-  }
-
-  .jmb-top-grid {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    border-bottom: 1px solid var(--gray-200);
-  }
-
-  .jmb-editorial {
-    padding: 40px 44px;
-    border-right: 1px solid var(--gray-200);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .jmb-chapter {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 18px;
-  }
-
-  .chapter-code {
-    font-size: 11px;
-    font-weight: 800;
-    color: #ffffff;
-    background: var(--dark);
-    padding: 3px 10px;
-    letter-spacing: 1px;
-  }
-
-  .chapter-divider {
-    width: 24px;
-    height: 1px;
-    background: var(--gray-300);
-  }
-
-  .chapter-name {
-    font-size: 12px;
-    font-weight: 800;
-    color: var(--primary);
-    letter-spacing: 1px;
-  }
-
-  .jmb-lead {
-    font-size: 15.5px;
-    color: var(--gray-700);
-    line-height: 1.8;
-    margin-bottom: 22px;
-    text-align: justify;
-  }
-
-  .jmb-philosophy {
-    background: var(--gray-50);
-    border-left: 4px solid var(--primary);
-    padding: 18px 22px;
-    margin: 0 0 22px 0;
-  }
-
-  .jmb-phi-label {
-    font-size: 11px;
-    font-weight: 800;
-    color: var(--primary);
-    letter-spacing: 1px;
-    margin-bottom: 6px;
-  }
-
-  .jmb-philosophy p {
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--dark);
-    font-style: italic;
-    margin: 0;
-  }
-
-  .jmb-standards-row {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .jmb-std-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--dark-accent);
-  }
-
-  .jmb-std-item i {
-    color: var(--primary);
-    font-size: 13px;
-  }
-
-  .jmb-portrait {
-    padding: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--gray-50);
-  }
-
-  .jmb-photo-wrap {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    min-height: 320px;
-    border: 1px solid var(--gray-200);
-    overflow: hidden;
-  }
-
-  .jmb-photo-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .jmb-photo-stamp {
-    position: absolute;
-    bottom: 16px;
-    right: 16px;
-    background: var(--primary);
-    color: #ffffff;
-    padding: 12px 18px;
-    text-align: right;
-    box-shadow: 0 10px 25px rgba(0, 149, 218, 0.35);
-  }
-
-  .jmb-photo-stamp strong {
-    display: block;
-    font-size: 22px;
-    font-weight: 800;
-    line-height: 1.1;
-  }
-
-  .jmb-photo-stamp span {
-    font-size: 10.5px;
-    font-weight: 700;
-    letter-spacing: 1px;
-  }
-
-  /* Milestone Timeline Row */
-  .jmb-timeline-bar {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    border-bottom: 1px solid var(--gray-200);
-    background: #ffffff;
-  }
-
-  .jmb-milestone {
-    padding: 24px 26px;
-    border-right: 1px solid var(--gray-200);
-  }
-
-  .jmb-milestone:last-child {
-    border-right: none;
-  }
-
-  .jm-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-  }
-
-  .jm-year {
-    font-size: 22px;
-    font-weight: 800;
-    color: var(--primary);
-  }
-
-  .jm-step {
-    font-size: 10.5px;
-    font-weight: 800;
-    color: var(--gray-600);
-    background: var(--gray-100);
-    padding: 2px 8px;
-  }
-
-  .jm-title {
-    display: block;
-    font-size: 15px;
-    font-weight: 800;
-    color: var(--dark);
-    margin-bottom: 4px;
-  }
-
-  .jm-desc {
-    font-size: 13px;
-    color: var(--gray-600);
-    line-height: 1.5;
-    margin: 0;
-  }
-
-  /* Japanese Partner Directory Table */
-  .jmb-partner-directory {
-    padding: 32px 40px;
-    background: #ffffff;
-  }
-
-  .jpd-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 22px;
-  }
-
-  .jpd-title-group {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .jpd-title-group h4 {
-    font-size: 18px;
-    font-weight: 800;
-    color: var(--dark);
-    margin: 0;
-  }
-
-  .jpd-region-tag {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--primary);
-    background: var(--primary-light);
-    padding: 6px 14px;
-    border-radius: 4px;
-  }
-
-  .jpd-table {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    border: 1px solid var(--gray-200);
-  }
-
-  .jpd-cell {
-    padding: 20px;
-    border-right: 1px solid var(--gray-200);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: background 0.2s ease;
-  }
-
-  .jpd-cell:last-child {
-    border-right: none;
-  }
-
-  .jpd-cell:hover {
-    background: var(--gray-50);
-  }
-
-  .jpd-cell-top {
-    display: flex;
-    justify-content: space-between;
-    font-size: 11px;
-    font-weight: 800;
-    color: var(--gray-600);
-    margin-bottom: 14px;
-  }
-
-  .jpd-region {
-    color: var(--primary);
-  }
-
-  .jpd-logo-frame {
-    height: 54px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #ffffff;
-    border: 1px solid var(--gray-100);
-    padding: 8px;
-    margin-bottom: 14px;
-  }
-
-  .jpd-logo-frame img {
-    max-height: 36px;
-    width: auto;
-    object-fit: contain;
-  }
-
-  .jpd-info strong {
-    display: block;
-    font-size: 15px;
-    font-weight: 800;
-    color: var(--dark);
-    margin-bottom: 4px;
-  }
-
-  .jpd-info p {
-    font-size: 12.5px;
-    color: var(--gray-600);
-    line-height: 1.45;
-    margin: 0;
-  }
-
-  /* 5. PACKAGED SOFTWARE SUITE (SPECIFICATION CATALOG) */
-  .jp-products-sec {
-    background: #ffffff;
-    border-bottom: 1px solid var(--gray-200);
-  }
-
-  .jp-products-catalog {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-  }
-
-  .jp-catalog-card {
-    background: #ffffff;
-    border: 1px solid var(--gray-200);
-    display: flex;
-    flex-direction: column;
-    transition: all 0.25s ease;
-  }
-
-  .jp-catalog-card:hover {
-    border-color: var(--primary);
-    box-shadow: var(--shadow-hover);
-    transform: translateY(-4px);
-  }
-
-  .jcc-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 20px;
-    background: var(--gray-50);
-    border-bottom: 1px solid var(--gray-200);
-  }
-
-  .jcc-serial {
-    font-size: 11px;
-    font-weight: 800;
-    color: var(--gray-600);
-    letter-spacing: 1px;
-  }
-
-  .jcc-badge {
-    font-size: 11px;
-    font-weight: 800;
-    color: #ffffff;
-    background: var(--primary);
-    padding: 3px 10px;
-  }
-
-  .jcc-preview {
-    height: 175px;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-bottom: 1px solid var(--gray-100);
-  }
-
-  .jcc-preview img {
-    max-height: 130px;
-    width: auto;
-    object-fit: contain;
-  }
-
-  .jcc-body {
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-  }
-
-  .jcc-tagline {
-    font-size: 12px;
-    font-weight: 800;
-    color: var(--primary);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 4px;
-  }
-
-  .jcc-name {
-    font-size: 20px;
-    font-weight: 800;
-    color: var(--dark);
-    margin-bottom: 10px;
-  }
-
-  .jcc-desc {
-    font-size: 14px;
-    color: var(--gray-600);
-    line-height: 1.65;
-    margin-bottom: 20px;
-    flex: 1;
-  }
-
-  .jcc-footer {
-    padding-top: 16px;
-    border-top: 1px solid var(--gray-100);
-  }
-
-  .jcc-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 13.5px;
-    font-weight: 700;
-    color: var(--primary);
-  }
-
-  /* 6. CLIENT TESTIMONIALS (EXECUTIVE CASE STUDY DOSSIER) */
-  .jp-testimonials-sec {
-    background: var(--gray-50);
-    border-bottom: 1px solid var(--gray-200);
-  }
-
-  .jp-dossier-list {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .jp-dossier-row {
-    display: grid;
-    grid-template-columns: 290px 1fr 210px;
-    background: #ffffff;
-    border: 1px solid var(--gray-200);
-    border-left: 4px solid var(--primary);
-    transition: all 0.25s ease;
-  }
-
-  .jp-dossier-row:hover {
-    box-shadow: var(--shadow-card);
-    border-color: var(--primary);
-  }
-
-  .jdr-meta-col {
-    padding: 24px 26px;
-    border-right: 1px solid var(--gray-200);
-    background: var(--gray-50);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .jdr-code-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 14px;
-  }
-
-  .jdr-code {
-    font-size: 11.5px;
-    font-weight: 800;
-    color: #ffffff;
-    background: var(--dark);
-    padding: 2px 8px;
-    letter-spacing: 1px;
-  }
-
-  .jdr-country {
-    font-size: 11.5px;
-    font-weight: 700;
-    color: var(--primary);
-  }
-
-  .jdr-client-box {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .jdr-avatar {
-    width: 44px;
-    height: 44px;
-    background: var(--primary);
-    color: #ffffff;
-    font-weight: 800;
-    font-size: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .jdr-author {
-    font-size: 15.5px;
-    font-weight: 800;
-    color: var(--dark);
-    margin: 0 0 2px 0;
-  }
-
-  .jdr-role {
-    display: block;
-    font-size: 12.5px;
-    color: var(--gray-600);
-  }
-
-  .jdr-company {
-    display: block;
-    font-size: 12.5px;
-    color: var(--primary);
-  }
-
-  .jdr-quote-col {
-    padding: 24px 32px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .jdr-project-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--gray-600);
-    margin-bottom: 10px;
-  }
-
-  .jdr-project-pill i {
-    color: var(--primary);
-  }
-
-  .jdr-quote-text {
-    font-size: 15.5px;
-    line-height: 1.7;
-    color: var(--dark);
-    font-style: italic;
-    margin: 0;
-  }
-
-  .jdr-audit-col {
-    padding: 24px;
-    border-left: 1px solid var(--gray-200);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-
-  .jdr-score {
-    display: block;
-    font-size: 26px;
-    font-weight: 800;
-    color: var(--dark);
-    line-height: 1;
-    margin-bottom: 4px;
-  }
-
-  .jdr-stars {
-    color: #f59e0b;
-    font-size: 13px;
-    margin-bottom: 8px;
-  }
-
-  .jdr-verified {
-    display: inline-block;
-    font-size: 10.5px;
-    font-weight: 800;
-    color: var(--primary);
-    background: var(--primary-light);
-    padding: 4px 10px;
-    letter-spacing: 0.5px;
-  }
-
-  /* 7. CALLOUT BANNER (EQUAL HEIGHT BUTTONS) */
-  .jp-callout-banner {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
-    padding: 44px 48px;
-    color: #ffffff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 36px;
-    border-left: 6px solid var(--dark);
-    box-shadow: 0 20px 40px -15px rgba(0, 149, 218, 0.35);
-  }
-
-  .jcb-label {
-    display: inline-block;
-    font-size: 11.5px;
-    font-weight: 800;
-    letter-spacing: 1.5px;
-    background: rgba(15, 23, 42, 0.25);
-    padding: 4px 12px;
-    margin-bottom: 10px;
-  }
-
-  .jcb-content h2 {
-    font-size: 30px;
-    font-weight: 800;
-    margin-bottom: 8px;
-  }
-
-  .jcb-content p {
-    font-size: 15px;
-    color: rgba(255, 255, 255, 0.92);
-    max-width: 600px;
-    margin: 0;
-  }
-
-  .jcb-actions {
+  .ach-cta-row {
     display: flex;
     align-items: stretch;
     gap: 16px;
-    flex-shrink: 0;
+    flex-wrap: wrap;
   }
 
-  .btn-jcb-phone,
-  .btn-jcb-contact {
-    height: 64px;
-    box-sizing: border-box;
+  .btn-ac-primary {
+    height: 58px;
+    padding: 0 8px 0 26px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+    color: #ffffff;
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 700;
     display: inline-flex;
     align-items: center;
-    border-radius: 8px;
+    gap: 16px;
+    box-shadow: 0 14px 28px -8px rgba(0, 149, 218, 0.45);
     transition: all 0.25s ease;
   }
 
-  .btn-jcb-phone {
-    background: #ffffff;
-    color: var(--dark);
-    padding: 0 22px;
-    gap: 12px;
+  .btn-ac-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 34px -8px rgba(0, 149, 218, 0.6);
   }
 
-  .jcb-phone-icon {
-    width: 38px;
-    height: 38px;
+  .bap-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-ac-call {
+    height: 58px;
+    padding: 0 22px 0 10px;
+    background: #ffffff;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: var(--shadow-card);
+    transition: all 0.25s ease;
+  }
+
+  .btn-ac-call:hover {
+    border-color: var(--primary);
+  }
+
+  .bac-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
     background: var(--primary-light);
     color: var(--primary);
-    border-radius: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 16px;
   }
 
-  .jcb-phone-txt span {
+  .btn-ac-call small {
     display: block;
-    font-size: 11.5px;
+    font-size: 11px;
     color: var(--gray-600);
   }
 
-  .jcb-phone-txt strong {
-    display: block;
-    font-size: 18px;
+  .btn-ac-call strong {
+    font-size: 16px;
     font-weight: 800;
+    color: var(--dark);
+  }
+
+  /* Right Floating Visual Island */
+  .ach-right {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 390px;
+  }
+
+  .ach-orbit-ring {
+    position: absolute;
+    width: 370px;
+    height: 370px;
+    border-radius: 50%;
+    border: 2px dashed rgba(0, 149, 218, 0.25);
+    background: radial-gradient(circle, rgba(0, 149, 218, 0.12) 0%, transparent 70%);
+  }
+
+  .ach-glass-card {
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(16px);
+    border: 2px solid #ffffff;
+    border-radius: 32px;
+    padding: 28px;
+    box-shadow: 0 25px 50px -15px rgba(0, 149, 218, 0.2);
+  }
+
+  .ach-img {
+    max-height: 290px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  .ach-float-pill {
+    position: absolute;
+    z-index: 3;
+    background: #ffffff;
+    border: 1px solid var(--gray-200);
+    padding: 10px 18px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--dark);
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+  }
+
+  .ach-float-pill i {
     color: var(--primary);
-    line-height: 1.1;
-  }
-
-  .btn-jcb-contact {
-    background: var(--dark);
-    color: #ffffff;
-    padding: 0 28px;
-    gap: 10px;
     font-size: 15px;
-    font-weight: 700;
   }
 
-  .btn-jcb-phone:hover,
-  .btn-jcb-contact:hover {
-    transform: translateY(-2px);
+  .pill-top {
+    top: 16px;
+    left: 10px;
   }
 
-  /* 8. FOOTER */
-  .jp-footer {
-    background: var(--gray-50);
-    border-top: 1px solid var(--gray-200);
-    padding: 56px 0 28px;
+  .pill-bottom {
+    bottom: 16px;
+    right: 10px;
   }
 
-  .jp-footer-grid {
+  /* 3 Interactive Dock Cards below Hero */
+  .ac-hero-dock {
     display: grid;
-    grid-template-columns: 1fr 1.1fr;
-    gap: 32px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
     margin-bottom: 36px;
   }
 
-  .jpf-brand-card {
-    background: linear-gradient(145deg, var(--primary) 0%, var(--primary-hover) 100%);
-    color: #ffffff;
-    padding: 38px;
+  .ac-dock-card {
+    background: #ffffff;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 22px;
+    padding: 16px 20px;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.25s ease;
+    box-shadow: 0 8px 20px -8px rgba(15, 23, 42, 0.06);
   }
 
-  .jpf-logo {
-    height: 44px;
+  .ac-dock-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-3px);
+  }
+
+  .ac-dock-card.active {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+    border-color: var(--primary);
+    color: #ffffff;
+    box-shadow: 0 16px 32px -10px rgba(0, 149, 218, 0.45);
+  }
+
+  .adc-thumb {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    background: var(--gray-50);
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .adc-thumb img {
+    max-height: 48px;
     width: auto;
     object-fit: contain;
-    align-self: flex-start;
-    margin-bottom: 18px;
   }
 
-  .jpf-company {
-    font-size: 19px;
-    font-weight: 800;
-    margin-bottom: 4px;
+  .adc-info {
+    flex: 1;
+    min-width: 0;
   }
 
-  .jpf-tax {
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.85);
-    padding-bottom: 18px;
-    margin-bottom: 18px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  }
-
-  .jpf-offices {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 22px;
-  }
-
-  .jpf-office-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    font-size: 13.5px;
-    line-height: 1.5;
-  }
-
-  .jpf-office-item i {
-    margin-top: 4px;
-  }
-
-  .jpf-direct-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .jpf-direct-links a {
-    background: rgba(15, 23, 42, 0.25);
-    color: #ffffff;
-    font-size: 13px;
-    font-weight: 700;
-    padding: 8px 14px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .jpf-form-card {
-    background: #ffffff;
-    border: 1px solid var(--gray-200);
-    padding: 38px;
-  }
-
-  .jpff-tag {
-    display: inline-block;
+  .adc-step {
+    display: block;
     font-size: 11px;
     font-weight: 800;
     color: var(--primary);
-    letter-spacing: 1px;
+    letter-spacing: 0.8px;
+    margin-bottom: 2px;
+  }
+
+  .ac-dock-card.active .adc-step {
+    color: #e0f2fe;
+  }
+
+  .adc-info strong {
+    display: block;
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--dark);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .ac-dock-card.active .adc-info strong {
+    color: #ffffff;
+  }
+
+  .adc-info p {
+    font-size: 12.5px;
+    color: var(--gray-600);
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .ac-dock-card.active .adc-info p {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .adc-arrow {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--gray-100);
+    color: var(--gray-600);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+
+  .ac-dock-card.active .adc-arrow {
+    background: rgba(255, 255, 255, 0.22);
+    color: #ffffff;
+  }
+
+  /* Pill Marquee */
+  .ac-pill-marquee {
+    padding: 16px 0;
+    background: var(--gray-50);
+    border-top: 1px solid var(--gray-200);
+    border-bottom: 1px solid var(--gray-200);
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .apm-track {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    animation: acScroll 30s linear infinite;
+  }
+
+  .apm-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    border: 1px solid var(--gray-200);
+    padding: 8px 18px;
+    border-radius: 999px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--dark-accent);
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+  }
+
+  .apm-chip i {
+    color: var(--primary);
+  }
+
+  @keyframes acScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* 3. INTERACTIVE SERVICE ACCORDION STUDIO */
+  .ac-services-sec {
+    padding: 56px 0;
+    background: #ffffff;
+    border-bottom: 1px solid var(--gray-100);
+  }
+
+  .ac-service-studio {
+    display: grid;
+    grid-template-columns: 1fr 1.05fr;
+    gap: 28px;
+    align-items: stretch;
+  }
+
+  .ass-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .ass-acc-item {
+    background: var(--gray-50);
+    border: 1.5px solid var(--gray-200);
+    border-radius: 20px;
+    padding: 18px 22px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+
+  .ass-acc-item:hover {
+    border-color: var(--primary);
+    background: #ffffff;
+  }
+
+  .ass-acc-item.active {
+    background: #ffffff;
+    border-color: var(--primary);
+    box-shadow: 0 14px 30px -10px rgba(0, 149, 218, 0.18);
+  }
+
+  .aai-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .aai-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    background: var(--primary-light);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+    flex-shrink: 0;
+    transition: all 0.25s ease;
+  }
+
+  .ass-acc-item.active .aai-icon {
+    background: var(--primary);
+    color: #ffffff;
+  }
+
+  .aai-title-wrap {
+    flex: 1;
+  }
+
+  .aai-tag {
+    display: block;
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--primary);
+    text-transform: uppercase;
+  }
+
+  .aai-title-wrap h3 {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--dark);
+    margin: 0;
+  }
+
+  .aai-toggle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--gray-100);
+    color: var(--gray-600);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    transition: transform 0.25s ease;
+  }
+
+  .ass-acc-item.active .aai-toggle {
+    background: var(--primary-light);
+    color: var(--primary);
+    transform: rotate(90deg);
+  }
+
+  .aai-body {
+    display: none;
+    padding-top: 12px;
+    margin-top: 12px;
+    border-top: 1px solid var(--gray-100);
+  }
+
+  .ass-acc-item.active .aai-body {
+    display: block;
+  }
+
+  .aai-body p {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Right Spotlight Stage */
+  .ass-spotlight {
+    background: linear-gradient(145deg, var(--primary) 0%, #0369a1 60%, var(--dark) 100%);
+    border-radius: 28px;
+    padding: 40px 44px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 25px 50px -15px rgba(0, 149, 218, 0.35);
+  }
+
+  .ass-spot-card {
+    display: none;
+    width: 100%;
+    animation: acFade 0.35s ease;
+  }
+
+  .ass-spot-card.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .asc-top-visual {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+
+  .asc-big-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: #ffffff;
+  }
+
+  .asc-num {
+    font-size: 54px;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.15);
+    line-height: 1;
+  }
+
+  .asc-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.18);
+    padding: 5px 14px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+
+  .asc-content h3 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 12px;
+  }
+
+  .asc-content > p {
+    font-size: 15.5px;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .asc-benefits {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 18px 20px;
+    background: rgba(15, 23, 42, 0.28);
+    border-radius: 18px;
+    margin-bottom: 28px;
+  }
+
+  .ascb-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .ascb-item i {
+    color: #7dd3fc;
+  }
+
+  .asc-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .btn-ac-white {
+    height: 48px;
+    padding: 0 24px;
+    background: #ffffff;
+    color: var(--primary-hover);
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 800;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-ac-ghost-light {
+    height: 48px;
+    padding: 0 22px;
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    color: #ffffff;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  /* 4. ABOUT 3-COLUMN CENTERPIECE HUB */
+  .ac-about-sec {
+    padding: 56px 0;
+    background: linear-gradient(180deg, #f8fafc 0%, #f0f9ff 100%);
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .ac-about-centerpiece {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr 0.9fr;
+    gap: 24px;
+    align-items: stretch;
+    margin-bottom: 24px;
+  }
+
+  .aac-story-card {
+    background: #ffffff;
+    border: 1px solid var(--gray-200);
+    border-radius: 26px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: var(--shadow-card);
+  }
+
+  .aac-badge-top {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: 0.8px;
+    margin-bottom: 12px;
+  }
+
+  .aac-text {
+    font-size: 14.5px;
+    color: var(--gray-700);
+    line-height: 1.75;
+    margin-bottom: 18px;
+    text-align: justify;
+  }
+
+  .aac-quote-box {
+    background: var(--primary-light);
+    border-radius: 16px;
+    padding: 16px 18px;
+    margin-bottom: 18px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .aac-quote-box i {
+    color: var(--primary);
+    font-size: 18px;
+    margin-top: 2px;
+  }
+
+  .aac-quote-box p {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--dark);
+    font-style: italic;
+    margin: 0;
+  }
+
+  .aac-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--primary);
+  }
+
+  .aac-photo-center {
+    position: relative;
+    border-radius: 26px;
+    overflow: hidden;
+    min-height: 360px;
+    box-shadow: var(--shadow-card);
+  }
+
+  .aac-photo-center img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .aac-photo-float {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .apf-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: var(--primary);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .aac-photo-float strong {
+    display: block;
+    font-size: 13.5px;
+    color: var(--dark);
+  }
+
+  .aac-photo-float span {
+    font-size: 12px;
+    color: var(--gray-600);
+  }
+
+  .aac-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .aac-stat-box {
+    background: #ffffff;
+    border: 1px solid var(--gray-200);
+    border-radius: 22px;
+    padding: 22px 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-shadow: var(--shadow-card);
+    transition: transform 0.25s ease;
+  }
+
+  .aac-stat-box:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary);
+  }
+
+  .asb-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--primary-light);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    margin-bottom: 10px;
+  }
+
+  .asb-num {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--dark);
+    line-height: 1;
     margin-bottom: 6px;
   }
 
-  .jpff-head h3 {
-    font-size: 22px;
+  .asb-num span {
+    color: var(--primary);
+  }
+
+  .aac-stat-box strong {
+    font-size: 13.5px;
+    color: var(--gray-700);
+  }
+
+  /* Prominent Partner Showcase Bar */
+  .ac-partner-showcase {
+    background: #ffffff;
+    border: 1px solid var(--gray-200);
+    border-radius: 24px;
+    padding: 24px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+    box-shadow: var(--shadow-card);
+  }
+
+  .aps-title span {
+    display: block;
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: 4px;
+  }
+
+  .aps-title i {
+    color: var(--primary);
+    margin-right: 6px;
+  }
+
+  .aps-title small {
+    font-size: 13px;
+    color: var(--primary);
+    font-weight: 700;
+  }
+
+  .aps-logos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    flex: 1;
+  }
+
+  .aps-logo-box {
+    height: 76px;
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: 16px;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+  }
+
+  .aps-logo-box:hover {
+    background: #ffffff;
+    border-color: var(--primary);
+    transform: translateY(-3px);
+  }
+
+  .aps-logo-box img {
+    max-height: 48px;
+    max-width: 100%;
+    width: auto;
+    object-fit: contain;
+  }
+
+  /* 5. PACKAGED SOFTWARE: 2-COLUMN HORIZONTAL DUO CARDS */
+  .ac-products-sec {
+    padding: 56px 0;
+    background: #ffffff;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .ac-products-duo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .ac-product-duo-card {
+    background: #ffffff;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 24px;
+    padding: 22px;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 24px;
+    align-items: center;
+    box-shadow: var(--shadow-card);
+    transition: all 0.25s ease;
+  }
+
+  .ac-product-duo-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .apdc-media {
+    position: relative;
+    height: 190px;
+    background: linear-gradient(145deg, #f0f9ff 0%, #e0f2fe 100%);
+    border-radius: 18px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .apdc-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: var(--primary);
+    color: #ffffff;
+    font-size: 10.5px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 999px;
+  }
+
+  .apdc-media img {
+    max-height: 135px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .apdc-tagline {
+    display: block;
+    font-size: 11.5px;
+    font-weight: 800;
+    color: var(--primary);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .apdc-info h3 {
+    font-size: 21px;
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: 8px;
+  }
+
+  .apdc-info p {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .apdc-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    border-radius: 999px;
+    background: var(--primary-light);
+    color: var(--primary);
+    font-size: 13px;
+    font-weight: 800;
+    transition: all 0.2s ease;
+  }
+
+  .ac-product-duo-card:hover .apdc-btn {
+    background: var(--primary);
+    color: #ffffff;
+  }
+
+  /* 6. TESTIMONIALS: TOP AVATAR DOCK + CENTER STAGE QUOTE CARD */
+  .ac-testimonials-sec {
+    padding: 56px 0;
+    background: var(--gray-50);
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .act-avatar-dock {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .act-person-pill {
+    background: #ffffff;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 999px;
+    padding: 10px 18px 10px 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+  }
+
+  .act-person-pill:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+  }
+
+  .act-person-pill.active {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+    border-color: var(--primary);
+    color: #ffffff;
+    box-shadow: 0 12px 24px -6px rgba(0, 149, 218, 0.4);
+  }
+
+  .app-ava {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--primary-light);
+    color: var(--primary);
+    font-weight: 800;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .act-person-pill.active .app-ava {
+    background: #ffffff;
+    color: var(--primary);
+  }
+
+  .app-meta {
+    min-width: 0;
+  }
+
+  .app-meta strong {
+    display: block;
+    font-size: 14.5px;
+    font-weight: 800;
+    color: var(--dark);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .act-person-pill.active .app-meta strong {
+    color: #ffffff;
+  }
+
+  .app-meta small {
+    display: block;
+    font-size: 12px;
+    color: var(--gray-600);
+    font-weight: 600;
+  }
+
+  .act-person-pill.active .app-meta small {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .act-featured-stage {
+    display: none;
+    grid-template-columns: 280px 1fr;
+    background: #ffffff;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    animation: acFade 0.35s ease;
+  }
+
+  .act-featured-stage.active {
+    display: grid;
+  }
+
+  .afs-left-profile {
+    background: linear-gradient(160deg, #f0f9ff 0%, #e0f2fe 100%);
+    padding: 36px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-right: 1px solid var(--gray-200);
+  }
+
+  .afs-big-ava {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+    box-shadow: 0 12px 24px -6px rgba(0, 149, 218, 0.4);
+  }
+
+  .afs-left-profile h3 {
+    font-size: 19px;
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: 4px;
+  }
+
+  .afs-role {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 6px;
+  }
+
+  .afs-comp {
+    font-size: 13px;
+    color: var(--gray-600);
+    margin-bottom: 14px;
+  }
+
+  .afs-stars {
+    background: #ffffff;
+    padding: 6px 14px;
+    border-radius: 999px;
+    color: #f59e0b;
+    font-size: 13px;
+    font-weight: 800;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    box-shadow: 0 4px 10px rgba(15, 23, 42, 0.05);
+  }
+
+  .afs-stars span {
+    color: var(--dark);
+    margin-left: 4px;
+  }
+
+  .afs-right-quote {
+    padding: 40px 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+
+  .afs-qmark {
+    font-size: 36px;
+    color: var(--primary-light);
+    margin-bottom: 14px;
+  }
+
+  .afs-right-quote blockquote {
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--dark);
+    line-height: 1.7;
+    font-style: italic;
+    margin: 0 0 24px;
+  }
+
+  .afs-verified-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 18px;
+    border-top: 1px solid var(--gray-100);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gray-600);
+  }
+
+  .afs-verified-bar i {
+    color: var(--primary);
+    margin-right: 6px;
+  }
+
+  /* 7. CHUYỂN ĐỔI SỐ & FORM TƯ VẤN: STUDIO WORKSPACE (TRÁI LỘ TRÌNH 3 BƯỚC + PHẢI FORM KÍNH NỔI) */
+  .ac-dx-studio-sec {
+    position: relative;
+    padding: 64px 0;
+    background: linear-gradient(135deg, #0b4f7c 0%, var(--primary) 55%, #0284c7 100%);
+    color: #ffffff;
+    overflow: hidden;
+  }
+
+  .ac-dx-bg-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    pointer-events: none;
+  }
+
+  .orb-a {
+    top: -80px;
+    left: -80px;
+    width: 360px;
+    height: 360px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.22) 0%, transparent 70%);
+  }
+
+  .orb-b {
+    bottom: -100px;
+    right: -60px;
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(circle, rgba(15, 23, 42, 0.35) 0%, transparent 70%);
+  }
+
+  .ac-dx-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 44px;
+    align-items: center;
+  }
+
+  .ac-dx-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 6px 16px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+  }
+
+  .ac-dx-left h2 {
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    color: #ffffff;
+  }
+
+  .ac-dx-lead {
+    font-size: 15.5px;
+    color: rgba(255, 255, 255, 0.92);
+    line-height: 1.65;
+    margin-bottom: 26px;
+  }
+
+  .ac-dx-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 26px;
+  }
+
+  .adxs-item {
+    background: rgba(15, 23, 42, 0.24);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 18px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .adxs-num {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: #ffffff;
+    color: var(--primary-hover);
+    font-size: 15px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .adxs-txt strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 2px;
+  }
+
+  .adxs-txt span {
+    font-size: 13.5px;
+    color: rgba(255, 255, 255, 0.86);
+  }
+
+  .ac-dx-hotline-card {
+    background: #ffffff;
+    color: var(--dark);
+    border-radius: 20px;
+    padding: 16px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 18px 36px -10px rgba(15, 23, 42, 0.25);
+  }
+
+  .adxh-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .adxh-ic {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--primary-light);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+
+  .adxh-left small {
+    display: block;
+    font-size: 12px;
+    color: var(--gray-600);
+  }
+
+  .adxh-left strong {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--dark);
+  }
+
+  .adxh-call-btn {
+    background: var(--primary);
+    color: #ffffff;
+    padding: 11px 22px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 800;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+  }
+
+  .adxh-call-btn:hover {
+    background: var(--primary-hover);
+  }
+
+  /* Right Floating Consultation Card */
+  .ac-dx-form-card {
+    background: #ffffff;
+    color: var(--dark);
+    border-radius: 28px;
+    padding: 36px;
+    box-shadow: 0 30px 60px -15px rgba(15, 23, 42, 0.35);
+  }
+
+  .adxf-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ecfdf5;
+    color: #059669;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .online-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10b981;
+  }
+
+  .adxf-header h3 {
+    font-size: 24px;
     font-weight: 800;
     color: var(--dark);
     margin-bottom: 6px;
   }
 
-  .jpff-head p {
+  .adxf-header p {
     font-size: 14px;
     color: var(--gray-600);
     margin-bottom: 22px;
   }
 
-  .jpff-form {
+  .adxf-form {
     display: flex;
     flex-direction: column;
     gap: 14px;
   }
 
-  .jpff-row {
+  .adxf-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 14px;
   }
 
-  .jpff-field label {
+  .adxf-field label {
     display: block;
     font-size: 13px;
     font-weight: 700;
@@ -1930,143 +2168,368 @@ const milestones = [
     margin-bottom: 6px;
   }
 
-  .jpff-field input,
-  .jpff-field textarea {
+  .adxf-input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .adxf-input-wrap i {
+    position: absolute;
+    left: 14px;
+    color: var(--primary);
+    font-size: 14px;
+    pointer-events: none;
+  }
+
+  .adxf-input-wrap input,
+  .adxf-input-wrap select {
     width: 100%;
-    padding: 11px 14px;
-    border: 1px solid var(--gray-300);
+    padding: 11px 14px 11px 38px;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 12px;
     background: var(--gray-50);
     font-size: 14px;
     color: var(--dark);
     outline: none;
   }
 
-  .jpff-field input:focus,
-  .jpff-field textarea:focus {
+  .adxf-field textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 12px;
+    background: var(--gray-50);
+    font-size: 14px;
+    color: var(--dark);
+    outline: none;
+  }
+
+  .adxf-input-wrap input:focus,
+  .adxf-input-wrap select:focus,
+  .adxf-field textarea:focus {
     border-color: var(--primary);
     background: #ffffff;
   }
 
-  .jpff-submit {
-    height: 48px;
-    background: var(--dark);
+  .adxf-submit-btn {
+    height: 52px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
     color: #ffffff;
     border: none;
-    font-size: 14.5px;
-    font-weight: 700;
+    font-size: 15px;
+    font-weight: 800;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 10px;
     cursor: pointer;
-    transition: background 0.2s ease;
+    box-shadow: 0 14px 28px -8px rgba(0, 149, 218, 0.45);
+    transition: all 0.25s ease;
   }
 
-  .jpff-submit:hover {
-    background: var(--primary);
+  .adxf-submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 34px -8px rgba(0, 149, 218, 0.6);
   }
 
-  .jpf-bottom {
+  /* 8. CORPORATE SITEMAP 4-COLUMN FOOTER (CHUẨN DOANH NGHIỆP TRÊN NỀN XANH ĐẬM) */
+  .ac-corp-footer {
+    background: linear-gradient(155deg, #0b4f7c 0%, var(--primary-hover) 55%, var(--dark) 100%);
+    color: #ffffff;
+    padding: 60px 0 28px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .acf-main-cols {
+    display: grid;
+    grid-template-columns: 1.25fr 0.9fr 0.95fr 1.15fr;
+    gap: 36px;
+    padding-bottom: 44px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  }
+
+  .acf-logo-img {
+    height: 44px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  .acf-comp-title {
+    font-size: 16.5px;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 8px;
+    letter-spacing: 0.2px;
+  }
+
+  .acf-tax-note {
+    font-size: 13.5px;
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .acf-direct-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .acfd-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transition: all 0.2s ease;
+  }
+
+  .acfd-row:hover {
+    background: rgba(255, 255, 255, 0.16);
+    transform: translateX(4px);
+  }
+
+  .acfd-ic {
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    background: rgba(255, 255, 255, 0.16);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .acfd-row small {
+    display: block;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  .acfd-row strong {
+    font-size: 14px;
+    font-weight: 800;
+    color: #ffffff;
+  }
+
+  .acf-col-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    position: relative;
+  }
+
+  .acf-col-title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 38px;
+    height: 3px;
+    border-radius: 999px;
+    background: #38bdf8;
+  }
+
+  .acf-links-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .acf-links-list a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.85);
+    transition: all 0.2s ease;
+  }
+
+  .acf-links-list a i {
+    font-size: 11px;
+    color: #38bdf8;
+    transition: transform 0.2s ease;
+  }
+
+  .acf-links-list a:hover {
+    color: #ffffff;
+  }
+
+  .acf-links-list a:hover i {
+    transform: translateX(4px);
+  }
+
+  .acf-branch-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .acf-branch-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.88);
+  }
+
+  .acf-branch-list li i {
+    color: #38bdf8;
+    margin-top: 4px;
+    flex-shrink: 0;
+  }
+
+  .acf-branch-list li strong {
+    display: block;
+    color: #ffffff;
+    font-weight: 700;
+  }
+
+  .acf-bottom-strip {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 20px;
-    border-top: 1px solid var(--gray-200);
+    padding-top: 24px;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .acf-copy-txt {
     font-size: 13.5px;
-    color: var(--gray-600);
+    color: rgba(255, 255, 255, 0.8);
   }
 
-  .jpf-socials {
+  .acf-social-links {
     display: flex;
-    gap: 8px;
+    align-items: center;
+    gap: 10px;
+    font-size: 13.5px;
+    color: rgba(255, 255, 255, 0.85);
   }
 
-  .jpf-socials a {
-    width: 34px;
-    height: 34px;
-    border: 1px solid var(--gray-300);
-    background: #ffffff;
-    color: var(--dark);
+  .acf-social-links a {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.2s ease;
   }
 
-  .jpf-socials a:hover {
-    background: var(--primary);
-    border-color: var(--primary);
-    color: #ffffff;
+  .acf-social-links a:hover {
+    background: #ffffff;
+    color: var(--primary-hover);
   }
 
-  /* RESPONSIVE */
   @media (max-width: 1024px) {
-    .jp-hero-grid,
-    .jmb-top-grid,
-    .jp-dossier-row,
-    .jp-footer-grid {
+    .ac-hero-main.active,
+    .ac-hero-dock,
+    .ac-service-studio,
+    .ac-about-centerpiece,
+    .ac-products-duo-grid,
+    .act-featured-stage.active,
+    .ac-dx-grid {
       grid-template-columns: 1fr;
     }
 
-    .jp-kpi-ledger,
-    .jp-services-ledger,
-    .jmb-timeline-bar,
-    .jpd-table,
-    .jp-products-catalog {
+    .act-avatar-dock,
+    .acf-main-cols {
       grid-template-columns: repeat(2, 1fr);
     }
 
-    .jp-callout-banner {
+    .ac-partner-showcase {
       flex-direction: column;
       text-align: center;
+    }
+
+    .aps-logos {
+      grid-template-columns: repeat(2, 1fr);
+      width: 100%;
     }
   }
 
   @media (max-width: 768px) {
-    .jp-kpi-ledger,
-    .jp-services-ledger,
-    .jmb-timeline-bar,
-    .jpd-table,
-    .jp-products-catalog,
-    .jpff-row {
+    .ach-gradient-txt {
+      font-size: 34px;
+    }
+
+    .ac-product-duo-card,
+    .act-avatar-dock,
+    .acf-main-cols,
+    .aps-logos,
+    .adxf-row {
       grid-template-columns: 1fr;
     }
 
-    .jcb-actions {
+    .ac-dx-hotline-card,
+    .acf-bottom-strip {
       flex-direction: column;
-      width: 100%;
+      text-align: center;
     }
   }
 </style>
 
 <script>
-  let curJpSlide = 0;
-  const jpSlides = document.querySelectorAll('.jp-slide');
-  const totalJpSlides = jpSlides.length;
+  // 1. Hero Interactive Dock Cards Switcher
+  const acDockBtns = document.querySelectorAll('.ac-dock-card');
+  const acHeroPanels = document.querySelectorAll('.ac-hero-main');
 
-  function setJpSlide(index: number) {
-    if (totalJpSlides === 0) return;
-    curJpSlide = (index + totalJpSlides) % totalJpSlides;
-    jpSlides.forEach((s, i) => {
-      s.classList.toggle('active', i === curJpSlide);
-    });
-  }
-
-  document.querySelectorAll('.jp-arrow').forEach((btn) => {
+  acDockBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
-      const dir = btn.getAttribute('data-jp-dir');
-      setJpSlide(dir === 'next' ? curJpSlide + 1 : curJpSlide - 1);
+      const idx = btn.getAttribute('data-ac-trigger');
+      acDockBtns.forEach((b) => b.classList.remove('active'));
+      acHeroPanels.forEach((p) => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelector(`.ac-hero-main[data-ac-panel="${idx}"]`)?.classList.add('active');
     });
   });
 
-  document.querySelectorAll('.jp-dot').forEach((dot) => {
-    dot.addEventListener('click', () => {
-      const idx = Number(dot.getAttribute('data-jp-go') || 0);
-      setJpSlide(idx);
+  // 2. Service Accordion Studio Switcher
+  const srvAccItems = document.querySelectorAll('.ass-acc-item');
+  const srvSpotPanels = document.querySelectorAll('.ass-spot-card');
+
+  srvAccItems.forEach((item) => {
+    item.addEventListener('click', () => {
+      const idx = item.getAttribute('data-srv-trigger');
+      srvAccItems.forEach((i) => i.classList.remove('active'));
+      srvSpotPanels.forEach((p) => p.classList.remove('active'));
+      item.classList.add('active');
+      document.querySelector(`.ass-spot-card[data-srv-panel="${idx}"]`)?.classList.add('active');
     });
   });
 
-  setInterval(() => {
-    setJpSlide(curJpSlide + 1);
-  }, 6000);
+  // 3. Testimonials Top Avatar Pills Switcher
+  const testiPills = document.querySelectorAll('.act-person-pill');
+  const testiStages = document.querySelectorAll('.act-featured-stage');
+
+  testiPills.forEach((pill) => {
+    pill.addEventListener('click', () => {
+      const idx = pill.getAttribute('data-testi-trigger');
+      testiPills.forEach((p) => p.classList.remove('active'));
+      testiStages.forEach((s) => s.classList.remove('active'));
+      pill.classList.add('active');
+      document.querySelector(`.act-featured-stage[data-testi-panel="${idx}"]`)?.classList.add('active');
+    });
+  });
 </script>
-
