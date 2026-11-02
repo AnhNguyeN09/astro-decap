@@ -1,0 +1,2072 @@
+---
+import { getEntry } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import FloatingContact from '../components/FloatingContact.astro';
+
+// Lấy dữ liệu thực từ Decap CMS
+const homeEntry = await getEntry('homepage', 'index');
+const homeData = homeEntry?.data;
+
+const slides = homeData?.slides || [];
+const about = homeData?.about || {
+  heading: "Xây dựng Phần Mềm & Thiết Kế Website Chuyên Nghiệp",
+  subLabel: "VỀ ABSOLTECH",
+  content: "Thành lập tháng 12 năm 2007 - ABSoltech trải qua hơn 16 năm phát triển, chúng tôi đã trở thành thương hiệu doanh nghiệp CNTT hàng đầu tại khu vực Duyên Hải.",
+  quote: "Sứ mệnh của chúng tôi là mang đến giá trị thặng dư lớn và sự thành công cho khách hàng",
+  teamImage: "https://absoltech.vn/wp-content/uploads/2023/09/teamworks-absoltech-1024x683.jpg"
+};
+const servicesSec = homeData?.servicesSection || {
+  subTitle: "CÁC DỊCH VỤ MÀ ABSOLTECH CUNG CẤP",
+  title: "Dịch Vụ",
+  desc: "Giải pháp công nghệ toàn diện nâng tầm doanh nghiệp trong kỷ nguyên số.",
+  items: []
+};
+const productsSec = homeData?.productsSection || {
+  subTitle: "SẢN PHẨM",
+  title: "Phần Mềm Đóng Gói",
+  desc: "Hệ sinh thái phần mềm đóng gói giải quyết triệt để bài toán vận hành của từng ngành nghề.",
+  items: []
+};
+const callout = homeData?.callout || {
+  title: "Bạn đang quan tâm tới chuyển đổi số?",
+  desc: "Với kinh nghiệm hơn 20 năm triển khai ứng dụng CNTT trong nhiều lĩnh vực, các chuyên gia của chúng tôi sẽ đưa ra giải pháp tốt nhất cho doanh nghiệp của bạn",
+  phone: "0985 18 5665"
+};
+
+const reviews = [
+  {
+    country: "Đối tác Quốc tế",
+    projectType: "Phát triển Website & Nền tảng số",
+    author: "Mr. David Henry",
+    company: "DHM Digital",
+    role: "CEO & Founder",
+    quote: "Đội ngũ chuyên nghiệp dẫn đầu bởi Mr Công. Nhân ngày kỉ niệm 10 năm thành lập, các bạn đã luôn làm rất tốt. Hãy tiếp tục giữ vững tinh thần và hoàn thành tốt công việc nhé.",
+    avatar: "DH"
+  },
+  {
+    country: "Khách hàng Quốc tế",
+    projectType: "Vận hành & Phát triển hệ thống 24/7",
+    author: "Ms. Renae Christine",
+    company: "OWHO",
+    role: "Product Director",
+    quote: "Những lập trình viên bậc A++, giao tiếp rất tốt. Họ vô cùng hữu ích và luôn túc trực sẵn sàng xử lý vấn đề, sự cố khẩn cấp cho bạn.",
+    avatar: "RC"
+  },
+  {
+    country: "Hợp tác Dài hạn",
+    projectType: "Ứng dụng Di động & Nền tảng Cloud",
+    author: "Mr. Blake Bridge",
+    company: "Room Connection",
+    role: "Managing Partner",
+    quote: "Tôi đã làm việc với ABSoft trong gần 2 năm để phát triển ứng dụng, trang web và nền tảng của mình. Họ là những người giỏi nhất trong công việc này. Giao tiếp hiệu quả, phản hồi nhanh chóng.",
+    avatar: "BB"
+  },
+  {
+    country: "Đối tác Chiến lược",
+    projectType: "Giải pháp Phần mềm Doanh nghiệp",
+    author: "Mr. Scott Price",
+    company: "Marketing Solution",
+    role: "Technical Lead",
+    quote: "Chắc chắn là 1 công ty tuyệt vời rồi. Tôi đã hợp tác với Công và đội ngũ của anh ấy cho rất nhiều dự án và sẽ thêm nhiều dự án hơn nữa trong tương lai.",
+    avatar: "SP"
+  }
+];
+
+const partners = [
+  { name: "SoftBank", region: "Nhật Bản", desc: "Tập đoàn Viễn thông & Công nghệ hàng đầu Nhật Bản", logo: "https://absoltech.vn/wp-content/uploads/2022/03/absoltech-softbank.png" },
+  { name: "Bijin-Tokei", region: "Nhật Bản", desc: "Nền tảng Truyền thông & Giải trí số sáng tạo", logo: "https://absoltech.vn/wp-content/uploads/2022/03/absoltech-bijint.png" },
+  { name: "World Air Plan", region: "Nhật Bản", desc: "Hệ thống Đặt vé, Du lịch & Hàng không quốc tế", logo: "https://absoltech.vn/wp-content/uploads/2022/03/absoltech-wap.png" },
+  { name: "CyberAgent", region: "Nhật Bản", desc: "Tập đoàn Internet, Game & Quảng cáo kỹ thuật số", logo: "https://absoltech.vn/wp-content/uploads/2022/03/absoltech-cyberagent.png" }
+];
+
+const stats = [
+  { number: "05", suffix: "", label: "Quốc gia triển khai", sub: "Nhật Bản, Hàn Quốc, Australia..." },
+  { number: "20", suffix: "+", label: "Đối tác chiến lược", sub: "Tập đoàn công nghệ quốc tế" },
+  { number: "500", suffix: "+", label: "Dự án hoàn thành", sub: "Phần mềm, ERP, Web & Mobile" },
+  { number: "1000", suffix: "+", label: "Khách hàng tin dùng", sub: "Doanh nghiệp trong & ngoài nước" }
+];
+
+const milestones = [
+  { year: "2007", title: "Thành lập thương hiệu", desc: "Khởi đầu hành trình xây dựng phần mềm chuyên nghiệp tại Hải Phòng." },
+  { year: "2014", title: "Vươn tầm quốc tế", desc: "Trở thành đối tác phát triển phần mềm cho các doanh nghiệp Nhật Bản, Úc." },
+  { year: "2019", title: "Mở rộng toàn quốc", desc: "Hiện diện văn phòng tại Hải Phòng, Hà Nội, TP.HCM và Thanh Hóa." },
+  { year: "2026", title: "Hệ sinh thái chuyển đổi số", desc: "Làm chủ AI, Cloud, ERP/CRM phục vụ hơn 1000+ doanh nghiệp." }
+];
+---
+
+<Layout>
+  <div class="jp-enterprise-wrapper">
+    <!-- 1. CHUẨN HEADER 3 CẤP TỪ HEADER.ASTRO -->
+    <Header />
+
+    <main>
+      <!-- 2. JAPANESE CORPORATE ARCHITECTURAL HERO -->
+      <section class="jp-hero-sec">
+        <div class="jp-architectural-lines">
+          <span></span><span></span><span></span><span></span>
+        </div>
+
+        <div class="container relative">
+          <div class="jp-hero-slider">
+            {slides.map((slide, idx) => (
+              <div class={`jp-slide ${idx === 0 ? 'active' : ''}`} data-jp-slide={idx}>
+                <div class="jp-hero-grid">
+                  <!-- Left Editorial Column -->
+                  <div class="jp-hero-left">
+                    <div class="jp-serial-bar">
+                      <span class="jp-serial-line"></span>
+                      <span class="jp-serial-tag">GIẢI PHÁP CÔNG NGHỆ TOÀN DIỆN</span>
+                    </div>
+
+                    <h1 class="jp-hero-title">
+                      <span class="jp-pre">{slide.pretitle}</span>
+                      <span class="jp-main">{slide.title}</span>
+                    </h1>
+
+                    <p class="jp-hero-desc">{slide.description}</p>
+
+                    <div class="jp-hero-actions">
+                      <a href={slide.btnPrimaryLink || '/lien-he'} class="btn-jp-primary">
+                        <span>{slide.btnPrimaryText || 'Liên hệ tư vấn giải pháp'}</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                      </a>
+                      <a href={slide.btnSecondaryLink || '/du-an'} class="btn-jp-outline">
+                        <span>{slide.btnSecondaryText || 'Hồ sơ năng lực & Dự án'}</span>
+                      </a>
+                    </div>
+
+                    <div class="jp-slider-nav">
+                      <button type="button" class="jp-arrow" data-jp-dir="prev" aria-label="Slide trước">
+                        <i class="fa-solid fa-arrow-left"></i>
+                      </button>
+                      <div class="jp-dots">
+                        {slides.map((_, dotIdx) => (
+                          <button
+                            type="button"
+                            class={`jp-dot ${dotIdx === idx ? 'active' : ''}`}
+                            data-jp-go={dotIdx}
+                            aria-label={`Slide ${dotIdx + 1}`}
+                          ></button>
+                        ))}
+                      </div>
+                      <button type="button" class="jp-arrow" data-jp-dir="next" aria-label="Slide tiếp">
+                        <i class="fa-solid fa-arrow-right"></i>
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Right Architectural Frame -->
+                  <div class="jp-hero-right">
+                    <div class="jp-frame-outer">
+                      <div class="jp-frame-corner tl"></div>
+                      <div class="jp-frame-corner br"></div>
+                      <div class="jp-img-box">
+                        <img src={slide.image} alt={slide.title} />
+                      </div>
+                      <div class="jp-frame-caption">
+                        <div class="jfc-left">
+                          <strong>Giải pháp tối ưu theo chuẩn mực quốc tế</strong>
+                        </div>
+                        <span class="jfc-badge"><i class="fa-solid fa-shield-halved"></i> Uy tín & Bảo mật</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <!-- Architectural Ledger KPI Bar -->
+          <div class="jp-kpi-ledger">
+            {stats.map((st) => (
+              <div class="jp-kpi-cell">
+                <div class="jkc-number">
+                  {st.number}<span class="jkc-suffix">{st.suffix}</span>
+                </div>
+                <strong class="jkc-label">{st.label}</strong>
+                <span class="jkc-sub">{st.sub}</span>
+              </div>
+            ))}
+          </div>
+
+          <!-- Architectural Marquee Bar -->
+          <div class="jp-marquee-bar">
+            <div class="jpm-label">
+              <i class="fa-solid fa-layer-group"></i>
+              <span>NĂNG LỰC CỐT LÕI</span>
+            </div>
+            <div class="jpm-track-clip">
+              <div class="jpm-track">
+                <span>Phát triển phần mềm</span> <i class="fa-solid fa-diamond"></i>
+                <span>Tư vấn giải pháp CNTT</span> <i class="fa-solid fa-diamond"></i>
+                <span>Giải pháp thương mại điện tử</span> <i class="fa-solid fa-diamond"></i>
+                <span>Xây dựng ứng dụng di động</span> <i class="fa-solid fa-diamond"></i>
+                <span>Giải pháp đám mây</span> <i class="fa-solid fa-diamond"></i>
+                <span>Xây dựng website chuẩn SEO</span> <i class="fa-solid fa-diamond"></i>
+                <span>Xử lý dữ liệu & Chuyển đổi số</span> <i class="fa-solid fa-diamond"></i>
+                <span>Hệ quản trị CMS & CRM</span> <i class="fa-solid fa-diamond"></i>
+                <!-- Duplicate for seamless loop -->
+                <span>Phát triển phần mềm</span> <i class="fa-solid fa-diamond"></i>
+                <span>Tư vấn giải pháp CNTT</span> <i class="fa-solid fa-diamond"></i>
+                <span>Giải pháp thương mại điện tử</span> <i class="fa-solid fa-diamond"></i>
+                <span>Xây dựng ứng dụng di động</span> <i class="fa-solid fa-diamond"></i>
+                <span>Giải pháp đám mây</span> <i class="fa-solid fa-diamond"></i>
+                <span>Xây dựng website chuẩn SEO</span> <i class="fa-solid fa-diamond"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. SERVICES SECTION (ARCHITECTURAL MATRIX) -->
+      <section class="jp-services-sec" id="services">
+        <div class="container">
+          <div class="jp-sec-header">
+            <span class="jp-eyebrow">{servicesSec.subTitle}</span>
+            <h2 class="jp-sec-title">{servicesSec.title}</h2>
+            <p class="jp-sec-desc">{servicesSec.desc}</p>
+          </div>
+
+          <div class="jp-services-ledger">
+            {servicesSec.items.map((item) => (
+              <div class="jp-service-cell">
+                <div class="jsc-top">
+                  <div class="jsc-icon">
+                    <i class={item.icon}></i>
+                  </div>
+                </div>
+                <h3 class="jsc-title">{item.title}</h3>
+                <p class="jsc-desc">{item.desc}</p>
+                <a href="/lien-he" class="jsc-more">
+                  <span>Chi tiết dịch vụ</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. ABOUT ABSOLTECH (CORPORATE MONOGRAPH & MILESTONE TIMELINE) -->
+      <section class="jp-about-sec" id="about">
+        <div class="container">
+          <div class="jp-sec-header">
+            <span class="jp-eyebrow">{about.subLabel}</span>
+            <h2 class="jp-sec-title">{about.heading}</h2>
+            <p class="jp-sec-desc">Giá trị bền vững được khẳng định qua sự chuẩn mực trong quy trình kỹ thuật và niềm tin từ các tập đoàn quốc tế.</p>
+          </div>
+
+          <!-- Editorial Monograph Layout (Distinct from Mẫu 1 & Mẫu 2) -->
+          <div class="jp-monograph-box">
+            <!-- Top Row: Editorial Story + Framed Team Portrait -->
+            <div class="jmb-top-grid">
+              <div class="jmb-editorial">
+                <div class="jmb-chapter">
+                  <span class="chapter-divider"></span>
+                  <span class="chapter-name">HỒ SƠ NĂNG LỰC DOANH NGHIỆP</span>
+                </div>
+
+                <p class="jmb-lead">{about.content}</p>
+
+                <blockquote class="jmb-philosophy">
+                  <div class="jmb-phi-label">TRIẾT LÝ VẬN HÀNH & SỨ MỆNH</div>
+                  <p>“{about.quote}”</p>
+                </blockquote>
+
+                <div class="jmb-standards-row">
+                  <div class="jmb-std-item">
+                    <i class="fa-solid fa-check"></i>
+                    <span>Quy trình kiểm thử chất lượng chuẩn Nhật Bản</span>
+                  </div>
+                  <div class="jmb-std-item">
+                    <i class="fa-solid fa-check"></i>
+                    <span>Bảo mật thông tin & An toàn dữ liệu tuyệt đối</span>
+                  </div>
+                  <div class="jmb-std-item">
+                    <i class="fa-solid fa-check"></i>
+                    <span>Đồng hành bảo trì, nâng cấp hệ thống dài hạn</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="jmb-portrait">
+                <div class="jmb-photo-wrap">
+                  <img src={about.teamImage} alt="Đội ngũ ABSoltech" loading="lazy" />
+                  <div class="jmb-photo-stamp">
+                    <strong>16+ NĂM</strong>
+                    <span>PHÁT TRIỂN BỀN VỮNG</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Middle Row: 4-Step Corporate Milestone Timeline -->
+            <div class="jmb-timeline-bar">
+              {milestones.map((m) => (
+                <div class="jmb-milestone">
+                  <div class="jm-head">
+                    <span class="jm-year">{m.year}</span>
+                  </div>
+                  <strong class="jm-title">{m.title}</strong>
+                  <p class="jm-desc">{m.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            <!-- Bottom Row: Japanese & International Partner Ledger Table -->
+            <div class="jmb-partner-directory">
+              <div class="jpd-header">
+                <div class="jpd-title-group">
+                  <h4>Đối Tác Chiến Lược Quốc Tế Tiêu Biểu</h4>
+                </div>
+                <span class="jpd-region-tag"><i class="fa-solid fa-earth-asia"></i> Nhật Bản • Hàn Quốc • Australia</span>
+              </div>
+
+              <div class="jpd-table">
+                {partners.map((p) => (
+                  <div class="jpd-cell">
+                    <div class="jpd-cell-top">
+                      <span class="jpd-region"><i class="fa-solid fa-location-dot"></i> {p.region}</span>
+                    </div>
+                    <div class="jpd-logo-frame">
+                      <img src={p.logo} alt={p.name} loading="lazy" />
+                    </div>
+                    <div class="jpd-info">
+                      <strong>{p.name}</strong>
+                      <p>{p.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. PACKAGED SOFTWARE SUITE (STRUCTURED SPECIFICATION CATALOG) -->
+      <section class="jp-products-sec" id="products">
+        <div class="container">
+          <div class="jp-sec-header">
+            <span class="jp-eyebrow">{productsSec.subTitle}</span>
+            <h2 class="jp-sec-title">{productsSec.title}</h2>
+            <p class="jp-sec-desc">{productsSec.desc}</p>
+          </div>
+
+          <div class="jp-products-catalog">
+            {productsSec.items.map((p) => (
+              <div class="jp-catalog-card">
+                <div class="jcc-header">
+                  <span class="jcc-tagline">{p.tagline}</span>
+                  <span class="jcc-badge">{p.badge}</span>
+                </div>
+                <div class="jcc-preview">
+                  <img src={p.image} alt={p.name} loading="lazy" />
+                </div>
+                <div class="jcc-body">
+                  <h3 class="jcc-name">{p.name}</h3>
+                  <p class="jcc-desc">{p.desc}</p>
+                  <div class="jcc-footer">
+                    <a href="/lien-he" class="jcc-btn">
+                      <span>Đăng ký trải nghiệm</span>
+                      <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. CLIENT TESTIMONIALS (EXECUTIVE CASE STUDY DOSSIER) -->
+      <section class="jp-testimonials-sec" id="testimonials">
+        <div class="container">
+          <div class="jp-sec-header">
+            <span class="jp-eyebrow">ĐỐI TÁC ĐÁNH GIÁ</span>
+            <h2 class="jp-sec-title">Khách Hàng Nói Về Chúng Tôi</h2>
+            <p class="jp-sec-desc">Hồ sơ ghi nhận phản hồi trực tiếp từ ban lãnh đạo các doanh nghiệp quốc tế đã hợp tác cùng ABSoltech.</p>
+          </div>
+
+          <!-- Executive Case Study Dossier Rows (Completely distinct from Mẫu 1 Grid & Mẫu 2 Tab Stage) -->
+          <div class="jp-dossier-list">
+            {reviews.map((r) => (
+              <article class="jp-dossier-row">
+                <!-- Left Column: Case Study Metadata -->
+                <div class="jdr-meta-col">
+                  <div class="jdr-code-row">
+                    <span class="jdr-country"><i class="fa-solid fa-globe"></i> {r.country}</span>
+                  </div>
+                  <div class="jdr-client-box">
+                    <div class="jdr-avatar">{r.avatar}</div>
+                    <div>
+                      <h4 class="jdr-author">{r.author}</h4>
+                      <span class="jdr-role">{r.role}</span>
+                      <strong class="jdr-company">{r.company}</strong>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Middle Column: Verbatim Executive Quote -->
+                <div class="jdr-quote-col">
+                  <div class="jdr-project-pill">
+                    <i class="fa-solid fa-folder-tree"></i> Hạng mục: {r.projectType}
+                  </div>
+                  <p class="jdr-quote-text">“{r.quote}”</p>
+                </div>
+
+                <!-- Right Column: Quality Audit Stamp -->
+                <div class="jdr-audit-col">
+                  <div class="jdr-rating-box">
+                    <span class="jdr-score">5.0</span>
+                    <div class="jdr-stars">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                    </div>
+                    <span class="jdr-verified"><i class="fa-solid fa-shield-check"></i> ĐỐI TÁC XÁC THỰC</span>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. CALLOUT BANNER -->
+      <section class="jp-callout-sec">
+        <div class="container">
+          <div class="jp-callout-banner">
+            <div class="jcb-content">
+              <span class="jcb-label">TƯ VẤN CHUYỂN ĐỔI SỐ DOANH NGHIỆP</span>
+              <h2>{callout.title}</h2>
+              <p>{callout.desc}</p>
+            </div>
+            <div class="jcb-actions">
+              <a href={`tel:${callout.phone.replace(/\s+/g, '')}`} class="btn-jcb-phone">
+                <div class="jcb-phone-icon"><i class="fa-solid fa-phone-volume"></i></div>
+                <div class="jcb-phone-txt">
+                  <span>Hotline tư vấn 24/7</span>
+                  <strong>{callout.phone}</strong>
+                </div>
+              </a>
+              <a href="/lien-he" class="btn-jcb-contact">
+                <span>Đặt lịch tư vấn ngay</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- 8. FOOTER -->
+    <footer class="jp-footer">
+      <div class="container">
+        <div class="jp-footer-grid">
+          <!-- Left Brand Blue Card (keeps dark SOLTECH logo text visible) -->
+          <div class="jpf-brand-card">
+            <img src="https://absoltech.vn/wp-content/uploads/2025/08/logo_dark_h400-768x132.png" alt="ABSoltech Logo" class="jpf-logo" />
+            <h3 class="jpf-company">CÔNG TY CỔ PHẦN PHẦN MỀM AN BIÊN</h3>
+            <p class="jpf-tax">MSDN: 0200838952 cấp ngày 07/11/2009 tại Sở KH&ĐT TP. Hải Phòng</p>
+
+            <div class="jpf-offices">
+              <div class="jpf-office-item">
+                <i class="fa-solid fa-building"></i>
+                <div><strong>Trụ sở Hải Phòng:</strong> Tầng 4, 22 Lý Tự Trọng, Hồng Bàng, Hải Phòng</div>
+              </div>
+              <div class="jpf-office-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <div><strong>Văn phòng Hà Nội:</strong> Số 4, LK4 - TT1, 96-96B Nguyễn Huy Tưởng, Thanh Xuân, Hà Nội</div>
+              </div>
+              <div class="jpf-office-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <div><strong>Văn phòng TP.HCM:</strong> 383 Nguyễn Duy Trinh, Bình Trưng Tây, TP. Thủ Đức, TP.HCM</div>
+              </div>
+              <div class="jpf-office-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <div><strong>Văn phòng Thanh Hóa:</strong> 11 Cửa Hữu, Phường Tân Sơn, TP. Thanh Hóa</div>
+              </div>
+            </div>
+
+            <div class="jpf-direct-links">
+              <a href="tel:+84985185665"><i class="fa-solid fa-phone"></i> (+84) 985 185 665</a>
+              <a href="tel:+842257106222"><i class="fa-solid fa-phone"></i> (+84) 225 710 6222</a>
+              <a href="mailto:contact@absoltech.vn"><i class="fa-regular fa-envelope"></i> contact@absoltech.vn</a>
+            </div>
+          </div>
+
+          <!-- Right Consultation Form -->
+          <div class="jpf-form-card">
+            <div class="jpff-head">
+              <span class="jpff-tag">LIÊN HỆ TRỰC TIẾP</span>
+              <h3>Gửi Yêu Cầu Tư Vấn Dự Án</h3>
+              <p>Quý khách hàng vui lòng để lại thông tin, chuyên gia của ABSoltech sẽ liên hệ tư vấn giải pháp phù hợp nhất.</p>
+            </div>
+
+            <form class="jpff-form" onsubmit="event.preventDefault(); alert('Cảm ơn quý khách đã gửi thông tin! ABSoltech sẽ liên hệ trong thời gian sớm nhất.');">
+              <div class="jpff-row">
+                <div class="jpff-field">
+                  <label>Họ và tên *</label>
+                  <input type="text" placeholder="Nhập họ và tên" required />
+                </div>
+                <div class="jpff-field">
+                  <label>Số điện thoại *</label>
+                  <input type="tel" placeholder="Nhập số điện thoại" required />
+                </div>
+              </div>
+              <div class="jpff-row">
+                <div class="jpff-field">
+                  <label>Email doanh nghiệp *</label>
+                  <input type="email" placeholder="example@company.com" required />
+                </div>
+                <div class="jpff-field">
+                  <label>Tên đơn vị / Công ty</label>
+                  <input type="text" placeholder="Tên doanh nghiệp của bạn" />
+                </div>
+              </div>
+              <div class="jpff-field">
+                <label>Nội dung yêu cầu tư vấn *</label>
+                <textarea rows="3" placeholder="Mô tả nhu cầu phát triển phần mềm, thiết kế website hoặc chuyển đổi số..." required></textarea>
+              </div>
+              <button type="submit" class="jpff-submit">
+                <span>Gửi yêu cầu tư vấn</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div class="jpf-bottom">
+          <p>Copyright © 2026 ABSoltech JSC. All rights reserved.</p>
+          <div class="jpf-socials">
+            <a href="https://facebook.com/ABSoltechJSC" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://facebook.com/ABSoltechJSC" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://youtube.com/@absoltech4847" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <FloatingContact />
+</Layout>
+
+<style>
+  .jp-enterprise-wrapper {
+    background-color: #ffffff;
+    color: var(--gray-700);
+    min-height: 100vh;
+  }
+
+  .relative {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* UNIFIED SECTION PADDING (56px 0) & HEADERS */
+  .jp-hero-sec,
+  .jp-services-sec,
+  .jp-about-sec,
+  .jp-products-sec,
+  .jp-testimonials-sec,
+  .jp-callout-sec {
+    padding: 56px 0;
+  }
+
+  .jp-sec-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 36px;
+  }
+
+  .jp-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.8px;
+    color: var(--primary);
+    background: var(--primary-light);
+    padding: 5px 16px;
+    border-left: 3px solid var(--primary);
+    margin-bottom: 10px;
+  }
+
+  .jp-sec-title {
+    font-size: 34px;
+    font-weight: 800;
+    color: var(--dark);
+    line-height: 1.2;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+  }
+
+  .jp-sec-desc {
+    max-width: 620px;
+    font-size: 15.5px;
+    color: var(--gray-600);
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* 2. JAPANESE ARCHITECTURAL HERO */
+  .jp-hero-sec {
+    position: relative;
+    background: linear-gradient(180deg, var(--gray-50) 0%, #ffffff 100%);
+    border-bottom: 1px solid var(--gray-200);
+    overflow: hidden;
+  }
+
+  .jp-architectural-lines {
+    position: absolute;
+    inset: 0;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .jp-architectural-lines span {
+    border-left: 1px dashed rgba(203, 213, 225, 0.55);
+    height: 100%;
+  }
+
+  .jp-architectural-lines span:last-child {
+    border-right: 1px dashed rgba(203, 213, 225, 0.55);
+  }
+
+  .jp-slide {
+    display: none;
+    animation: jpFade 0.4s ease;
+  }
+
+  .jp-slide.active {
+    display: block;
+  }
+
+  @keyframes jpFade {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .jp-hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 48px;
+    align-items: center;
+    margin-bottom: 44px;
+  }
+
+  .jp-serial-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  .jp-serial-num {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: 1px;
+  }
+
+  .jp-serial-line {
+    width: 36px;
+    height: 2px;
+    background: var(--primary);
+  }
+
+  .jp-serial-tag {
+    font-size: 11.5px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    color: var(--gray-600);
+  }
+
+  .jp-hero-title {
+    margin-bottom: 18px;
+    line-height: 1.15;
+  }
+
+  .jp-hero-title .jp-pre {
+    display: block;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--dark-accent);
+    margin-bottom: 6px;
+  }
+
+  .jp-hero-title .jp-main {
+    display: block;
+    font-size: 46px;
+    font-weight: 800;
+    color: var(--dark);
+    letter-spacing: -1px;
+  }
+
+  .jp-hero-desc {
+    font-size: 16px;
+    color: var(--gray-600);
+    line-height: 1.75;
+    margin-bottom: 28px;
+    max-width: 560px;
+  }
+
+  .jp-hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+
+  .btn-jp-primary {
+    height: 50px;
+    padding: 0 26px;
+    background: var(--primary);
+    color: #ffffff;
+    font-size: 14.5px;
+    font-weight: 700;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.25s ease;
+  }
+
+  .btn-jp-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px -5px rgba(0, 149, 218, 0.35);
+  }
+
+  .btn-jp-outline {
+    height: 50px;
+    padding: 0 24px;
+    background: #ffffff;
+    color: var(--dark);
+    font-size: 14.5px;
+    font-weight: 700;
+    border: 1.5px solid var(--gray-300);
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.25s ease;
+  }
+
+  .btn-jp-outline:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+
+  .jp-slider-nav {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding-top: 16px;
+    border-top: 1px solid var(--gray-200);
+  }
+
+  .jp-arrow {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--gray-300);
+    background: #ffffff;
+    color: var(--dark);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .jp-arrow:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #ffffff;
+  }
+
+  .jp-dots {
+    display: flex;
+    gap: 6px;
+  }
+
+  .jp-dot {
+    width: 22px;
+    height: 4px;
+    background: var(--gray-300);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+
+  .jp-dot.active {
+    width: 36px;
+    background: var(--primary);
+  }
+
+  /* Right Architectural Frame */
+  .jp-frame-outer {
+    position: relative;
+    background: #ffffff;
+    border: 1px solid var(--gray-200);
+    padding: 18px;
+    box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.08);
+  }
+
+  .jp-frame-corner {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-color: var(--primary);
+    border-style: solid;
+    pointer-events: none;
+  }
+
+  .jp-frame-corner.tl {
+    top: -1px;
+    left: -1px;
+    border-width: 3px 0 0 3px;
+  }
+
+  .jp-frame-corner.br {
+    bottom: -1px;
+    right: -1px;
+    border-width: 0 3px 3px 0;
+  }
+
+  .jp-img-box {
+    height: 330px;
+    background: var(--gray-50);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    overflow: hidden;
+  }
+
+  .jp-img-box img {
+    max-height: 290px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .jp-frame-caption {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 14px;
+    margin-top: 14px;
+    border-top: 1px solid var(--gray-200);
+  }
+
+  .jfc-code {
+    display: block;
+    font-size: 10.5px;
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: 1px;
+  }
+
+  .jfc-left strong {
+    font-size: 13.5px;
+    color: var(--dark);
+  }
+
+  .jfc-badge {
+    background: var(--dark);
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 4px 10px;
+    letter-spacing: 1px;
+  }
+
+  /* Architectural KPI Ledger */
+  .jp-kpi-ledger {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: #ffffff;
+    border: 1px solid var(--gray-200);
+    box-shadow: var(--shadow-card);
+  }
+
+  .jp-kpi-cell {
+    padding: 24px 28px;
+    border-right: 1px solid var(--gray-200);
+    position: relative;
+    transition: background 0.25s ease;
+  }
+
+  .jp-kpi-cell:last-child {
+    border-right: none;
+  }
+
+  .jp-kpi-cell:hover {
+    background: var(--gray-50);
+  }
+
+  .jkc-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--gray-600);
+    letter-spacing: 1px;
+  }
+
+  .jkc-top i {
+    color: var(--primary);
+    font-size: 14px;
+  }
+
+  .jkc-number {
+    font-size: 38px;
+    font-weight: 800;
+    color: var(--dark);
+    line-height: 1.05;
+    margin-bottom: 6px;
+  }
+
+  .jkc-suffix {
+    color: var(--primary);
+  }
+
+  .jkc-label {
+    display: block;
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: 2px;
+  }
+
+  .jkc-sub {
+    display: block;
+    font-size: 12.5px;
+    color: var(--gray-600);
+  }
+
+  /* Architectural Marquee Bar */
+  .jp-marquee-bar {
+    background: #ffffff;
+    border: 1px solid var(--gray-200);
+    border-top: none;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: var(--shadow-card);
+  }
+
+  .jpm-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--dark);
+    color: #ffffff;
+    padding: 6px 14px;
+    font-size: 11.5px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+
+  .jpm-label i {
+    color: var(--primary);
+  }
+
+  .jpm-track-clip {
+    overflow: hidden;
+    flex: 1;
+    white-space: nowrap;
+  }
+
+  .jpm-track {
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--dark-accent);
+    animation: jpMarqueeScroll 28s linear infinite;
+  }
+
+  .jpm-track i {
+    font-size: 7px;
+    color: var(--primary);
+  }
+
+  @keyframes jpMarqueeScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* 3. SERVICES SECTION (ARCHITECTURAL LEDGER MATRIX) */
+  .jp-services-sec {
+    background: #ffffff;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .jp-services-ledger {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--gray-200);
+    border-left: 1px solid var(--gray-200);
+  }
+
+  .jp-service-cell {
+    background: #ffffff;
+    border-right: 1px solid var(--gray-200);
+    border-bottom: 1px solid var(--gray-200);
+    padding: 34px 30px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: all 0.25s ease;
+  }
+
+  .jp-service-cell::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: var(--primary);
+    transition: width 0.3s ease;
+  }
+
+  .jp-service-cell:hover {
+    background: var(--gray-50);
+  }
+
+  .jp-service-cell:hover::before {
+    width: 100%;
+  }
+
+  .jsc-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+  }
+
+  .jsc-num {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--gray-200);
+    line-height: 1;
+    transition: color 0.25s ease;
+  }
+
+  .jp-service-cell:hover .jsc-num {
+    color: var(--primary);
+  }
+
+  .jsc-icon {
+    width: 46px;
+    height: 46px;
+    background: var(--primary-light);
+    color: var(--primary);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+    transition: all 0.25s ease;
+  }
+
+  .jp-service-cell:hover .jsc-icon {
+    background: var(--primary);
+    color: #ffffff;
+  }
+
+  .jsc-title {
+    font-size: 19px;
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: 10px;
+  }
+
+  .jsc-desc {
+    font-size: 14.5px;
+    color: var(--gray-600);
+    line-height: 1.65;
+    margin-bottom: 22px;
+    flex: 1;
+  }
+
+  .jsc-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--dark);
+    padding-top: 14px;
+    border-top: 1px dashed var(--gray-200);
+  }
+
+  .jp-service-cell:hover .jsc-more {
+    color: var(--primary);
+  }
+
+  /* 4. ABOUT SECTION (CORPORATE MONOGRAPH & MILESTONE TIMELINE) */
+  .jp-about-sec {
+    background: var(--gray-50);
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .jp-monograph-box {
+    background: #ffffff;
+    border: 1px solid var(--gray-200);
+    box-shadow: var(--shadow-card);
+  }
+
+  .jmb-top-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .jmb-editorial {
+    padding: 40px 44px;
+    border-right: 1px solid var(--gray-200);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .jmb-chapter {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  .chapter-code {
+    font-size: 11px;
+    font-weight: 800;
+    color: #ffffff;
+    background: var(--dark);
+    padding: 3px 10px;
+    letter-spacing: 1px;
+  }
+
+  .chapter-divider {
+    width: 24px;
+    height: 1px;
+    background: var(--gray-300);
+  }
+
+  .chapter-name {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: 1px;
+  }
+
+  .jmb-lead {
+    font-size: 15.5px;
+    color: var(--gray-700);
+    line-height: 1.8;
+    margin-bottom: 22px;
+    text-align: justify;
+  }
+
+  .jmb-philosophy {
+    background: var(--gray-50);
+    border-left: 4px solid var(--primary);
+    padding: 18px 22px;
+    margin: 0 0 22px 0;
+  }
+
+  .jmb-phi-label {
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+
+  .jmb-philosophy p {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--dark);
+    font-style: italic;
+    margin: 0;
+  }
+
+  .jmb-standards-row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .jmb-std-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--dark-accent);
+  }
+
+  .jmb-std-item i {
+    color: var(--primary);
+    font-size: 13px;
+  }
+
+  .jmb-portrait {
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gray-50);
+  }
+
+  .jmb-photo-wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    border: 1px solid var(--gray-200);
+    overflow: hidden;
+  }
+
+  .jmb-photo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .jmb-photo-stamp {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    background: var(--primary);
+    color: #ffffff;
+    padding: 12px 18px;
+    text-align: right;
+    box-shadow: 0 10px 25px rgba(0, 149, 218, 0.35);
+  }
+
+  .jmb-photo-stamp strong {
+    display: block;
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1.1;
+  }
+
+  .jmb-photo-stamp span {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  /* Milestone Timeline Row */
+  .jmb-timeline-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 1px solid var(--gray-200);
+    background: #ffffff;
+  }
+
+  .jmb-milestone {
+    padding: 24px 26px;
+    border-right: 1px solid var(--gray-200);
+  }
+
+  .jmb-milestone:last-child {
+    border-right: none;
+  }
+
+  .jm-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .jm-year {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--primary);
+  }
+
+  .jm-step {
+    font-size: 10.5px;
+    font-weight: 800;
+    color: var(--gray-600);
+    background: var(--gray-100);
+    padding: 2px 8px;
+  }
+
+  .jm-title {
+    display: block;
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: 4px;
+  }
+
+  .jm-desc {
+    font-size: 13px;
+    color: var(--gray-600);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* Japanese Partner Directory Table */
+  .jmb-partner-directory {
+    padding: 32px 40px;
+    background: #ffffff;
+  }
+
+  .jpd-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+  }
+
+  .jpd-title-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .jpd-title-group h4 {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--dark);
+    margin: 0;
+  }
+
+  .jpd-region-tag {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--primary);
+    background: var(--primary-light);
+    padding: 6px 14px;
+    border-radius: 4px;
+  }
+
+  .jpd-table {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--gray-200);
+  }
+
+  .jpd-cell {
+    padding: 20px;
+    border-right: 1px solid var(--gray-200);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: background 0.2s ease;
+  }
+
+  .jpd-cell:last-child {
+    border-right: none;
+  }
+
+  .jpd-cell:hover {
+    background: var(--gray-50);
+  }
+
+  .jpd-cell-top {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--gray-600);
+    margin-bottom: 14px;
+  }
+
+  .jpd-region {
+    color: var(--primary);
+  }
+
+  .jpd-logo-frame {
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    border: 1px solid var(--gray-100);
+    padding: 8px;
+    margin-bottom: 14px;
+  }
+
+  .jpd-logo-frame img {
+    max-height: 36px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .jpd-info strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: 4px;
+  }
+
+  .jpd-info p {
+    font-size: 12.5px;
+    color: var(--gray-600);
+    line-height: 1.45;
+    margin: 0;
+  }
+
+  /* 5. PACKAGED SOFTWARE SUITE (SPECIFICATION CATALOG) */
+  .jp-products-sec {
+    background: #ffffff;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .jp-products-catalog {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .jp-catalog-card {
+    background: #ffffff;
+    border: 1px solid var(--gray-200);
+    display: flex;
+    flex-direction: column;
+    transition: all 0.25s ease;
+  }
+
+  .jp-catalog-card:hover {
+    border-color: var(--primary);
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-4px);
+  }
+
+  .jcc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    background: var(--gray-50);
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .jcc-serial {
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--gray-600);
+    letter-spacing: 1px;
+  }
+
+  .jcc-badge {
+    font-size: 11px;
+    font-weight: 800;
+    color: #ffffff;
+    background: var(--primary);
+    padding: 3px 10px;
+  }
+
+  .jcc-preview {
+    height: 175px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--gray-100);
+  }
+
+  .jcc-preview img {
+    max-height: 130px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .jcc-body {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .jcc-tagline {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+
+  .jcc-name {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: 10px;
+  }
+
+  .jcc-desc {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.65;
+    margin-bottom: 20px;
+    flex: 1;
+  }
+
+  .jcc-footer {
+    padding-top: 16px;
+    border-top: 1px solid var(--gray-100);
+  }
+
+  .jcc-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--primary);
+  }
+
+  /* 6. CLIENT TESTIMONIALS (EXECUTIVE CASE STUDY DOSSIER) */
+  .jp-testimonials-sec {
+    background: var(--gray-50);
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .jp-dossier-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .jp-dossier-row {
+    display: grid;
+    grid-template-columns: 290px 1fr 210px;
+    background: #ffffff;
+    border: 1px solid var(--gray-200);
+    border-left: 4px solid var(--primary);
+    transition: all 0.25s ease;
+  }
+
+  .jp-dossier-row:hover {
+    box-shadow: var(--shadow-card);
+    border-color: var(--primary);
+  }
+
+  .jdr-meta-col {
+    padding: 24px 26px;
+    border-right: 1px solid var(--gray-200);
+    background: var(--gray-50);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .jdr-code-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+
+  .jdr-code {
+    font-size: 11.5px;
+    font-weight: 800;
+    color: #ffffff;
+    background: var(--dark);
+    padding: 2px 8px;
+    letter-spacing: 1px;
+  }
+
+  .jdr-country {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--primary);
+  }
+
+  .jdr-client-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .jdr-avatar {
+    width: 44px;
+    height: 44px;
+    background: var(--primary);
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .jdr-author {
+    font-size: 15.5px;
+    font-weight: 800;
+    color: var(--dark);
+    margin: 0 0 2px 0;
+  }
+
+  .jdr-role {
+    display: block;
+    font-size: 12.5px;
+    color: var(--gray-600);
+  }
+
+  .jdr-company {
+    display: block;
+    font-size: 12.5px;
+    color: var(--primary);
+  }
+
+  .jdr-quote-col {
+    padding: 24px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .jdr-project-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--gray-600);
+    margin-bottom: 10px;
+  }
+
+  .jdr-project-pill i {
+    color: var(--primary);
+  }
+
+  .jdr-quote-text {
+    font-size: 15.5px;
+    line-height: 1.7;
+    color: var(--dark);
+    font-style: italic;
+    margin: 0;
+  }
+
+  .jdr-audit-col {
+    padding: 24px;
+    border-left: 1px solid var(--gray-200);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .jdr-score {
+    display: block;
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--dark);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .jdr-stars {
+    color: #f59e0b;
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+
+  .jdr-verified {
+    display: inline-block;
+    font-size: 10.5px;
+    font-weight: 800;
+    color: var(--primary);
+    background: var(--primary-light);
+    padding: 4px 10px;
+    letter-spacing: 0.5px;
+  }
+
+  /* 7. CALLOUT BANNER (EQUAL HEIGHT BUTTONS) */
+  .jp-callout-banner {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+    padding: 44px 48px;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 36px;
+    border-left: 6px solid var(--dark);
+    box-shadow: 0 20px 40px -15px rgba(0, 149, 218, 0.35);
+  }
+
+  .jcb-label {
+    display: inline-block;
+    font-size: 11.5px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    background: rgba(15, 23, 42, 0.25);
+    padding: 4px 12px;
+    margin-bottom: 10px;
+  }
+
+  .jcb-content h2 {
+    font-size: 30px;
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+
+  .jcb-content p {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.92);
+    max-width: 600px;
+    margin: 0;
+  }
+
+  .jcb-actions {
+    display: flex;
+    align-items: stretch;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+
+  .btn-jcb-phone,
+  .btn-jcb-contact {
+    height: 64px;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 8px;
+    transition: all 0.25s ease;
+  }
+
+  .btn-jcb-phone {
+    background: #ffffff;
+    color: var(--dark);
+    padding: 0 22px;
+    gap: 12px;
+  }
+
+  .jcb-phone-icon {
+    width: 38px;
+    height: 38px;
+    background: var(--primary-light);
+    color: var(--primary);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .jcb-phone-txt span {
+    display: block;
+    font-size: 11.5px;
+    color: var(--gray-600);
+  }
+
+  .jcb-phone-txt strong {
+    display: block;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--primary);
+    line-height: 1.1;
+  }
+
+  .btn-jcb-contact {
+    background: var(--dark);
+    color: #ffffff;
+    padding: 0 28px;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .btn-jcb-phone:hover,
+  .btn-jcb-contact:hover {
+    transform: translateY(-2px);
+  }
+
+  /* 8. FOOTER */
+  .jp-footer {
+    background: var(--gray-50);
+    border-top: 1px solid var(--gray-200);
+    padding: 56px 0 28px;
+  }
+
+  .jp-footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 32px;
+    margin-bottom: 36px;
+  }
+
+  .jpf-brand-card {
+    background: linear-gradient(145deg, var(--primary) 0%, var(--primary-hover) 100%);
+    color: #ffffff;
+    padding: 38px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .jpf-logo {
+    height: 44px;
+    width: auto;
+    object-fit: contain;
+    align-self: flex-start;
+    margin-bottom: 18px;
+  }
+
+  .jpf-company {
+    font-size: 19px;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+
+  .jpf-tax {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.85);
+    padding-bottom: 18px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .jpf-offices {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+
+  .jpf-office-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+
+  .jpf-office-item i {
+    margin-top: 4px;
+  }
+
+  .jpf-direct-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .jpf-direct-links a {
+    background: rgba(15, 23, 42, 0.25);
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .jpf-form-card {
+    background: #ffffff;
+    border: 1px solid var(--gray-200);
+    padding: 38px;
+  }
+
+  .jpff-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+
+  .jpff-head h3 {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: 6px;
+  }
+
+  .jpff-head p {
+    font-size: 14px;
+    color: var(--gray-600);
+    margin-bottom: 22px;
+  }
+
+  .jpff-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .jpff-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .jpff-field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 6px;
+  }
+
+  .jpff-field input,
+  .jpff-field textarea {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid var(--gray-300);
+    background: var(--gray-50);
+    font-size: 14px;
+    color: var(--dark);
+    outline: none;
+  }
+
+  .jpff-field input:focus,
+  .jpff-field textarea:focus {
+    border-color: var(--primary);
+    background: #ffffff;
+  }
+
+  .jpff-submit {
+    height: 48px;
+    background: var(--dark);
+    color: #ffffff;
+    border: none;
+    font-size: 14.5px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .jpff-submit:hover {
+    background: var(--primary);
+  }
+
+  .jpf-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid var(--gray-200);
+    font-size: 13.5px;
+    color: var(--gray-600);
+  }
+
+  .jpf-socials {
+    display: flex;
+    gap: 8px;
+  }
+
+  .jpf-socials a {
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--gray-300);
+    background: #ffffff;
+    color: var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .jpf-socials a:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #ffffff;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .jp-hero-grid,
+    .jmb-top-grid,
+    .jp-dossier-row,
+    .jp-footer-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .jp-kpi-ledger,
+    .jp-services-ledger,
+    .jmb-timeline-bar,
+    .jpd-table,
+    .jp-products-catalog {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .jp-callout-banner {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .jp-kpi-ledger,
+    .jp-services-ledger,
+    .jmb-timeline-bar,
+    .jpd-table,
+    .jp-products-catalog,
+    .jpff-row {
+      grid-template-columns: 1fr;
+    }
+
+    .jcb-actions {
+      flex-direction: column;
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  let curJpSlide = 0;
+  const jpSlides = document.querySelectorAll('.jp-slide');
+  const totalJpSlides = jpSlides.length;
+
+  function setJpSlide(index: number) {
+    if (totalJpSlides === 0) return;
+    curJpSlide = (index + totalJpSlides) % totalJpSlides;
+    jpSlides.forEach((s, i) => {
+      s.classList.toggle('active', i === curJpSlide);
+    });
+  }
+
+  document.querySelectorAll('.jp-arrow').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const dir = btn.getAttribute('data-jp-dir');
+      setJpSlide(dir === 'next' ? curJpSlide + 1 : curJpSlide - 1);
+    });
+  });
+
+  document.querySelectorAll('.jp-dot').forEach((dot) => {
+    dot.addEventListener('click', () => {
+      const idx = Number(dot.getAttribute('data-jp-go') || 0);
+      setJpSlide(idx);
+    });
+  });
+
+  setInterval(() => {
+    setJpSlide(curJpSlide + 1);
+  }, 6000);
+</script>
+

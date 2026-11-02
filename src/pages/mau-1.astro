@@ -1,0 +1,2107 @@
+---
+import { getEntry } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import FloatingContact from '../components/FloatingContact.astro';
+
+// Lấy dữ liệu thực từ Decap CMS
+const homeEntry = await getEntry('homepage', 'index');
+const homeData = homeEntry?.data;
+
+const slides = homeData?.slides || [];
+const about = homeData?.about || {
+  heading: "Xây dựng Phần Mềm & Thiết Kế Website Chuyên Nghiệp",
+  subLabel: "VỀ ABSOLTECH",
+  content: "Thành lập tháng 12 năm 2007 - ABSoltech trải qua hơn 16 năm phát triển, chúng tôi đã trở thành thương hiệu doanh nghiệp CNTT hàng đầu tại khu vực Duyên Hải.",
+  quote: "Sứ mệnh của chúng tôi là mang đến giá trị thặng dư lớn và sự thành công cho khách hàng",
+  teamImage: "https://absoltech.vn/wp-content/uploads/2023/09/teamworks-absoltech-1024x683.jpg"
+};
+const servicesSec = homeData?.servicesSection || {
+  subTitle: "CÁC DỊCH VỤ MÀ ABSOLTECH CUNG CẤP",
+  title: "Dịch Vụ",
+  desc: "Giải pháp công nghệ toàn diện nâng tầm doanh nghiệp trong kỷ nguyên số.",
+  items: []
+};
+const productsSec = homeData?.productsSection || {
+  subTitle: "SẢN PHẨM",
+  title: "Phần Mềm Đóng Gói",
+  desc: "Hệ sinh thái phần mềm đóng gói giải quyết triệt để bài toán vận hành của từng ngành nghề.",
+  items: []
+};
+const callout = homeData?.callout || {
+  title: "Bạn đang quan tâm tới chuyển đổi số?",
+  desc: "Với kinh nghiệm hơn 20 năm triển khai ứng dụng CNTT trong nhiều lĩnh vực, các chuyên gia của chúng tôi sẽ đưa ra giải pháp tốt nhất cho doanh nghiệp của bạn",
+  phone: "0985 18 5665"
+};
+
+const reviews = [
+  {
+    author: "Mr. David Henry",
+    company: "DHM Digital",
+    role: "CEO & Founder",
+    quote: "Đội ngũ chuyên nghiệp dẫn đầu bởi Mr Công. Nhân ngày kỉ niệm 10 năm thành lập, các bạn đã luôn làm rất tốt. Hãy tiếp tục giữ vững tinh thần và hoàn thành tốt công việc nhé.",
+    avatar: "DH"
+  },
+  {
+    author: "Ms. Renae Christine",
+    company: "OWHO",
+    role: "Product Director",
+    quote: "Những lập trình viên bậc A++, giao tiếp rất tốt. Họ vô cùng hữu ích và luôn túc trực sẵn sàng xử lý vấn đề, sự cố khẩn cấp cho bạn.",
+    avatar: "RC"
+  },
+  {
+    author: "Mr. Blake Bridge",
+    company: "Room Connection",
+    role: "Managing Partner",
+    quote: "Tôi đã làm việc với ABSoft trong gần 2 năm để phát triển ứng dụng, trang web và nền tảng của mình. Họ là những người giỏi nhất trong công việc này. Giao tiếp hiệu quả, phản hồi nhanh chóng.",
+    avatar: "BB"
+  },
+  {
+    author: "Mr. Scott Price",
+    company: "Marketing Solution",
+    role: "Technical Lead",
+    quote: "Chắc chắn là 1 công ty tuyệt vời rồi. Tôi đã hợp tác với Công và đội ngũ của anh ấy cho rất nhiều dự án và sẽ thêm nhiều dự án hơn nữa trong tương lai.",
+    avatar: "SP"
+  }
+];
+
+const partners = [
+  { name: "SoftBank", country: "Nhật Bản", desc: "Tập đoàn Viễn thông & Công nghệ", logo: "https://absoltech.vn/wp-content/uploads/2022/03/absoltech-softbank.png" },
+  { name: "Bijin-Tokei", country: "Nhật Bản", desc: "Nền tảng Truyền thông & Giải trí số", logo: "https://absoltech.vn/wp-content/uploads/2022/03/absoltech-bijint.png" },
+  { name: "World Air Plan", country: "Nhật Bản", desc: "Hệ thống Du lịch & Hàng không", logo: "https://absoltech.vn/wp-content/uploads/2022/03/absoltech-wap.png" },
+  { name: "CyberAgent", country: "Nhật Bản", desc: "Tập đoàn Internet & Quảng cáo số", logo: "https://absoltech.vn/wp-content/uploads/2022/03/absoltech-cyberagent.png" }
+];
+---
+
+<Layout>
+  <div class="bento-theme-wrapper">
+    <!-- 1. CHUẨN HEADER 3 CẤP TỪ HEADER.ASTRO -->
+    <Header />
+
+    <main>
+      <!-- 2. BENTO HERO SECTION WITH FLOATING WIDGETS -->
+      <section class="bento-hero">
+        <div class="container relative">
+          <!-- Slides Bento Stage -->
+          <div class="hero-bento-stage">
+            {slides.map((s, idx) => (
+              <div class={`bento-slide-panel ${idx === 0 ? 'active' : ''}`} data-panel-idx={idx}>
+                <div class="bento-hero-grid">
+                  <!-- Left Main Hero Bento Box -->
+                  <div class="hero-main-box">
+                    <div class="hero-box-top-row">
+                      <div class="badge-pill">
+                        <i class="fa-solid fa-sparkles"></i>
+                        <span>GIẢI PHÁP CÔNG NGHỆ TOÀN DIỆN</span>
+                      </div>
+                      <div class="hero-slide-dots">
+                        {slides.map((_, dotIdx) => (
+                          <button
+                            class={`bento-dot ${dotIdx === idx ? 'active' : ''}`}
+                            data-slide-idx={dotIdx}
+                            aria-label={`Slide ${dotIdx + 1}`}
+                          ></button>
+                        ))}
+                      </div>
+                    </div>
+                    <h1 class="hero-bento-heading">
+                      <span class="pre-txt">{s.pretitle}</span>
+                      <span class="highlight-txt">{s.title}</span>
+                    </h1>
+                    <p class="hero-bento-desc">{s.description}</p>
+
+                    <div class="hero-bento-actions">
+                      <a href={s.btnPrimaryLink || '/lien-he'} class="btn-bento-solid">
+                        <span>{s.btnPrimaryText || 'Kết nối ngay'}</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                      </a>
+                      <a href={s.btnSecondaryLink || '#services'} class="btn-bento-ghost">
+                        <span>{s.btnSecondaryText || 'Khám phá dịch vụ'}</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                      </a>
+                    </div>
+
+                    <!-- Mini Trust Metrics inside Hero Box -->
+                    <div class="hero-mini-metrics">
+                      <div class="m-item">
+                        <strong>16+</strong>
+                        <span>Năm kinh nghiệm</span>
+                      </div>
+                      <div class="m-divider"></div>
+                      <div class="m-item">
+                        <strong>500+</strong>
+                        <span>Dự án vận hành</span>
+                      </div>
+                      <div class="m-divider"></div>
+                      <div class="m-item">
+                        <strong>1000+</strong>
+                        <span>Khách hàng tin dùng</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Right Visual Showcase Bento Box -->
+                  <div class="hero-visual-box">
+                    <div class="visual-card-bg" style={s.bgImage ? `background-image: url('${s.bgImage}')` : ''}></div>
+                    <div class="visual-mockup-wrap">
+                      <img src={s.image} alt={s.title} class="mockup-img" />
+                    </div>
+
+                    <!-- Floating SaaS Badges -->
+                    <div class="floating-widget widget-top-left">
+                      <div class="w-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                      <div class="w-text">
+                        <strong>Chuẩn Quốc Tế</strong>
+                        <span>Nhật Bản • Hàn Quốc • Úc</span>
+                      </div>
+                    </div>
+
+                    <div class="floating-widget widget-bottom-right">
+                      <div class="w-icon cyan"><i class="fa-solid fa-bolt"></i></div>
+                      <div class="w-text">
+                        <strong>Hỗ trợ SLA 24/7</strong>
+                        <span>Tận tâm đồng hành</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <!-- Marquee Bento Bar -->
+          <div class="bento-marquee-bar">
+            <div class="marquee-label">
+              <i class="fa-solid fa-layer-group"></i>
+              <span>Năng lực cốt lõi</span>
+            </div>
+            <div class="marquee-track-clip">
+              <div class="marquee-track">
+                <span>Phát triển phần mềm</span> <i class="fa-solid fa-circle"></i>
+                <span>Tư vấn giải pháp CNTT</span> <i class="fa-solid fa-circle"></i>
+                <span>Giải pháp thương mại điện tử</span> <i class="fa-solid fa-circle"></i>
+                <span>Xây dựng ứng dụng di động</span> <i class="fa-solid fa-circle"></i>
+                <span>Giải pháp đám mây</span> <i class="fa-solid fa-circle"></i>
+                <span>Xây dựng website chuẩn SEO</span> <i class="fa-solid fa-circle"></i>
+                <span>Xử lý dữ liệu & Chuyển đổi số</span> <i class="fa-solid fa-circle"></i>
+                <span>Hệ quản trị CMS & CRM</span> <i class="fa-solid fa-circle"></i>
+                <!-- Duplicate for seamless loop -->
+                <span>Phát triển phần mềm</span> <i class="fa-solid fa-circle"></i>
+                <span>Tư vấn giải pháp CNTT</span> <i class="fa-solid fa-circle"></i>
+                <span>Giải pháp thương mại điện tử</span> <i class="fa-solid fa-circle"></i>
+                <span>Xây dựng ứng dụng di động</span> <i class="fa-solid fa-circle"></i>
+                <span>Giải pháp đám mây</span> <i class="fa-solid fa-circle"></i>
+                <span>Xây dựng website chuẩn SEO</span> <i class="fa-solid fa-circle"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. BENTO SERVICES SECTION (ASYMMETRIC BENTO GRID) -->
+      <section class="bento-services-sec" id="services">
+        <div class="container">
+          <div class="bento-sec-header">
+            <span class="bento-eyebrow">{servicesSec.subTitle}</span>
+            <h2 class="bento-sec-title">{servicesSec.title} & Giải Pháp Trọng Tâm</h2>
+            <p class="bento-sec-desc">{servicesSec.desc}</p>
+          </div>
+
+          <div class="services-bento-grid">
+            {servicesSec.items.map((item, idx) => {
+              // Làm nổi bật ô số 1 và ô số 5 thành ô Bento rộng (span 2 cột)
+              const isWide = idx === 0 || idx === 4;
+              const isHighlighted = idx === 0;
+              return (
+                <div class={`bento-service-card ${isWide ? 'span-2' : ''} ${isHighlighted ? 'theme-primary' : ''}`}>
+                  <div class="b-card-top">
+                    <div class="b-icon-box">
+                      <i class={item.icon}></i>
+                    </div>
+                    <span class="b-tag">{item.tag}</span>
+                  </div>
+
+                  <div class="b-card-body">
+                    <h3 class="b-title">{item.title}</h3>
+                    <p class="b-desc">{item.desc}</p>
+                  </div>
+
+                  <div class="b-card-footer">
+                    <a href="/lien-he" class="b-explore-link">
+                      <span>Tư vấn giải pháp</span>
+                      <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <span class="b-index">0{idx + 1}</span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. BENTO ABOUT & JAPANESE PARTNERS SECTION -->
+      <section class="bento-about-sec" id="about">
+        <div class="container">
+          <div class="about-bento-mosaic">
+            <!-- Tile 1: Main Story (Large Left) -->
+            <div class="bento-tile tile-story">
+              <span class="bento-eyebrow">{about.subLabel}</span>
+              <h2 class="tile-heading">{about.heading}</h2>
+              <p class="tile-text">{about.content}</p>
+
+              <div class="tile-quote-box">
+                <i class="fa-solid fa-quote-left"></i>
+                <p>{about.quote}</p>
+              </div>
+            </div>
+
+            <!-- Tile 2: Team Visual (Top Right) -->
+            <div class="bento-tile tile-team-photo">
+              <img src={about.teamImage} alt="Đội ngũ ABSoltech" />
+              <div class="photo-overlay-badge">
+                <div class="po-years">16+</div>
+                <div class="po-txt">
+                  <strong>Năm phát triển</strong>
+                  <span>Thương hiệu CNTT hàng đầu Duyên Hải</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tile 3: International Partners (Bottom Left) -->
+            <div class="bento-tile tile-partners">
+              <div class="tp-top-block">
+                <div class="tp-head">
+                  <span class="tp-label"><i class="fa-solid fa-globe"></i> ĐỐI TÁC CHIẾN LƯỢC QUỐC TẾ</span>
+                  <span class="tp-sub">Nhật Bản • Hàn Quốc • Australia</span>
+                </div>
+                <p class="tp-intro">
+                  Hợp tác phát triển và gia công phần mềm theo quy trình kiểm định chất lượng khắt khe cho các tập đoàn công nghệ hàng đầu châu Á.
+                </p>
+              </div>
+
+              <div class="tp-logos">
+                {partners.map((p) => (
+                  <div class="tp-logo-item" title={p.name}>
+                    <div class="tp-logo-img-wrap">
+                      <img src={p.logo} alt={p.name} />
+                    </div>
+                    <div class="tp-logo-meta">
+                      <strong>{p.name}</strong>
+                      <span>{p.desc}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <!-- Tile 4: Stats Bento Highlight (Bottom Right) -->
+            <div class="bento-tile tile-stats-highlight">
+              <div class="sh-grid">
+                <div class="sh-item">
+                  <span class="sh-num">05</span>
+                  <span class="sh-lbl">Quốc gia triển khai</span>
+                </div>
+                <div class="sh-item">
+                  <span class="sh-num">20+</span>
+                  <span class="sh-lbl">Đối tác tập đoàn lớn</span>
+                </div>
+                <div class="sh-item">
+                  <span class="sh-num">500+</span>
+                  <span class="sh-lbl">Dự án thành công</span>
+                </div>
+                <div class="sh-item">
+                  <span class="sh-num">1000+</span>
+                  <span class="sh-lbl">Khách hàng doanh nghiệp</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. BENTO PACKAGED PRODUCTS SHOWCASE -->
+      <section class="bento-products-sec" id="products">
+        <div class="container">
+          <div class="bento-sec-header">
+            <span class="bento-eyebrow">{productsSec.subTitle}</span>
+            <h2 class="bento-sec-title">{productsSec.title}</h2>
+            <p class="bento-sec-desc">{productsSec.desc}</p>
+          </div>
+
+          <div class="products-bento-grid">
+            {productsSec.items.map((prod) => (
+              <div class="bento-product-card">
+                <div class="bp-visual-stage">
+                  <span class="bp-badge">{prod.badge}</span>
+                  <img src={prod.image} alt={prod.name} loading="lazy" />
+                </div>
+                <div class="bp-content">
+                  <div class="bp-title-row">
+                    <h3 class="bp-name">{prod.name}</h3>
+                    <a href="/lien-he" class="bp-icon-btn" aria-label={`Tìm hiểu ${prod.name}`}>
+                      <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                  </div>
+                  <span class="bp-tagline">{prod.tagline}</span>
+                  <p class="bp-desc">{prod.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. BENTO WALL OF LOVE (TESTIMONIALS) -->
+      <section class="bento-testimonials-sec" id="testimonials">
+        <div class="container">
+          <div class="bento-sec-header">
+            <span class="bento-eyebrow">ĐÁNH GIÁ TỪ KHÁCH HÀNG QUỐC TẾ</span>
+            <h2 class="bento-sec-title">Khách Hàng Nói Gì Về ABSoltech</h2>
+            <p class="bento-sec-desc">Sự hài lòng và tin tưởng của các đối tác toàn cầu là minh chứng rõ nét nhất cho chất lượng dịch vụ.</p>
+          </div>
+
+          <div class="reviews-bento-grid">
+            {reviews.map((r) => (
+              <div class="bento-review-card">
+                <div class="br-top">
+                  <div class="br-stars">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                  </div>
+                  <i class="fa-solid fa-quote-right br-quote-icon"></i>
+                </div>
+                <p class="br-text">“{r.quote}”</p>
+                <div class="br-author">
+                  <div class="br-avatar">{r.avatar}</div>
+                  <div>
+                    <strong class="br-name">{r.author}</strong>
+                    <span class="br-company">{r.role} — {r.company}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. BENTO CALLOUT & QUICK CONNECT FOOTER -->
+      <section class="bento-callout-sec">
+        <div class="container">
+          <div class="callout-bento-banner">
+            <div class="cb-content">
+              <span class="cb-badge"><i class="fa-solid fa-rocket"></i> SẴN SÀNG CHUYỂN ĐỔI SỐ</span>
+              <h2>{callout.title}</h2>
+              <p>{callout.desc}</p>
+            </div>
+            <div class="cb-actions">
+              <a href={`tel:${callout.phone.replace(/\s+/g, '')}`} class="btn-cb-phone">
+                <div class="phone-ring"><i class="fa-solid fa-phone-volume"></i></div>
+                <div class="phone-txt">
+                  <span>Hotline tư vấn 24/7</span>
+                  <strong>{callout.phone}</strong>
+                </div>
+              </a>
+              <a href="/lien-he" class="btn-cb-contact">
+                <span>Đặt lịch tư vấn</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- 8. BENTO FOOTER WITH INTEGRATED QUICK FORM -->
+    <footer class="bento-footer">
+      <div class="container">
+        <div class="footer-bento-grid">
+          <!-- Left: Company & Branches Bento Card -->
+          <div class="f-bento-info">
+            <img src="https://absoltech.vn/wp-content/uploads/2025/08/logo_dark_h400-768x132.png" alt="ABSoltech" class="f-logo" />
+            <h3 class="f-company-name">CÔNG TY CỔ PHẦN PHẦN MỀM AN BIÊN</h3>
+            <p class="f-legal">MSDN: 0200838952 cấp ngày 07/11/2009 tại Sở KH&ĐT TP. Hải Phòng</p>
+
+            <div class="f-branches-list">
+              <div class="fb-item">
+                <i class="fa-solid fa-building"></i>
+                <div>
+                  <strong>Trụ sở Hải Phòng:</strong>
+                  <span>Tầng 4, 22 Lý Tự Trọng, Hồng Bàng, Hải Phòng</span>
+                </div>
+              </div>
+              <div class="fb-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <div>
+                  <strong>Văn phòng Hà Nội:</strong>
+                  <span>Số 4, LK4 - TT1, 96-96B Nguyễn Huy Tưởng, Thanh Xuân, Hà Nội</span>
+                </div>
+              </div>
+              <div class="fb-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <div>
+                  <strong>Văn phòng TP.HCM:</strong>
+                  <span>383 Nguyễn Duy Trinh, Bình Trưng Tây, TP. Thủ Đức, TP.HCM</span>
+                </div>
+              </div>
+              <div class="fb-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <div>
+                  <strong>Văn phòng Thanh Hóa:</strong>
+                  <span>11 Cửa Hữu, Phường Tân Sơn, TP. Thanh Hóa</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="f-direct-pills">
+              <a href="tel:+84985185665"><i class="fa-solid fa-phone"></i> (+84) 985 185 665</a>
+              <a href="tel:+842257106222"><i class="fa-solid fa-phone"></i> (+84) 225 710 6222</a>
+              <a href="mailto:contact@absoltech.vn"><i class="fa-regular fa-envelope"></i> contact@absoltech.vn</a>
+            </div>
+          </div>
+
+          <!-- Right: Modern Contact Card -->
+          <div class="f-bento-form-card">
+            <div class="fbf-head">
+              <span class="fbf-tag">KẾT NỐI VỚI CHÚNG TÔI</span>
+              <h3>Nhận tư vấn & Báo giá giải pháp</h3>
+              <p>Chuyên gia ABSoltech sẽ liên hệ phản hồi trong vòng 24 giờ.</p>
+            </div>
+
+            <form class="fbf-form" onsubmit="event.preventDefault(); alert('Cảm ơn bạn đã gửi thông tin! ABSoltech sẽ liên hệ tư vấn sớm nhất.');">
+              <div class="fbf-row">
+                <div class="fbf-field">
+                  <label>Họ và tên *</label>
+                  <input type="text" placeholder="Nguyễn Văn A" required />
+                </div>
+                <div class="fbf-field">
+                  <label>Số điện thoại *</label>
+                  <input type="tel" placeholder="0985 xxx xxx" required />
+                </div>
+              </div>
+              <div class="fbf-row">
+                <div class="fbf-field">
+                  <label>Email doanh nghiệp *</label>
+                  <input type="email" placeholder="contact@company.com" required />
+                </div>
+                <div class="fbf-field">
+                  <label>Tên công ty</label>
+                  <input type="text" placeholder="Công ty CP..." />
+                </div>
+              </div>
+              <div class="fbf-field">
+                <label>Nhu cầu triển khai *</label>
+                <textarea rows="3" placeholder="Mô tả ngắn gọn nhu cầu phần mềm, website, mobile app..." required></textarea>
+              </div>
+              <button type="submit" class="fbf-submit">
+                <span>Gửi yêu cầu tư vấn</span>
+                <i class="fa-solid fa-paper-plane"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div class="f-bento-bottom">
+          <p>Copyright © 2026 ABSoltech JSC. All rights reserved.</p>
+          <div class="f-socials">
+            <a href="https://facebook.com/ABSoltechJSC" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://facebook.com/ABSoltechJSC" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://youtube.com/@absoltech4847" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <FloatingContact />
+</Layout>
+
+<style>
+  .bento-theme-wrapper {
+    background-color: #ffffff;
+    color: var(--gray-700);
+    min-height: 100vh;
+  }
+
+  /* 1. TOP STRIP & FLOATING PILL NAVBAR */
+  .bento-top-strip {
+    background: var(--dark);
+    color: var(--gray-300);
+    font-size: 12.5px;
+    padding: 8px 0;
+  }
+
+  .strip-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .strip-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+  }
+
+  .pulse-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+  }
+
+  .strip-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .strip-right a {
+    color: var(--gray-200);
+    font-weight: 600;
+  }
+
+  .strip-right a:hover {
+    color: var(--primary);
+  }
+
+  .strip-right i {
+    color: var(--primary);
+    margin-right: 4px;
+  }
+
+  .dot-sep {
+    opacity: 0.35;
+  }
+
+  .bento-header-wrap {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 12px 0;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gray-100);
+  }
+
+  .bento-pill-navbar {
+    background: #ffffff;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-full);
+    padding: 8px 14px 8px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 20px -4px rgba(15, 23, 42, 0.06);
+  }
+
+  .bento-brand img {
+    height: 42px;
+    width: auto;
+  }
+
+  .bento-nav {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .bento-nav-link {
+    padding: 8px 16px;
+    border-radius: var(--radius-full);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--dark-accent);
+    transition: all 0.2s ease;
+  }
+
+  .bento-nav-link:hover {
+    background: var(--primary-light);
+    color: var(--primary);
+  }
+
+  .bento-header-cta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .btn-bento-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--primary);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 11px 22px;
+    border-radius: var(--radius-full);
+    box-shadow: 0 4px 14px rgba(0, 149, 218, 0.3);
+  }
+
+  .btn-bento-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+  }
+
+  .bento-mobile-btn {
+    display: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--gray-200);
+    background: #ffffff;
+    color: var(--dark);
+    font-size: 18px;
+    cursor: pointer;
+  }
+
+  /* 2. BENTO HERO SECTION */
+  .bento-hero {
+    position: relative;
+    padding: 28px 0 40px 0;
+    overflow: hidden;
+  }
+
+  .relative {
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-box-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .hero-slide-dots {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .bento-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 9999px;
+    border: none;
+    background: var(--gray-300);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    padding: 0;
+  }
+
+  .bento-dot.active {
+    width: 26px;
+    background: var(--primary);
+  }
+
+  .bento-slide-panel {
+    display: none;
+    animation: fadeSlide 0.45s ease;
+  }
+
+  .bento-slide-panel.active {
+    display: block;
+  }
+
+  @keyframes fadeSlide {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .bento-hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 24px;
+    align-items: stretch;
+  }
+
+  .hero-main-box {
+    background: #ffffff;
+    border: 1px solid var(--gray-200);
+    border-radius: 28px;
+    padding: 48px 44px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: var(--shadow-card);
+  }
+
+  .badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    align-self: flex-start;
+    background: var(--primary-light);
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 800;
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    letter-spacing: 0.6px;
+  }
+
+  .hero-bento-heading {
+    font-size: 46px;
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--dark);
+    margin-bottom: 18px;
+    letter-spacing: -1px;
+  }
+
+  .hero-bento-heading .pre-txt {
+    display: block;
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--dark-accent);
+    margin-bottom: 4px;
+  }
+
+  .hero-bento-heading .highlight-txt {
+    color: var(--primary);
+  }
+
+  .hero-bento-desc {
+    font-size: 17px;
+    color: var(--gray-600);
+    line-height: 1.65;
+    margin-bottom: 32px;
+    max-width: 540px;
+  }
+
+  .hero-bento-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 36px;
+  }
+
+  .btn-bento-solid {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--dark);
+    color: #ffffff;
+    padding: 14px 28px;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 700;
+    transition: all 0.25s ease;
+  }
+
+  .btn-bento-solid:hover {
+    background: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px -5px rgba(0, 149, 218, 0.4);
+  }
+
+  .btn-bento-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--gray-100);
+    color: var(--dark-accent);
+    padding: 14px 24px;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .btn-bento-ghost:hover {
+    background: var(--primary-light);
+    color: var(--primary);
+  }
+
+  .hero-mini-metrics {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--gray-100);
+  }
+
+  .m-item strong {
+    display: block;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--dark);
+    line-height: 1.1;
+  }
+
+  .m-item span {
+    font-size: 13px;
+    color: var(--gray-600);
+    font-weight: 500;
+  }
+
+  .m-divider {
+    width: 1px;
+    height: 34px;
+    background: var(--gray-200);
+  }
+
+  /* Right Visual Bento Box */
+  .hero-visual-box {
+    position: relative;
+    background: linear-gradient(145deg, var(--dark) 0%, var(--dark-accent) 50%, #0369a1 100%);
+    border-radius: 28px;
+    padding: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    min-height: 440px;
+    box-shadow: var(--shadow-card);
+  }
+
+  .visual-card-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.14;
+    mix-blend-mode: luminosity;
+  }
+
+  .visual-mockup-wrap {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mockup-img {
+    max-height: 330px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 25px 35px rgba(0, 0, 0, 0.35));
+    transition: transform 0.4s ease;
+  }
+
+  .hero-visual-box:hover .mockup-img {
+    transform: scale(1.04) translateY(-4px);
+  }
+
+  .floating-widget {
+    position: absolute;
+    z-index: 3;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 10px 16px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+  }
+
+  .widget-top-left {
+    top: 24px;
+    left: 24px;
+  }
+
+  .widget-bottom-right {
+    bottom: 24px;
+    right: 24px;
+  }
+
+  .w-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: var(--primary-light);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .w-icon.cyan {
+    background: var(--primary);
+    color: #ffffff;
+  }
+
+  .w-text strong {
+    display: block;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--dark);
+    line-height: 1.2;
+  }
+
+  .w-text span {
+    font-size: 11.5px;
+    color: var(--gray-600);
+  }
+
+  /* Marquee Bento Bar */
+  .bento-marquee-bar {
+    margin-top: 24px;
+    background: #ffffff;
+    border: 1px solid var(--gray-200);
+    border-radius: 18px;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: var(--shadow-card);
+  }
+
+  .marquee-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--primary-light);
+    color: var(--primary);
+    padding: 6px 14px;
+    border-radius: 10px;
+    font-size: 12.5px;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+
+  .marquee-track-clip {
+    overflow: hidden;
+    flex: 1;
+    white-space: nowrap;
+  }
+
+  .marquee-track {
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gray-700);
+    animation: bentoScroll 28s linear infinite;
+  }
+
+  .marquee-track i {
+    font-size: 5px;
+    color: var(--primary);
+  }
+
+  @keyframes bentoScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* 3. BENTO SERVICES SECTION */
+  .bento-services-sec {
+    padding: 56px 0;
+    background-color: var(--gray-50);
+    border-top: 1px solid var(--gray-100);
+    border-bottom: 1px solid var(--gray-100);
+  }
+
+  .bento-sec-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .bento-eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--primary);
+    background: var(--primary-light);
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+    margin-bottom: 8px;
+  }
+
+  .bento-sec-title {
+    font-size: 34px;
+    font-weight: 800;
+    color: var(--dark);
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+
+  .bento-sec-desc {
+    max-width: 600px;
+    font-size: 15.5px;
+    color: var(--gray-600);
+    margin: 0 auto;
+    line-height: 1.55;
+  }
+
+  .services-bento-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+  }
+
+  .bento-service-card {
+    background: #ffffff;
+    border: 1px solid var(--gray-200);
+    border-radius: 24px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: var(--shadow-card);
+  }
+
+  .bento-service-card.span-2 {
+    grid-column: span 2;
+  }
+
+  .bento-service-card.theme-primary {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+    color: #ffffff;
+    border-color: transparent;
+  }
+
+  .bento-service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--primary);
+  }
+
+  .b-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 26px;
+  }
+
+  .b-icon-box {
+    width: 54px;
+    height: 54px;
+    border-radius: 16px;
+    background: var(--primary-light);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+  }
+
+  .theme-primary .b-icon-box {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+  }
+
+  .b-tag {
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: var(--radius-full);
+    background: var(--gray-100);
+    color: var(--dark-accent);
+  }
+
+  .theme-primary .b-tag {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+  }
+
+  .b-title {
+    font-size: 21px;
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: 10px;
+  }
+
+  .theme-primary .b-title {
+    color: #ffffff;
+  }
+
+  .b-desc {
+    font-size: 14.5px;
+    color: var(--gray-600);
+    line-height: 1.65;
+    margin-bottom: 24px;
+  }
+
+  .theme-primary .b-desc {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .b-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid var(--gray-100);
+  }
+
+  .theme-primary .b-card-footer {
+    border-top-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .b-explore-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--primary);
+  }
+
+  .theme-primary .b-explore-link {
+    color: #ffffff;
+  }
+
+  .b-index {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--gray-300);
+  }
+
+  .theme-primary .b-index {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  /* 4. BENTO ABOUT MOSAIC */
+  .bento-about-sec {
+    padding: 56px 0;
+    background-color: #ffffff;
+  }
+
+  .about-bento-mosaic {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 22px;
+  }
+
+  .bento-tile {
+    background: #ffffff;
+    border: 1px solid var(--gray-200);
+    border-radius: 28px;
+    padding: 40px;
+    box-shadow: var(--shadow-card);
+  }
+
+  .tile-heading {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--dark);
+    line-height: 1.25;
+    margin-bottom: 18px;
+  }
+
+  .tile-text {
+    font-size: 15.5px;
+    color: var(--gray-600);
+    line-height: 1.75;
+    margin-bottom: 24px;
+    text-align: justify;
+  }
+
+  .tile-quote-box {
+    background: var(--primary-light);
+    border-left: 4px solid var(--primary);
+    padding: 18px 22px;
+    border-radius: 0 16px 16px 0;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .tile-quote-box i {
+    color: var(--primary);
+    font-size: 20px;
+    margin-top: 2px;
+  }
+
+  .tile-quote-box p {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--dark);
+    font-style: italic;
+    margin: 0;
+  }
+
+  .tile-team-photo {
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+    min-height: 360px;
+  }
+
+  .tile-team-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .photo-overlay-badge {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background: rgba(15, 23, 42, 0.88);
+    backdrop-filter: blur(12px);
+    color: #ffffff;
+    padding: 18px 24px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .po-years {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--primary);
+    line-height: 1;
+  }
+
+  .po-txt strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .po-txt span {
+    font-size: 12.5px;
+    color: var(--gray-300);
+  }
+
+  .tile-partners {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .tp-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .tp-label {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--dark);
+    letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .tp-label i {
+    color: var(--primary);
+  }
+
+  .tp-sub {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--primary);
+    background: var(--primary-light);
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+  }
+
+  .tp-intro {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .tp-logos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .tp-logo-item {
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: 16px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: all 0.25s ease;
+  }
+
+  .tp-logo-item:hover {
+    border-color: var(--primary);
+    background: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 149, 218, 0.08);
+  }
+
+  .tp-logo-img-wrap {
+    width: 72px;
+    height: 46px;
+    background: #ffffff;
+    border: 1px solid var(--gray-200);
+    border-radius: 10px;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .tp-logo-img-wrap img {
+    max-height: 32px;
+    max-width: 100%;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .tp-logo-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  .tp-logo-meta strong {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--dark);
+    line-height: 1.2;
+  }
+
+  .tp-logo-meta span {
+    font-size: 12px;
+    color: var(--gray-600);
+    line-height: 1.3;
+  }
+
+  .tile-stats-highlight {
+    background: var(--dark);
+    color: #ffffff;
+    border-color: transparent;
+    display: flex;
+    align-items: center;
+  }
+
+  .sh-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    width: 100%;
+  }
+
+  .sh-item {
+    padding: 14px 18px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+  }
+
+  .sh-num {
+    display: block;
+    font-size: 30px;
+    font-weight: 800;
+    color: var(--primary);
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+
+  .sh-lbl {
+    font-size: 13px;
+    color: var(--gray-300);
+    font-weight: 500;
+  }
+
+  /* 5. BENTO PRODUCTS SECTION */
+  .bento-products-sec {
+    padding: 56px 0;
+    background-color: var(--gray-50);
+    border-top: 1px solid var(--gray-200);
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .products-bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .bento-product-card {
+    background: #ffffff;
+    border: 1px solid var(--gray-200);
+    border-radius: 24px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-card);
+  }
+
+  .bento-product-card:hover {
+    background: #ffffff;
+    border-color: var(--primary);
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .bp-visual-stage {
+    position: relative;
+    height: 180px;
+    background: linear-gradient(180deg, var(--primary-light) 0%, rgba(255, 255, 255, 0) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  .bp-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: #ffffff;
+    color: var(--primary);
+    font-size: 11.5px;
+    font-weight: 800;
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+
+  .bp-visual-stage img {
+    max-height: 125px;
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.35s ease;
+  }
+
+  .bento-product-card:hover .bp-visual-stage img {
+    transform: scale(1.08);
+  }
+
+  .bp-content {
+    padding: 24px 28px 28px 28px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .bp-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+
+  .bp-name {
+    font-size: 21px;
+    font-weight: 800;
+    color: var(--dark);
+  }
+
+  .bp-icon-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: #ffffff;
+    border: 1px solid var(--gray-200);
+    color: var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+  }
+
+  .bento-product-card:hover .bp-icon-btn {
+    background: var(--primary);
+    color: #ffffff;
+    border-color: var(--primary);
+  }
+
+  .bp-tagline {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 12px;
+  }
+
+  .bp-desc {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.65;
+  }
+
+  /* 6. BENTO TESTIMONIALS */
+  .bento-testimonials-sec {
+    padding: 56px 0;
+  }
+
+  .reviews-bento-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+  }
+
+  .bento-review-card {
+    background: #ffffff;
+    border: 1px solid var(--gray-200);
+    border-radius: 24px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: var(--shadow-card);
+    transition: all 0.25s ease;
+  }
+
+  .bento-review-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .br-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+  }
+
+  .br-stars {
+    color: #f59e0b;
+    font-size: 14px;
+    display: flex;
+    gap: 4px;
+  }
+
+  .br-quote-icon {
+    font-size: 24px;
+    color: var(--primary-light);
+  }
+
+  .br-text {
+    font-size: 15.5px;
+    line-height: 1.7;
+    color: var(--gray-700);
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+
+  .br-author {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .br-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--primary);
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .br-name {
+    display: block;
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--dark);
+  }
+
+  .br-company {
+    font-size: 13px;
+    color: var(--primary);
+    font-weight: 600;
+  }
+
+  /* 7. CALLOUT BANNER */
+  .bento-callout-sec {
+    padding-bottom: 56px;
+  }
+
+  .callout-bento-banner {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+    border-radius: 28px;
+    padding: 48px 52px;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    box-shadow: 0 20px 40px -15px rgba(0, 149, 218, 0.45);
+  }
+
+  .cb-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.18);
+    padding: 5px 14px;
+    border-radius: var(--radius-full);
+    font-size: 12px;
+    font-weight: 800;
+    margin-bottom: 14px;
+  }
+
+  .cb-content h2 {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+
+  .cb-content p {
+    font-size: 15.5px;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 600px;
+  }
+
+  .cb-actions {
+    display: flex;
+    align-items: stretch;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+
+  .btn-cb-phone {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    height: 64px;
+    min-width: 230px;
+    background: #ffffff;
+    color: var(--dark);
+    padding: 0 24px;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.25s ease;
+  }
+
+  .btn-cb-phone:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+  }
+
+  .phone-ring {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: var(--primary-light);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    flex-shrink: 0;
+  }
+
+  .phone-txt {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.2;
+    text-align: left;
+  }
+
+  .phone-txt span {
+    display: block;
+    font-size: 11.5px;
+    color: var(--gray-600);
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+
+  .phone-txt strong {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--primary);
+  }
+
+  .btn-cb-contact {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 64px;
+    min-width: 210px;
+    background: var(--dark);
+    color: #ffffff;
+    padding: 0 28px;
+    border-radius: 16px;
+    font-weight: 700;
+    font-size: 15.5px;
+    box-shadow: 0 6px 20px rgba(15, 23, 42, 0.22);
+    transition: all 0.25s ease;
+  }
+
+  .btn-cb-contact:hover {
+    background: var(--dark-accent);
+    transform: translateY(-2px);
+  }
+
+  /* 8. BENTO FOOTER */
+  .bento-footer {
+    padding: 60px 0 50px 0;
+    background-color: var(--gray-50);
+    border-top: 1px solid var(--gray-200);
+  }
+
+  .footer-bento-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+
+  .f-bento-info {
+    background: linear-gradient(145deg, var(--primary) 0%, var(--primary-hover) 100%);
+    color: #ffffff;
+    border-radius: 28px;
+    padding: 44px;
+    box-shadow: 0 16px 36px -10px rgba(0, 149, 218, 0.35);
+  }
+
+  .f-logo {
+    max-width: 240px;
+    margin-bottom: 20px;
+  }
+
+  .f-company-name {
+    font-size: 17px;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 4px;
+  }
+
+  .f-legal {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+  }
+
+  .f-branches-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 26px;
+  }
+
+  .fb-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 13.5px;
+  }
+
+  .fb-item i {
+    color: #ffffff;
+    margin-top: 4px;
+  }
+
+  .fb-item strong {
+    color: #ffffff;
+    margin-right: 4px;
+  }
+
+  .fb-item span {
+    color: rgba(255, 255, 255, 0.92);
+  }
+
+  .f-direct-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .f-direct-pills a {
+    background: rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+    padding: 8px 14px;
+    border-radius: var(--radius-full);
+    font-size: 13px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .f-direct-pills a:hover {
+    background: #ffffff;
+    color: var(--primary);
+  }
+
+  .f-bento-form-card {
+    background: #ffffff;
+    border: 1px solid var(--gray-200);
+    border-radius: 28px;
+    padding: 44px;
+    box-shadow: var(--shadow-card);
+  }
+
+  .fbf-tag {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: 1px;
+  }
+
+  .fbf-head h3 {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--dark);
+    margin: 4px 0 6px 0;
+  }
+
+  .fbf-head p {
+    font-size: 14px;
+    color: var(--gray-600);
+    margin-bottom: 24px;
+  }
+
+  .fbf-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .fbf-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .fbf-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .fbf-field label {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--dark-accent);
+  }
+
+  .fbf-field input,
+  .fbf-field textarea {
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1.5px solid var(--gray-200);
+    background: var(--gray-50);
+    font-size: 14px;
+    color: var(--dark);
+    outline: none;
+    transition: all 0.2s ease;
+  }
+
+  .fbf-field input:focus,
+  .fbf-field textarea:focus {
+    border-color: var(--primary);
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(0, 149, 218, 0.12);
+  }
+
+  .fbf-submit {
+    background: var(--primary);
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    height: 48px;
+    font-size: 15px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+
+  .fbf-submit:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+  }
+
+  .f-bento-bottom {
+    background: #ffffff;
+    border: 1px solid var(--gray-200);
+    border-radius: 20px;
+    padding: 18px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13.5px;
+    color: var(--gray-600);
+  }
+
+  .f-socials {
+    display: flex;
+    gap: 10px;
+  }
+
+  .f-socials a {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--gray-100);
+    color: var(--dark-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .f-socials a:hover {
+    background: var(--primary);
+    color: #ffffff;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .bento-hero-grid,
+    .about-bento-mosaic,
+    .footer-bento-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .services-bento-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .bento-service-card.span-2 {
+      grid-column: span 2;
+    }
+
+    .products-bento-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .callout-bento-banner {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .strip-right {
+      display: none;
+    }
+
+    .bento-nav {
+      display: none;
+      position: absolute;
+      top: 76px;
+      left: 20px;
+      right: 20px;
+      background: #ffffff;
+      flex-direction: column;
+      padding: 16px;
+      border-radius: 20px;
+      border: 1px solid var(--gray-200);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .bento-nav.open {
+      display: flex;
+    }
+
+    .bento-mobile-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-pill-tabs {
+      display: flex;
+      overflow-x: auto;
+      max-width: 100%;
+    }
+
+    .hero-main-box {
+      padding: 30px 24px;
+    }
+
+    .hero-bento-heading {
+      font-size: 34px;
+    }
+
+    .services-bento-grid,
+    .products-bento-grid,
+    .reviews-bento-grid,
+    .fbf-row {
+      grid-template-columns: 1fr;
+    }
+
+    .bento-service-card.span-2 {
+      grid-column: span 1;
+    }
+
+    .tp-logos {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cb-actions {
+      flex-direction: column;
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  // Auto & Dot Slide Switcher for Bento Hero
+  let currentBentoSlide = 0;
+  const slidePanels = document.querySelectorAll('.bento-slide-panel');
+  const totalBentoSlides = slidePanels.length;
+
+  function showBentoSlide(index: number) {
+    if (totalBentoSlides === 0) return;
+    currentBentoSlide = (index + totalBentoSlides) % totalBentoSlides;
+    slidePanels.forEach((p, i) => {
+      p.classList.toggle('active', i === currentBentoSlide);
+    });
+  }
+
+  document.querySelectorAll('.bento-dot').forEach((dot) => {
+    dot.addEventListener('click', () => {
+      const idx = Number(dot.getAttribute('data-slide-idx') || 0);
+      showBentoSlide(idx);
+    });
+  });
+
+  setInterval(() => {
+    showBentoSlide(currentBentoSlide + 1);
+  }, 5500);
+
+  // Mobile Menu Toggle
+  const mobileBtn = document.getElementById('bentoMobileBtn');
+  const bentoNav = document.getElementById('bentoNav');
+  mobileBtn?.addEventListener('click', () => {
+    bentoNav?.classList.toggle('open');
+  });
+</script>
+
